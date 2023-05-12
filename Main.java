@@ -57,7 +57,7 @@ public class Main extends Application {
         piece11.setFill(Color.BLUE);
 
         //Creazione griglia 5x4
-        /*square = new Rectangle(100, 100, Color.RED);
+        square = new Rectangle(100, 100, Color.RED);
         square.setStroke(Color.BLACK);
         square.setStrokeWidth(2);
 
@@ -73,11 +73,11 @@ public class Main extends Application {
         primaryStage.setTitle("Resizable Square");
         primaryStage.setScene(scene);
         primaryStage.show();
-        */
+        
         // Creazione di un layout a griglia per disporre i pezzi
-        GridPane gridPane = new GridPane();
+        /*GridPane gridPane = new GridPane();
         gridPane.add(piece21, 0, 0, 2, 1);
-        gridPane.add(piece11, 1, 1);
+        gridPane.add(piece11, 5, 5);*/
         
         // Creazione del gruppo per contenere il layout a griglia
         Group root = new Group();
