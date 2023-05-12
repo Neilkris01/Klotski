@@ -186,7 +186,7 @@ public class Board {
 			pieces[8] = new Piece(2, 3, 1, 1);
 			pieces[9] = new Piece(1, 4, 2, 1);
 		}
-		else if (configuration == 2)
+		/*else if (configuration == 2)
 		{
 			
 		}
@@ -194,7 +194,7 @@ public class Board {
 		{
 
 		}
-		
+		*/
 		movesCounter = 0;
 		selected = null;
 		hasWon = false;
