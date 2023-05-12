@@ -7,6 +7,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+
+public class Klotski
+{
+    Board board;
+    
+}
 public class Main extends Application {
     private Rectangle square;
 
