@@ -21,7 +21,7 @@ public class View /*extends Application*/
         for(int i = 0;i<p.length;++i)
         {
             p[0].getDims();
-            Pair<int, int> p = new Pair<>(5, 5);
+            Pair<Integer,Integer> a = new Pair<>(5, 5);
             //restituisce: x, y, altezza e larghezza
         }
     }
