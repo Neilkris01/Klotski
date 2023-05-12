@@ -49,7 +49,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         
         // Creazione di un rettangolo per rappresentare un pezzo da 2x1
-        Rectangle piece21 = new Rectangle(50, 100, 100, 50);
+        Rectangle piece21 = new Rectangle(50, 100, 50, 100);
         piece21.setFill(Color.RED);
         
         // Creazione di un rettangolo per rappresentare un pezzo da 1x1
