@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+/*public class Main extends Application {
     private Rectangle square;
 
     @Override
@@ -72,7 +72,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
-       /*  // Creazione di un layout a griglia per disporre i pezzi
+        // Creazione di un layout a griglia per disporre i pezzi
         GridPane gridPane = new GridPane();
         gridPane.add(piece21, 0, 0, 2, 1);
         gridPane.add(piece11, 1, 1);
@@ -95,5 +95,6 @@ public class Main extends Application {
     }
     public static void main(String[] args) {
         launch(args);
+        
     }
 }
