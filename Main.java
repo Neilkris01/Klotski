@@ -39,7 +39,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-}*/
+}
 
 public class Main extends Application {
     private Rectangle square;
@@ -95,5 +95,6 @@ public class Main extends Application {
     }
     public static void main(String[] args) {
         launch(args);
+        */
     }
 }
