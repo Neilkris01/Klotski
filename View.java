@@ -18,12 +18,12 @@ public class View /*extends Application*/
 
         Piece[] p = board.getPieces();
 
-        for(int i = 0;i<p.length;++i)
-        {
-            p[0].getDims();
-            Pair<Integer,Integer> a = new Pair<>(5, 5);
+            int pDim[] = p[0].getDims();
+            int x = pDim[0];
+            int y = pDim[1];
+            int h = pDim[2];
+            int w = pDim[3];
             //restituisce: x, y, altezza e larghezza
-        }
     }
 /*
     private Rectangle square;
