@@ -13,8 +13,7 @@ public class View extends Application
 
     Piece[] p = board.getPieces();
 
-    for(
-    int i = 0;i<p.length;++i)
+    for(int i = 0;i<p.length;++i)
     {
         int[] currentDims;
         //restituisce: x, y, altezza e larghezza
