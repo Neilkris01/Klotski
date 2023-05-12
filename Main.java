@@ -8,6 +8,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane; //+
 import javafx.scene.Group; //+
+import javafx.util.Pair;
 
 /*public class Main extends Application {
     private Rectangle square;
@@ -43,7 +44,27 @@ import javafx.scene.Group; //+
     }
 }*/
 
-public class Main extends Application {
+public class Main extends Application
+{
+    Board board;
+
+    public void paintComponent() {
+
+        Piece[] p = board.getPieces();
+
+        int pDim1[] = p[0].getDims();
+        int x = pDim1[0];
+        int y = pDim1[1];
+        int h = pDim1[2];
+        int w = pDim1[3];
+
+        int pDim2[] = p[0].getDims();
+        int x2 = pDim2[0];
+        int y2 = pDim2[1];
+        int h2 = pDim2[2];
+        int w2 = pDim2[3];
+    }
+
     private Rectangle square;
     @Override
     public void start(Stage primaryStage) throws Exception {
