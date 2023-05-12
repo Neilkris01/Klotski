@@ -1,3 +1,4 @@
+/*/
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -6,20 +7,24 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+*/
 
-public class View extends Application
+public class View /*extends Application*/
 {
     Board board;
 
-    Piece[] p = board.getPieces();
+    public void paintComponent() {
 
-    for(int i = 0;i<p.length;++i)
-    {
-        int[] currentDims;
-        //restituisce: x, y, altezza e larghezza
-        currentDims = p[i].getDims();
+        Piece[] p = board.getPieces();
+
+        for(int i = 0;i<p.length;++i)
+        {
+            p[0].getDims();
+            Pair<Integer, Integer> q1C = new Pair<>();
+            //restituisce: x, y, altezza e larghezza
+        }
     }
-
+/*
     private Rectangle square;
 
     @Override
@@ -51,5 +56,5 @@ public class View extends Application
             primaryStage.setScene(scene);
             primaryStage.show();
             
-    }
+    }*/
 }
