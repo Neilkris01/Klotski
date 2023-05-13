@@ -49,6 +49,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         
         Board board;
+        
 
         Piece[] p = board.getPieces();
 
