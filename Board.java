@@ -175,16 +175,26 @@ public class Board {
 		pieces = new Piece[10];
 		if (configuration == 1)
 		{
-			pieces[0] = new Piece(1, 0, 2, 2);
-			pieces[1] = new Piece(0, 0, 1, 2);
-			pieces[2] = new Piece(3, 0, 1, 2);
-			pieces[3] = new Piece(0, 2, 1, 2);
-			pieces[4] = new Piece(1, 2, 1, 1);
-			pieces[5] = new Piece(2, 2, 1, 1);
-			pieces[6] = new Piece(3, 2, 1, 2);
+			//arancio
+			pieces[0] = new Piece(0, 0, 1, 2);
+			//blu
+			pieces[1] = new Piece(3, 0, 1, 2);
+			//giallo
+			pieces[2] = new Piece(0, 2, 1, 2);
+			//verde
+			pieces[3] = new Piece(3, 2, 1, 2);
+			//rosa
+			pieces[4] = new Piece(1, 2, 2, 1);
+			//viola
+			pieces[5] = new Piece(0, 4, 1, 1);
+			//marrone
+			pieces[6] = new Piece(3, 4, 1, 1);
+			//grigio
 			pieces[7] = new Piece(1, 3, 1, 1);
+			//nero
 			pieces[8] = new Piece(2, 3, 1, 1);
-			pieces[9] = new Piece(1, 4, 2, 1);
+			//rosso
+			pieces[9] = new Piece(0, 0, 1, 1);
 		}
 		/*else if (configuration == 2)
 		{
