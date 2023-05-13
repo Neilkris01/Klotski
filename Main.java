@@ -48,6 +48,22 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         
+        Board board;
+
+        Piece[] p = board.getPieces();
+
+        int pDim1[] = p[0].getDims();
+        int x = pDim1[0];
+        int y = pDim1[1];
+        int h = pDim1[2];
+        int w = pDim1[3];
+
+        int pDim2[] = p[0].getDims();
+        int x2 = pDim2[0];
+        int y2 = pDim2[1];
+        int h2 = pDim2[2];
+        int w2 = pDim2[3];
+
         // Creazione di un rettangolo per rappresentare un pezzo da 2x1
         Rectangle piece21 = new Rectangle(50, 100, 50, 100);
         piece21.setFill(Color.RED);
