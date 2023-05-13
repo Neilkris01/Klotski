@@ -8,7 +8,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane; //+
 import javafx.scene.Group; //+
-import javafx.util.Pair;
 
 /*public class Main extends Application {
     private Rectangle square;
@@ -44,27 +43,10 @@ import javafx.util.Pair;
     }
 }*/
 
-public class Main extends Application
-{
+public class Main extends Application {
     private Rectangle square;
-    Board board;
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        Piece[] p = board.getPieces();
-
-        int pDim1[] = p[0].getDims();
-        int x = pDim1[0];
-        int y = pDim1[1];
-        int h = pDim1[2];
-        int w = pDim1[3];
-
-        int pDim2[] = p[0].getDims();
-        int x2 = pDim2[0];
-        int y2 = pDim2[1];
-        int h2 = pDim2[2];
-        int w2 = pDim2[3];
-
         
         // Creazione di un rettangolo per rappresentare un pezzo da 2x1
         Rectangle piece21 = new Rectangle(50, 100, 50, 100);
@@ -73,11 +55,12 @@ public class Main extends Application
         // Creazione di un rettangolo per rappresentare un pezzo da 1x1
         Rectangle piece11 = new Rectangle(200, 150, 50, 50);
         piece11.setFill(Color.BLUE);
-
+        /* 
         //Creazione griglia 5x4
         square = new Rectangle(100, 100, Color.GREY);
         square.setStroke(Color.BLACK);
         square.setStrokeWidth(2);
+        
 
         StackPane root = new StackPane();
         root.getChildren().add(square);
@@ -91,9 +74,9 @@ public class Main extends Application
         primaryStage.setTitle("Resizable Square");
         primaryStage.setScene(scene);
         primaryStage.show();
-        
+        */
         // Creazione di un layout a griglia per disporre i pezzi
-        /*GridPane gridPane = new GridPane();
+        GridPane gridPane = new GridPane();
         gridPane.add(piece21, 0, 0, 2, 1);
         gridPane.add(piece11, 5, 5);
         
@@ -102,7 +85,7 @@ public class Main extends Application
         root.getChildren().add(gridPane);
         
         // Creazione della scena e impostazione della dimensione
-        Scene scene = new Scene(root, 300, 300);*/
+        Scene scene = new Scene(root, 300, 300);
                 
         // Impostazione della scena sullo stage e visualizzazione dello stage
         primaryStage.setScene(scene);
