@@ -5,7 +5,6 @@ public class PiecesView
 {
     void printPiece(Piece[] p, Rectangle[][] squares)
     {
-        
         // Set up the initial state of the game
         int p0[] = p[0].getDims();
         Color color = Color.ORANGE;
@@ -103,8 +102,8 @@ public class PiecesView
         {
             for (int x = 0; x < p9[2]; x++)
             {
-                squares[p9[1]+y][p9[0]+x].setFill(Color.BLUE);
-                squares[p9[1]+y][p9[0]+x].setStroke(Color.BLUE);
+                squares[p9[1]+y][p9[0]+x].setFill(Color.RED);
+                squares[p9[1]+y][p9[0]+x].setStroke(Color.RED);
             }
         }
     }
