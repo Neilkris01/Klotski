@@ -48,26 +48,27 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         
-        Board board;
-        
-
-        Piece[] p = board.getPieces();
-
-        int pDim1[] = p[0].getDims();
-        int x = pDim1[0];
-        int y = pDim1[1];
-        int h = pDim1[2];
-        int w = pDim1[3];
-
-        int pDim2[] = p[0].getDims();
-        int x2 = pDim2[0];
-        int y2 = pDim2[1];
-        int h2 = pDim2[2];
-        int w2 = pDim2[3];
-
         // Creazione di un rettangolo per rappresentare un pezzo da 2x1
-        Rectangle piece21 = new Rectangle(50, 100, 50, 100);
-        piece21.setFill(Color.RED);
+       // Creazione dei 5 rettangoli per rappresentare i pezzi
+       Rectangle piece1 = new Rectangle(50, 100, Color.BLUE);
+       piece1.setWidth(100);
+       piece1.setHeight(50);
+       
+       Rectangle piece2 = new Rectangle(150, 250, Color.RED);
+       piece2.setWidth(100);
+       piece2.setHeight(50);
+       
+       Rectangle piece3 = new Rectangle(150, 350, Color.YELLOW);
+       piece3.setWidth(100);
+       piece3.setHeight(50);
+       
+       Rectangle piece4 = new Rectangle(150, 50, Color.GREEN);
+       piece4.setWidth(100);
+       piece4.setHeight(50);
+       
+       Rectangle piece5 = new Rectangle(250, 200, Color.ORANGE);
+       piece5.setWidth(50);
+       
         
         // Creazione di un rettangolo per rappresentare un pezzo da 1x1
         Rectangle piece11 = new Rectangle(200, 150, 50, 50);
