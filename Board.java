@@ -194,7 +194,7 @@ public class Board {
 			//nero
 			pieces[8] = new Piece(2, 3, 1, 1);
 			//rosso
-			pieces[9] = new Piece(4, 4, 1, 1);
+			pieces[9] = new Piece(1, 0, 2, 2);
 		}
 		/*else if (configuration == 2)
 		{

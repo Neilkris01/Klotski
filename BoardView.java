@@ -15,7 +15,7 @@ public class BoardView
         for (int y = 0; y < 5; y++) {
             for (int x = 0; x < 4; x++) {
                 Rectangle square = new Rectangle(squareSize, squareSize, Color.WHITE);
-                square.setStroke(Color.BLACK);
+                square.setStroke(Color.TRANSPARENT);
                 squares[y][x] = square;
             }
         }
