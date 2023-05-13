@@ -46,9 +46,10 @@ import javafx.util.Pair;
 
 public class Main extends Application
 {
+    private Rectangle square;
     Board board;
-
-    public void paintComponent() {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
 
         Piece[] p = board.getPieces();
 
@@ -63,11 +64,7 @@ public class Main extends Application
         int y2 = pDim2[1];
         int h2 = pDim2[2];
         int w2 = pDim2[3];
-    }
 
-    private Rectangle square;
-    @Override
-    public void start(Stage primaryStage) throws Exception {
         
         // Creazione di un rettangolo per rappresentare un pezzo da 2x1
         Rectangle piece21 = new Rectangle(50, 100, 50, 100);
