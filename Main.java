@@ -111,8 +111,8 @@ public class Main extends Application {
         */
         // Creazione di un layout a griglia per disporre i pezzi
         GridPane gridPane = new GridPane();
-        gridPane.add(piece21, 0, 0, 2, 1);
-        gridPane.add(piece11, 5, 5);
+        /*gridPane.add(piece21, 0, 0, 2, 1);
+        gridPane.add(piece11, 5, 5);*/
         
         // Creazione del gruppo per contenere il layout a griglia
         Group root = new Group();
