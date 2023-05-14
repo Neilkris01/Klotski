@@ -1,6 +1,4 @@
-/**
- * a class that represents a single klotski piece
- */
+/* a class that represents a single klotski piece */
 public class Piece {
 	int x;
 	int y;
