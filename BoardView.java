@@ -13,8 +13,8 @@ public class BoardView {
         // Create rectangles for each square in the grid
         for (int y = 0; y < 5; y++) {
             for (int x = 0; x < 4; x++) {
-                Rectangle square = new Rectangle(squareSize, squareSize, Color. WHITE);
-                square.setStroke(Color.TRANSPARENT);
+                Rectangle square = new Rectangle(squareSize, squareSize, Color.TRANSPARENT);
+                square.setStroke(Color.BLACK);
                 squares[y][x] = square;
             }
         }
@@ -51,9 +51,11 @@ public class BoardView {
             }
         }
 
-        // Create the scene
-        Scene scene = new Scene(stackPane, 500, 500);
-        scene.setFill(Color.BLUE);
+        // Set the background color of the scene to blue
+        stackPane.setStyle("-fx-background-color: lightgray;");
+
+        // Create the scene with blue background
+        Scene scene = new Scene(stackPane, 500, 500, Color.WHITE);
 
         // Set the scene on the stage
         primaryStage.setScene(scene);
@@ -84,5 +86,4 @@ public class BoardView {
             }
         }
     }
-    
 }
