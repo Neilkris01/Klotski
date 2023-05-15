@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "Gallo_7d254a9"
+        },
+        {
+            "type": "java",
             "name": "Piece",
             "request": "launch",
             "mainClass": "Piece",
