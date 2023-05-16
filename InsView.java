@@ -4,25 +4,24 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import java.util.Optional;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class InsView {
-    private Rectangle[][] squares;
+public class InsView
+{
     private Stage stage;
 
-    public InsView(Stage primaryStage) {
+    public InsView(Stage primaryStage)
+    {
         stage = primaryStage;
     }
 
-    int insert(int x, int y, Board board) {
-        Piece[] p = board.getPieces();
-        squares = new Rectangle[5][4];
+    int insert(Board board, Piece[] p)
+    {
         // Show dialog to change position of red square
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.initOwner(stage);
         alert.setTitle("Muovi il quadrato");
-        alert.setHeaderText("dx, sx, su o giù?");
+        alert.setHeaderText("dx, sx, su o giù?"); 
 
         // Create input fields for direction
         TextField directionField = new TextField();
@@ -40,34 +39,41 @@ public class InsView {
 
         // Add buttons to dialog
         alert.getButtonTypes().setAll(buttonTypeOk);
+        
+        Piece pTemp = p[9];
 
-        boolean selected = board.selectPiece(x, y);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        boolean canMove = false;
-        while (result.isPresent() && result.get() == buttonTypeOk) {
-            try {
-                // Get new direction from user input
-                int direction = Integer.parseInt(directionField.getText());
-
-                // Check that direction is in the range [0, 3]
-                if (direction < 0 || direction > 3) {
-                    throw new IllegalArgumentException("La direzione deve essere un numero intero tra 0 e 3.");
+        int x = pTemp.getDims()[0];
+        int y = pTemp.getDims()[1];
+        if(board.selectPiece(x, y))
+        {
+          Optional<ButtonType> result = alert.showAndWait();
+            while (result.isPresent() && result.get() == buttonTypeOk)
+            {
+                try
+                {
+                    // Get new direction from user input
+                    int direction = Integer.parseInt(directionField.getText());
+                    if (board.movePiece(direction))
+                    {
+                        return 1;
+                    }
+                    else
+                    return 0;
                 }
-                int a = direction;
-                return a;
-
-            } catch (NumberFormatException e) {
-                Errors er = new Errors();
-                er.insError();
-                result = alert.showAndWait(); // Richiedi nuovamente l'input
-            } catch (IllegalArgumentException e) {
-                Errors er = new Errors();
-                er.insError();
-                result = alert.showAndWait(); // Richiedi nuovamente l'input
+                catch (NumberFormatException e)
+                {
+                    Errors er = new Errors();
+                    er.insErrorType();
+                    result = alert.showAndWait(); // Richiedi nuovamente l'input
+                }
+                catch (IllegalArgumentException e)
+                {
+                    Errors er = new Errors();
+                    er.insErrorNumber();
+                    result = alert.showAndWait(); // Richiedi nuovamente l'input
+                }
             }
         }
-        int b = 1;
-        return b;
+        return 0;
     }
 }

@@ -1,12 +1,10 @@
-import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.layout.StackPane;
-import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 public class BoardView {
 
@@ -15,7 +13,7 @@ public class BoardView {
         // Crea i quadrati for each square in the grid
         for (int y = 0; y < 5; y++) {
             for (int x = 0; x < 4; x++) {
-                Rectangle square = new Rectangle(squareSize, squareSize, Color.TRANSPARENT);
+                Rectangle square = new Rectangle(squareSize, squareSize, Color.WHITE);
                 square.setStroke(Color.BLACK);
                 squares[y][x] = square;
             }
@@ -30,16 +28,11 @@ public class BoardView {
         gridPane.setAlignment(Pos.CENTER);
 
         // Create a StackPane to center the grid
-        StackPane stackPane = new StackPane();
+        AnchorPane window = new AnchorPane();
 
-
-        // Create a la frase in alto
-        Label label = new Label("Benvenuto nella finestra ViewPoint!");
-        label.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
-        // Add the label and the rectangle grid to the StackPane layout
-        stackPane.getChildren().addAll(gridPane, label);
-        // Set the alignment of the label to the top-center of the window
-        StackPane.setAlignment(label, Pos.TOP_CENTER);
+        //testo in alto
+        Texts texts = new Texts();
+        texts.upperText(window);
 
         // Add the squares to the grid
         for (int y = 0; y < 5; y++) {
@@ -48,8 +41,11 @@ public class BoardView {
             }
         }
 
+        window.getChildren().addAll(gridPane);
+
+        //impostazioni finestra
         ViewSettings settings = new ViewSettings();
-        settings.settings(stackPane, primaryStage);
+        settings.settings(window, primaryStage, gridPane);
 
     }
 }
