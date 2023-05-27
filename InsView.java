@@ -1,55 +1,26 @@
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import java.util.Optional;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.*;
-public class InsView
-{
-    private Stage stage;
+
+import java.util.concurrent.Semaphore;
+
+public class InsView {
     private int result = -1;
+    private Semaphore semaphore = new Semaphore(0);
 
-    public InsView(Stage primaryStage)
-    {
-        stage = primaryStage;
-    }
+    private Button sù = new Button("sù");
+    private Button giù = new Button("giù");
+    private Button destra = new Button("destra");
+    private Button sinistra = new Button("sinistra");
 
-    int insertValue(Board board, Piece[] p, Group root)
-    {
-
-        int result = -1;
-
-        Button sù = new Button("sù");
-        sù.setOnAction(event -> {
-            result = 0;
-        });
-
+    void insertButtons(Board board, Piece[] p, Group root) {
         sù.setLayoutX(615);
         sù.setLayoutY(350);
-
-        Button giù = new Button("giù");
-        giù.setOnAction(event -> {
-            result = 2;
-        });
 
         giù.setLayoutX(615);
         giù.setLayoutY(450);
 
-        Button destra = new Button("destra");
-        destra.setOnAction(event -> {
-            result = 1;
-        });
-
         destra.setLayoutX(650);
         destra.setLayoutY(400);
-
-        Button sinistra = new Button("sinistra");
-        sinistra.setOnAction(event -> {
-            result = 3;
-        });
 
         sinistra.setLayoutX(550);
         sinistra.setLayoutY(400);
@@ -58,7 +29,30 @@ public class InsView
         root.getChildren().add(sù);
         root.getChildren().add(destra);
         root.getChildren().add(sinistra);
-        
+    }
+
+    int insertValue(Board board, Piece[] p, Group root) throws InterruptedException {
+        sù.setOnAction(event -> {
+            result = 0;
+            semaphore.release();
+        });
+
+        giù.setOnAction(event -> {
+            result = 2;
+            semaphore.release();
+        });
+
+        destra.setOnAction(event -> {
+            result = 1;
+            semaphore.release();
+        });
+
+        sinistra.setOnAction(event -> {
+            result = 3;
+            semaphore.release();
+        });
+
+        semaphore.acquire(); // Attendere finché il pulsante non viene premuto
         return result;
     }
 }

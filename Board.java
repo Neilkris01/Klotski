@@ -28,8 +28,9 @@ public class Board
 	}
 	
 	public void setConfig(int number) {this.configuration = number;}
+	public void setCounter(int count) {this.movesCounter = count;}
 	public boolean checkWin() { return hasWon; }
-	public int getMoves() { return movesCounter; }
+	public int getCounter() { return movesCounter; }
 	public Piece getSelectedPiece() { return selected; }
 	public int getWidth() { return width; }
 	public int getHeight() { return height; }
