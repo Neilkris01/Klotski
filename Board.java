@@ -149,6 +149,10 @@ public class Board
 			}
 			*/
 		}
+		else
+		{
+			throw new IllegalArgumentException("direction must be 0..3");
+		}
 		
 		// if we've gotten here it means we're clear to move the selected piece
 		selected.move(direction);

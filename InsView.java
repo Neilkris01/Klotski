@@ -5,74 +5,60 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import java.util.Optional;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Button;
+import javafx.scene.*;
 public class InsView
 {
     private Stage stage;
+    private int result = -1;
 
     public InsView(Stage primaryStage)
     {
         stage = primaryStage;
     }
 
-    int insert(Board board, Piece[] p)
+    int insertValue(Board board, Piece[] p, Group root)
     {
-        // Show dialog to change position of red square
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.initOwner(stage);
-        alert.setTitle("Muovi il quadrato");
-        alert.setHeaderText("dx, sx, su o giù?"); 
 
-        // Create input fields for direction
-        TextField directionField = new TextField();
-        directionField.setPromptText("Direzione");
+        int result = -1;
 
-        // Create layout for input fields
-        GridPane gridPane = new GridPane();
-        gridPane.add(directionField, 0, 0);
+        Button sù = new Button("sù");
+        sù.setOnAction(event -> {
+            result = 0;
+        });
 
-        // Add input fields to dialog
-        alert.getDialogPane().setContent(gridPane);
+        sù.setLayoutX(615);
+        sù.setLayoutY(350);
 
-        // Create buttons for dialog
-        ButtonType buttonTypeOk = new ButtonType("OK");
+        Button giù = new Button("giù");
+        giù.setOnAction(event -> {
+            result = 2;
+        });
 
-        // Add buttons to dialog
-        alert.getButtonTypes().setAll(buttonTypeOk);
+        giù.setLayoutX(615);
+        giù.setLayoutY(450);
+
+        Button destra = new Button("destra");
+        destra.setOnAction(event -> {
+            result = 1;
+        });
+
+        destra.setLayoutX(650);
+        destra.setLayoutY(400);
+
+        Button sinistra = new Button("sinistra");
+        sinistra.setOnAction(event -> {
+            result = 3;
+        });
+
+        sinistra.setLayoutX(550);
+        sinistra.setLayoutY(400);
+
+        root.getChildren().add(giù);
+        root.getChildren().add(sù);
+        root.getChildren().add(destra);
+        root.getChildren().add(sinistra);
         
-        Piece pTemp = p[9];
-
-        //int x = pTemp.getDims()[0];
-        //int y = pTemp.getDims()[1];
-        board.selectPiece(pTemp);
-        
-        Optional<ButtonType> result = alert.showAndWait();
-        while (result.isPresent() && result.get() == buttonTypeOk)
-        {
-            try
-            {
-                // Get new direction from user input
-                int direction = Integer.parseInt(directionField.getText());
-                if (board.movePiece(direction))
-                {
-                    return 1;
-                }
-                else
-                return 0;
-            }
-            catch (NumberFormatException e)
-            {
-                Errors er = new Errors();
-                er.insErrorType();
-                result = alert.showAndWait(); // Richiedi nuovamente l'input
-            }
-            catch (IllegalArgumentException e)
-            {
-                Errors er = new Errors();
-                er.insErrorNumber();
-                result = alert.showAndWait(); // Richiedi nuovamente l'input
-            }
-        }
-        return 0;
+        return result;
     }
 }

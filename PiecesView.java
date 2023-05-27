@@ -12,16 +12,11 @@ public class PiecesView
         // Array che rappresenta i pezzi
         Rectangle[] a = new Rectangle[10];
 /*
-        BoardView boardView = new BoardView();
-        squares = new Rectangle[5][4];
-        boardView.createBoard(squares, squareSize);
 
         // Crea i rettangoli e li inserisce nella scena
-        
         for (int i = 0; i <= 8; i++) {
             int[] dimensions = p[i].getDims();
-            a[i] = new Rectangle(dimensions[0] * squareSize + 100, dimensions[1] *
-            squareSize + 100, dimensions[2] * squareSize, dimensions[3] * squareSize);
+            a[i] = new Rectangle(dimensions[0] * squareSize + 100, dimensions[1] * squareSize + 100, dimensions[2] * squareSize, dimensions[3] * squareSize);
             a[i].setFill(Color.WHITE);
             a[i].setStrokeWidth(3);
             a[i].setStroke(Color.BLACK);
@@ -37,4 +32,10 @@ public class PiecesView
 
         root.getChildren().add(a[9]);
     }
+
+    void clearPiece(Group root)
+    {
+        root.getChildren().clear();
+    }
+
 }
