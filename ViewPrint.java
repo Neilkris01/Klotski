@@ -5,43 +5,58 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import java.util.Optional;
+import javafx.scene.*;
+import javafx.scene.paint.*;
 public class ViewPrint
 {
 
     //crea la board
-    Board board = new Board();
-    Piece[] p = board.getPieces();
+    Board game = new Board();
+    Piece[] p = game.getPieces();
 
-    private Stage stage;
+    Group root = new Group();
+    Scene scene = new Scene(root, Color.SIENNA);
+
+    //---------------------------------------------------------
+
+    //private Stage stage;
     
     // dimensione del lato dei quadrati
-    private int squareSize = 80; 
     private Rectangle[][] squares;
 
     void print(Stage primaryStage)
     {
-        // Create rectangles for each square in the grid
-        BoardView boardView = new BoardView();
-        squares = new Rectangle[5][4];
-        boardView.createBoard(squares, squareSize);
 
-        // Set up the initial state of the game
-        PiecesView piecesView = new PiecesView();
-        piecesView.printPiece(p, squares);
+        BoardView printBoard = new BoardView();
+        printBoard.printBoard(squares, root);
 
-        // Create a la finestra
-        boardView.gridLayout(squares, primaryStage);
+        PiecesView printPiece = new PiecesView();
+        printPiece.printPiece(p, squares, root);
+
+
+        // modifico lo stage
+        primaryStage.setTitle("Klotski Game");
+        primaryStage.setHeight(4 * 200);
+        primaryStage.setWidth(4 * 200);
+        primaryStage.setResizable(false);
+        //primaryStage.setFullScreen(true);
+
+
+        // mostro lo stage
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
         //inserimento valori
         InsView ins = new InsView(primaryStage);
-        int a = ins.insert(board, p);
+        int f = ins.insert(game, p);
 
         // Show dialog to change position of red square
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.initOwner(stage);
-        String s = String.valueOf(a);
+        alert.initOwner(primaryStage);
+        String s = String.valueOf(f);
         alert.setTitle(s);
 
+        /*
         TextField directionField = new TextField();
         directionField.setPromptText("Direzione");
 
@@ -55,7 +70,7 @@ public class ViewPrint
 
         int x = pTemp.getDims()[0];
         int y = pTemp.getDims()[1];
-        if (board.selectPiece(x, y)) {
+        if (game.selectPiece(x, y)) {
             Optional<ButtonType> result = alert.showAndWait();
             while (result.isPresent() && result.get() == buttonTypeOk) {
                 try {
@@ -72,8 +87,6 @@ public class ViewPrint
                 }
             }
 
-        }
-        ;
-        
+        } */
     }
 }

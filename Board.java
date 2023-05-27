@@ -1,6 +1,7 @@
 import java.util.List;
 
-public class Board {
+public class Board
+{
 	Piece[] pieces;
 	Piece selected;
 	int width;
@@ -24,21 +25,6 @@ public class Board {
 		
 		this.width = 4;
 		this.height = 5;
-	}
-	
-	/**
-	 * Custom constructor that uses a custom array of pieces
-	 * @param pieces the custom array of pieces that this board holds
-	 */
-	public Board(Piece[] pieces)
-	{
-		this.pieces = pieces;
-		this.width = 4;
-		this.height = 5;
-		this.movesCounter = 0;
-		this.configuration = 1;
-		this.hasWon = false;
-		this.selected = null;
 	}
 	
 	public void setConfig(int number) {this.configuration = number;}
@@ -70,18 +56,9 @@ public class Board {
 		return true;
 	}
 	
-	public boolean selectPiece(int x, int y)
+	public void selectPiece(Piece p)
 	{
-		for (Piece p : pieces) {
-			if (p.containsPoint(x, y))
-			{
-				selected = p;
-				return true;
-			}
-		}
-		
-		selected = null;
-		return false;
+		selected = p;
 	}
 	
 	public boolean isOccupied(int x, int y)
@@ -97,48 +74,57 @@ public class Board {
 	
 	public boolean movePiece(int direction)
 	{
-		int i;
+		//int i;
 		
+		//caso 1: nessuna selezione
 		if (selected == null)
 		{
 			return false;
 		}
 		
-		if (selected == pieces[0] && selected.x == 1 && selected.y == 3 && direction == 2)
+		//caso 2: vittoria
+		if (selected == pieces[9] && selected.x == 1 && selected.y == 3 && direction == 2)
 		{
 			hasWon = true;
 			return true;
 		}
 		
+		// caso 2: valido
 		if (direction == 0)
 		{
 			// up
-			if (selected.y == 0) return false;
-			for (i = selected.x; i < selected.x + selected.w; ++i)
+			if (selected.y == 0)
+			{return false;}
+
+			/*for (i = selected.x; i < selected.x + selected.w; ++i)
 			{
 				if (isOccupied(i, selected.y - 1))
 				{
 					return false;
 				}
 			}
+			*/
 		}
 		else if (direction == 1)
 		{
 			// right
 			if (selected.x + selected.w == width) return false;
-			for (i = selected.y; i < selected.y + selected.h; ++i)
+			
+			/*for (i = selected.y; i < selected.y + selected.h; ++i)
 			{
 				if (isOccupied(selected.x + selected.w, i)) {
 					// there's a piece blocking this one
 					return false;
 				}
 			}
+			*/
 		}
 		else if (direction == 2)
 		{
 			// down
 			if (selected.y + selected.h == height) return false;
-			for (i = selected.x; i < selected.x + selected.w; ++i)
+
+			/*yfor (i = selected.x; i < selected.x + selected.w; ++i)
 			{
 				if (isOccupied(i, selected.y + selected.h))
 				{
@@ -146,12 +132,14 @@ public class Board {
 					return false;
 				}
 			}
+			*/
 		}
 		else if (direction == 3)
 		{
 			// left
 			if (selected.x == 0) return false;
-			for (i = selected.y; i < selected.y + selected.h; ++i)
+
+			/*for (i = selected.y; i < selected.y + selected.h; ++i)
 			{
 				if (isOccupied(selected.x - 1, i))
 				{
@@ -159,10 +147,7 @@ public class Board {
 					return false;
 				}
 			}
-		}
-		else
-		{
-			throw new IllegalArgumentException("direction must be 0..3");
+			*/
 		}
 		
 		// if we've gotten here it means we're clear to move the selected piece
@@ -171,29 +156,20 @@ public class Board {
 		return true;
 	}
 
-	public void reset() {
+	public void reset()
+	{
 		pieces = new Piece[10];
 		if (configuration == 1)
 		{
-			//arancio
 			pieces[0] = new Piece(0, 0, 1, 2);
-			//blu
 			pieces[1] = new Piece(3, 0, 1, 2);
-			//giallo
 			pieces[2] = new Piece(0, 2, 1, 2);
-			//verde
 			pieces[3] = new Piece(3, 2, 1, 2);
-			//rosa
 			pieces[4] = new Piece(1, 2, 2, 1);
-			//viola
 			pieces[5] = new Piece(0, 4, 1, 1);
-			//marrone
 			pieces[6] = new Piece(3, 4, 1, 1);
-			//grigio
 			pieces[7] = new Piece(1, 3, 1, 1);
-			//nero
 			pieces[8] = new Piece(2, 3, 1, 1);
-			//rosso
 			pieces[9] = new Piece(1, 0, 2, 2);
 		}
 		/*else if (configuration == 2)

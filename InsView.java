@@ -42,36 +42,35 @@ public class InsView
         
         Piece pTemp = p[9];
 
-        int x = pTemp.getDims()[0];
-        int y = pTemp.getDims()[1];
-        if(board.selectPiece(x, y))
+        //int x = pTemp.getDims()[0];
+        //int y = pTemp.getDims()[1];
+        board.selectPiece(pTemp);
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        while (result.isPresent() && result.get() == buttonTypeOk)
         {
-          Optional<ButtonType> result = alert.showAndWait();
-            while (result.isPresent() && result.get() == buttonTypeOk)
+            try
             {
-                try
+                // Get new direction from user input
+                int direction = Integer.parseInt(directionField.getText());
+                if (board.movePiece(direction))
                 {
-                    // Get new direction from user input
-                    int direction = Integer.parseInt(directionField.getText());
-                    if (board.movePiece(direction))
-                    {
-                        return 1;
-                    }
-                    else
-                    return 0;
+                    return 1;
                 }
-                catch (NumberFormatException e)
-                {
-                    Errors er = new Errors();
-                    er.insErrorType();
-                    result = alert.showAndWait(); // Richiedi nuovamente l'input
-                }
-                catch (IllegalArgumentException e)
-                {
-                    Errors er = new Errors();
-                    er.insErrorNumber();
-                    result = alert.showAndWait(); // Richiedi nuovamente l'input
-                }
+                else
+                return 0;
+            }
+            catch (NumberFormatException e)
+            {
+                Errors er = new Errors();
+                er.insErrorType();
+                result = alert.showAndWait(); // Richiedi nuovamente l'input
+            }
+            catch (IllegalArgumentException e)
+            {
+                Errors er = new Errors();
+                er.insErrorNumber();
+                result = alert.showAndWait(); // Richiedi nuovamente l'input
             }
         }
         return 0;
