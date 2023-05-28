@@ -2,49 +2,47 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.*;
 import javafx.scene.paint.*;
+import javafx.scene.control.Button;
 public class ViewPrint
 {
 
     //crea la board
-    Board board = new Board();
-    Piece[] p = board.getPieces();
+
 
     Group root = new Group();
     Scene scene = new Scene(root, Color.SIENNA);
 
-    
+    BoardView printBoard = new BoardView();
+    PiecesView printPiece = new PiecesView();
+    ViewSettings primaryStageSetting = new ViewSettings();
+    InsView ins = new InsView();
+
     // dimensione del lato dei quadrati
     private Rectangle[][] squares;
 
-    void print(Stage primaryStage) throws InterruptedException
+    void print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra)
     {
 
-        BoardView printBoard = new BoardView();
         printBoard.printBoard(squares, root);
 
-        PiecesView printPiece = new PiecesView();
         printPiece.printPiece(p, squares, root);
 
-        ViewSettings primaryStageSetting = new ViewSettings();
-        primaryStageSetting.settings(primaryStage);
+        primaryStageSetting.viewSettings(primaryStage);
         
+        //inserimento bottoni
+        ins.insertButtons(root, sù, giù, destra, sinistra);
+
         // mostro lo stage
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
 
-        //inserimento valori
-        InsView ins = new InsView();
-        ins.insertButtons(board, p, root);
+    void rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra)
+    {
+            printPiece.clearPiece(root);
+            printBoard.printBoard(squares, root);
+            printPiece.printPiece(p, squares, root);
+            ins.insertButtons(root, sù, giù, destra, sinistra);
 
-           int f = ins.insertValue(board, p, root);
-           if (f != -1)
-           {
-                board.selectPiece(p[9]);
-                board.movePiece(f);
-                printPiece.clearPiece(root);
-                printBoard.printBoard(squares, root);
-                printPiece.printPiece(p, squares, root);
-                ins.insertButtons(board, p, root);
-            }
     }
 }

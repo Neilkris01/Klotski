@@ -9,6 +9,7 @@ public class Board
 	int movesCounter;
 	int configuration;
 	boolean hasWon;
+	int i;
 	
 	/**
 	 * Basic constructor. Initializes height and width to standard klotski size.
@@ -64,8 +65,9 @@ public class Board
 	
 	public boolean isOccupied(int x, int y)
 	{
-		for (Piece p : pieces) {
-			if (p.containsPoint(x, y))
+		for (i=9; i<10; i++)
+		{
+			if ((pieces[i].getDims()[0]) == x && (pieces[i].getDims()[1]) == y)
 			{
 				return true;
 			}
@@ -75,7 +77,7 @@ public class Board
 	
 	public boolean movePiece(int direction)
 	{
-		//int i;
+		System.out.println("Mossa " + movesCounter);
 		
 		//caso 1: nessuna selezione
 		if (selected == null)
@@ -90,65 +92,87 @@ public class Board
 			return true;
 		}
 		
-		// caso 2: valido
+		// caso 3: valido
 		if (direction == 0)
 		{
 			// up
-			if (selected.y == 0)
+			if (selected.getDims()[1] == 0)
 			{return false;}
+			
+			int x = selected.getDims()[0];
+			int y = (selected.getDims()[1]) - 1;
 
-			/*for (i = selected.x; i < selected.x + selected.w; ++i)
+			for(int j =0; j<(selected.getDims()[2]); j++)
 			{
-				if (isOccupied(i, selected.y - 1))
+				x = x + j;
+				for(int j1 =0; j1<(selected.getDims()[3]); j1++)
 				{
-					return false;
+					y = y + j1;
+					if (isOccupied(x, y))
+					{return false;}
 				}
 			}
-			*/
+			
 		}
 		else if (direction == 1)
 		{
 			// right
-			if (selected.x + selected.w == width) return false;
+			if ((selected.getDims()[0]) + ((selected.getDims()[2])) == width)
+			{return false;}
 			
-			/*for (i = selected.y; i < selected.y + selected.h; ++i)
+			int x = (selected.getDims()[0]) + 1;
+			int y = (selected.getDims()[1]);
+
+			for (int j = 0; j < (selected.getDims()[2]); j++)
 			{
-				if (isOccupied(selected.x + selected.w, i)) {
-					// there's a piece blocking this one
-					return false;
+				x = x + j;
+				for (int j1 = 0; j1 < (selected.getDims()[3]); j1++)
+				{
+					y = y + j1;
+					if (isOccupied(x, y))
+					{return false;}
 				}
 			}
-			*/
 		}
 		else if (direction == 2)
 		{
 			// down
-			if (selected.y + selected.h == height) return false;
+			if ((selected.getDims()[1]) + selected.getDims()[3] == height)
+			{return false;}
 
-			/*yfor (i = selected.x; i < selected.x + selected.w; ++i)
+			int x = selected.getDims()[0];
+			int y = (selected.getDims()[1]) + 1;
+
+			for (int j = 0; j < (selected.getDims()[2]); j++)
 			{
-				if (isOccupied(i, selected.y + selected.h))
+				x = x + j;
+				for (int j1 = 0; j1 < (selected.getDims()[3]); j1++)
 				{
-					// there's a piece blocking this one
-					return false;
+					y = y + j1;
+					if (isOccupied(x, y))
+					{return false;}
 				}
 			}
-			*/
 		}
 		else if (direction == 3)
 		{
 			// left
-			if (selected.x == 0) return false;
+			if ((selected.getDims()[0]) == 0)
+			{return false;}
 
-			/*for (i = selected.y; i < selected.y + selected.h; ++i)
+			int x = (selected.getDims()[0]) - 1;
+			int y = (selected.getDims()[1]);
+
+			for (int j = 0; j < (selected.getDims()[2]); j++)
 			{
-				if (isOccupied(selected.x - 1, i))
+				x = x + j;
+				for (int j1 = 0; j1 < (selected.getDims()[3]); j1++)
 				{
-					// there's a piece blocking this one
-					return false;
+					y = y + j1;
+					if (isOccupied(x, y))
+					{return false;}
 				}
 			}
-			*/
 		}
 		else
 		{
