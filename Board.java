@@ -1,5 +1,7 @@
 import java.util.List;
 
+//import javax.crypto.spec.PSource.PSpecified;
+
 public class Board
 {
 	Piece[] pieces;
@@ -67,7 +69,7 @@ public class Board
 	{
 		for (i=9; i<10; i++)
 		{
-			if ((pieces[i].getDims()[0]) == x && (pieces[i].getDims()[1]) == y)
+			if ((pieces[i] != selected) && (pieces[i].getDims()[0]) == x && (pieces[i].getDims()[1]) == y)
 			{
 				return true;
 			}
@@ -89,6 +91,7 @@ public class Board
 		if (selected == pieces[9] && selected.x == 1 && selected.y == 3 && direction == 2)
 		{
 			hasWon = true;
+			System.out.println("HAI VINTO!!!!");
 			return true;
 		}
 		
@@ -211,7 +214,7 @@ public class Board
 		}
 		*/
 		movesCounter = 0;
-		selected = null;
+		selected = pieces[9];
 		hasWon = false;
 	}
 	

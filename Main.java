@@ -1,6 +1,8 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 public class Main extends Application
 {
@@ -25,6 +27,7 @@ public class Main extends Application
     }
 
      int f;
+     int conf;
 
     @Override
     public void start(Stage primaryStage)
@@ -32,47 +35,98 @@ public class Main extends Application
         view = new ViewPrint();
         view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
 
-
         board.selectPiece(p[9]);
-        while(!board.checkWin())
+            
+        sù.setOnAction(new EventHandler<ActionEvent>()
         {
-            f = -1;
-            f = insertValue();
-            if(f != -1)
+        @Override
+
+        public void handle(ActionEvent event)
+        {
+            board.movePiece(0);
+            view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+        }
+
+        });
+
+        giù.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+
+            public void handle(ActionEvent event)
             {
-                board.movePiece(f);
+                board.movePiece(2);
                 view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
             }
-            
-        }
-        System.out.println("HAI VINTO!!!!");
+
+        });
+
+        destra.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+
+            public void handle(ActionEvent event)
+            {
+                board.movePiece(1);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+            }
+
+        });
+
+        sinistra.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+
+            public void handle(ActionEvent event)
+            {
+                board.movePiece(3);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+            }
+
+        });
+        
+        config1.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+
+            public void handle(ActionEvent event)
+            {
+                board.reset();
+                board.setConfig(1);
+                view.resetPrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+            }
+
+        });
+
+        config2.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+
+            public void handle(ActionEvent event)
+            {
+                board.reset();
+                board.setConfig(2);
+                view.resetPrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+            }
+        });
+
+        config3.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+
+            public void handle(ActionEvent event)
+            {
+                board.reset();
+                board.setConfig(3);
+                view.resetPrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+            }
+
+        });
         
     }
-
-    int result = 2;//cambiae in -1
-
-    int insertValue()
-    {
-        sù.setOnAction(event -> {
-            result = 0;
-        });
-
-        giù.setOnAction(event -> {
-            result = 2;
-        });
-
-        destra.setOnAction(event -> {
-            result = 1;
-        });
-
-        sinistra.setOnAction(event -> {
-            result = 3;
-        });
-
-        return result;
-    }
-
-
 }
 
 // javac Main.java Board.java BoardView.java Errors.java InsView.java Piece.java PiecesView.java ViewPrint.java
