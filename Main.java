@@ -9,10 +9,15 @@ public class Main extends Application
     Board board = new Board();
     Piece[] p = board.getPieces();
 
-    private Button sù = new Button("sù");
-    private Button giù = new Button("giù");
-    private Button destra = new Button("destra");
-    private Button sinistra = new Button("sinistra");
+    private Button sù = new Button("SU");
+    private Button giù = new Button("GIU");
+    private Button destra = new Button("DESTRA");
+    private Button sinistra = new Button("SINISTRA");
+    private Button reset = new Button("RESET");
+    private Button config1 = new Button("CONFIGURATION 1");
+    private Button config2 = new Button("CONFIGURATION 2");
+    private Button config3 = new Button("CONFIGURATION 3");
+    private Button undo = new Button("UNDO");
 
     public static void main(String[] args)
     {
@@ -25,7 +30,8 @@ public class Main extends Application
     public void start(Stage primaryStage)
     {
         view = new ViewPrint();
-        view.print(primaryStage, board, p, sù, giù, destra, sinistra);
+        view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+
 
         board.selectPiece(p[9]);
         while(!board.checkWin())
@@ -35,7 +41,7 @@ public class Main extends Application
             if(f != -1)
             {
                 board.movePiece(f);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
             }
             
         }

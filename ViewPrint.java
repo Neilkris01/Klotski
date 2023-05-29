@@ -20,7 +20,7 @@ public class ViewPrint
     // dimensione del lato dei quadrati
     private Rectangle[][] squares;
 
-    void print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra)
+    void print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo)
     {
 
         printBoard.printBoard(squares, root);
@@ -30,19 +30,19 @@ public class ViewPrint
         primaryStageSetting.viewSettings(primaryStage);
         
         //inserimento bottoni
-        ins.insertButtons(root, sù, giù, destra, sinistra);
+        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
 
         // mostro lo stage
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    void rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra)
+    void rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo)
     {
             printPiece.clearPiece(root);
             printBoard.printBoard(squares, root);
             printPiece.printPiece(p, squares, root);
-            ins.insertButtons(root, sù, giù, destra, sinistra);
+            ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
 
     }
 }
