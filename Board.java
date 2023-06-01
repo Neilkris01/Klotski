@@ -77,8 +77,6 @@ public class Board
 	
 	public boolean movePiece(int direction)
 	{
-		System.out.println("Mossa " + movesCounter);
-		
 		//caso 1: nessuna selezione
 		if (selected == null)
 		{

@@ -22,12 +22,10 @@ public class Main extends Application
     private Button undo = new Button("UNDO");
 
     public static void main(String[] args)
-    {
-        launch(args);
-    }
+    {launch(args);}
 
-     int f;
-     int conf;
+    int f;
+    int conf;
 
     @Override
     public void start(Stage primaryStage)

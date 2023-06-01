@@ -3,6 +3,7 @@ import javafx.stage.Stage;
 import javafx.scene.*;
 import javafx.scene.paint.*;
 import javafx.scene.control.Button;
+import javafx.scene.Group;
 public class ViewPrint
 {
 
@@ -16,6 +17,7 @@ public class ViewPrint
     PiecesView printPiece = new PiecesView();
     ViewSettings primaryStageSetting = new ViewSettings();
     InsView ins = new InsView();
+    Texts text = new Texts();
 
     // dimensione del lato dei quadrati
     private Rectangle[][] squares;
@@ -32,6 +34,8 @@ public class ViewPrint
         //inserimento bottoni
         ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
 
+        text.counterText(root, board);
+
         // mostro lo stage
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -43,7 +47,7 @@ public class ViewPrint
             printBoard.printBoard(squares, root);
             printPiece.printPiece(p, squares, root);
             ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
-
+            text.counterText(root, board);
     }
     
     void resetPrint()

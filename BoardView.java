@@ -15,5 +15,6 @@ public class BoardView {
         border.setStroke(Color.ORANGE);
         border.setFill(Color.BISQUE);
         root.getChildren().add(border);
+        
     }
 }

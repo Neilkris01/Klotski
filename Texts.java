@@ -1,17 +1,16 @@
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.Group;
 public class Texts
 {
-    void upperText(AnchorPane window)
+    void counterText(Group root, Board board)
     {
-        // Create the label for the upper text
-        Label upperText = new Label("Benvenuto nella finestra ViewPoint!");
-        upperText.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
-
-        // Set the alignment of the GridPane to center it within the AnchorPane
-        //AnchorPane.setLeftAnchor(upperText, 800.0);
-
-        // Add the label and the rectangle grid to the AnchorPane layout
-        window.getChildren().addAll(upperText);
+        Text text1 = new Text();
+        text1.setText("Counter: " + board.getCounter());
+        text1.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        text1.setX(265);
+        text1.setY(700);
+        root.getChildren().add(text1);
     }
 }
