@@ -91,8 +91,8 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.reset();
                 board.setConfig(1);
+                board.reset();
                 view.resetPrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
                 view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
             }
@@ -105,8 +105,8 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.reset();
                 board.setConfig(2);
+                board.reset();
                 view.resetPrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
                 view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
             }
@@ -118,8 +118,8 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.reset();
                 board.setConfig(3);
+                board.reset();
                 view.resetPrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
                 view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
             }
