@@ -91,10 +91,10 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.reset();
                 board.setConfig(1);
-                view.resetPrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
-                view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                board.reset();
+                p = board.getPieces();
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
             }
 
         });
@@ -105,10 +105,10 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.reset();
                 board.setConfig(2);
-                view.resetPrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
-                view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                board.reset();
+                p = board.getPieces();
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
             }
         });
 
@@ -118,10 +118,20 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.reset();
                 board.setConfig(3);
-                view.resetPrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
-                view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                board.reset();
+                p = board.getPieces();
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+            }
+        });
+
+        reset.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+
+            public void handle(ActionEvent event) {
+                board.reset();
+                p = board.getPieces();
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
             }
 
         });

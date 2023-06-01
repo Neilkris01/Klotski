@@ -46,29 +46,8 @@ public class ViewPrint
 
     }
     
-    void resetPrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo) {
-        printPiece.clearPiece(root);
-        printBoard.printBoard(squares, root);
-
-        root.getChildren().clear();
-
-        printBoard = new BoardView();
-        printPiece = new PiecesView();
-        primaryStageSetting = new ViewSettings();
-        ins = new InsView();
-
-        printBoard.printBoard(squares, root);
-
-        printPiece.printPiece(p, squares, root);
-
-        primaryStageSetting.viewSettings(primaryStage);
-
-        // inserimento bottoni
-        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
-
-        primaryStage.setScene(new Scene(root, Color.SIENNA));
-
-        // mostro lo stage
-        primaryStage.show();
+    void resetPrint()
+    {
+        root.getChildren().clear();  
     }
 }
