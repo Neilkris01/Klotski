@@ -1,79 +1,74 @@
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
-import java.util.Optional;
+import javafx.scene.*;
+import javafx.scene.paint.*;
+import javafx.scene.control.Button;
 public class ViewPrint
 {
 
     //crea la board
-    Board board = new Board();
-    Piece[] p = board.getPieces();
 
-    private Stage stage;
-    
+
+    Group root = new Group();
+    Scene scene = new Scene(root, Color.SIENNA);
+
+    BoardView printBoard = new BoardView();
+    PiecesView printPiece = new PiecesView();
+    ViewSettings primaryStageSetting = new ViewSettings();
+    InsView ins = new InsView();
+
     // dimensione del lato dei quadrati
-    private int squareSize = 80; 
     private Rectangle[][] squares;
 
-    void print(Stage primaryStage)
+    void print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo)
     {
-        // Create rectangles for each square in the grid
-        BoardView boardView = new BoardView();
-        squares = new Rectangle[5][4];
-        boardView.createBoard(squares, squareSize);
 
-        // Set up the initial state of the game
-        PiecesView piecesView = new PiecesView();
-        piecesView.printPiece(p, squares);
+        printBoard.printBoard(squares, root);
 
-        // Create a la finestra
-        boardView.gridLayout(squares, primaryStage);
+        printPiece.printPiece(p, squares, root);
 
-        //inserimento valori
-        InsView ins = new InsView(primaryStage);
-        int a = ins.insert(board, p);
-
-        // Show dialog to change position of red square
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.initOwner(stage);
-        String s = String.valueOf(a);
-        alert.setTitle(s);
-
-        TextField directionField = new TextField();
-        directionField.setPromptText("Direzione");
-
-        // Create buttons for dialog
-        ButtonType buttonTypeOk = new ButtonType("OK");
-
-        // Add buttons to dialog
-        alert.getButtonTypes().setAll(buttonTypeOk);
-
-        Piece pTemp = p[9];
-
-        int x = pTemp.getDims()[0];
-        int y = pTemp.getDims()[1];
-        if (board.selectPiece(x, y)) {
-            Optional<ButtonType> result = alert.showAndWait();
-            while (result.isPresent() && result.get() == buttonTypeOk) {
-                try {
-                    // Get new direction from user input
-                    int direction = Integer.parseInt(directionField.getText());
-                } catch (NumberFormatException e) {
-                    Errors er = new Errors();
-                    er.insErrorType();
-                    result = alert.showAndWait(); // Richiedi nuovamente l'input
-                } catch (IllegalArgumentException e) {
-                    Errors er = new Errors();
-                    er.insErrorNumber();
-                    result = alert.showAndWait(); // Richiedi nuovamente l'input
-                }
-            }
-
-        }
-        ;
+        primaryStageSetting.viewSettings(primaryStage);
         
+        //inserimento bottoni
+        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+
+        // mostro lo stage
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    void rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo)
+    {
+            printPiece.clearPiece(root);
+            printBoard.printBoard(squares, root);
+            printPiece.printPiece(p, squares, root);
+            ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+
+    }
+    
+    void resetPrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo) {
+        printPiece.clearPiece(root);
+        printBoard.printBoard(squares, root);
+
+        root.getChildren().clear();
+
+        printBoard = new BoardView();
+        printPiece = new PiecesView();
+        primaryStageSetting = new ViewSettings();
+        ins = new InsView();
+
+        printBoard.printBoard(squares, root);
+
+        printPiece.printPiece(p, squares, root);
+
+        primaryStageSetting.viewSettings(primaryStage);
+
+        // inserimento bottoni
+        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+
+        primaryStage.setScene(new Scene(root, Color.SIENNA));
+
+        // mostro lo stage
+        primaryStage.show();
     }
 }

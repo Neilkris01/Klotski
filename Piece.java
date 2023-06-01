@@ -33,8 +33,6 @@ public class Piece {
 			this.x--;
 		else if (mov == 1) // right
 			this.x++;
-		else
-			throw new IllegalArgumentException("Invalid Direction");
 	}
 
 	public int[] getDims() {

@@ -1,6 +1,9 @@
 import java.util.List;
 
-public class Board {
+//import javax.crypto.spec.PSource.PSpecified;
+
+public class Board
+{
 	Piece[] pieces;
 	Piece selected;
 	int width;
@@ -8,6 +11,7 @@ public class Board {
 	int movesCounter;
 	int configuration;
 	boolean hasWon;
+	int i;
 	
 	/**
 	 * Basic constructor. Initializes height and width to standard klotski size.
@@ -26,24 +30,10 @@ public class Board {
 		this.height = 5;
 	}
 	
-	/**
-	 * Custom constructor that uses a custom array of pieces
-	 * @param pieces the custom array of pieces that this board holds
-	 */
-	public Board(Piece[] pieces)
-	{
-		this.pieces = pieces;
-		this.width = 4;
-		this.height = 5;
-		this.movesCounter = 0;
-		this.configuration = 1;
-		this.hasWon = false;
-		this.selected = null;
-	}
-	
 	public void setConfig(int number) {this.configuration = number;}
+	public void setCounter(int count) {this.movesCounter = count;}
 	public boolean checkWin() { return hasWon; }
-	public int getMoves() { return movesCounter; }
+	public int getCounter() { return movesCounter; }
 	public Piece getSelectedPiece() { return selected; }
 	public int getWidth() { return width; }
 	public int getHeight() { return height; }
@@ -70,24 +60,16 @@ public class Board {
 		return true;
 	}
 	
-	public boolean selectPiece(int x, int y)
+	public void selectPiece(Piece p)
 	{
-		for (Piece p : pieces) {
-			if (p.containsPoint(x, y))
-			{
-				selected = p;
-				return true;
-			}
-		}
-		
-		selected = null;
-		return false;
+		selected = p;
 	}
 	
 	public boolean isOccupied(int x, int y)
 	{
-		for (Piece p : pieces) {
-			if (p.containsPoint(x, y))
+		for (i=9; i<10; i++)
+		{
+			if ((pieces[i] != selected) && (pieces[i].getDims()[0]) == x && (pieces[i].getDims()[1]) == y)
 			{
 				return true;
 			}
@@ -97,66 +79,101 @@ public class Board {
 	
 	public boolean movePiece(int direction)
 	{
-		int i;
+		System.out.println("Mossa " + movesCounter);
 		
+		//caso 1: nessuna selezione
 		if (selected == null)
 		{
 			return false;
 		}
 		
-		if (selected == pieces[0] && selected.x == 1 && selected.y == 3 && direction == 2)
+		//caso 2: vittoria
+		if (selected == pieces[9] && selected.x == 1 && selected.y == 3 && direction == 2)
 		{
 			hasWon = true;
+			System.out.println("HAI VINTO!!!!");
 			return true;
 		}
 		
+		// caso 3: valido
 		if (direction == 0)
 		{
 			// up
-			if (selected.y == 0) return false;
-			for (i = selected.x; i < selected.x + selected.w; ++i)
+			if (selected.getDims()[1] == 0)
+			{return false;}
+			
+			int x = selected.getDims()[0];
+			int y = (selected.getDims()[1]) - 1;
+
+			for(int j =0; j<(selected.getDims()[2]); j++)
 			{
-				if (isOccupied(i, selected.y - 1))
+				x = x + j;
+				for(int j1 =0; j1<(selected.getDims()[3]); j1++)
 				{
-					return false;
+					y = y + j1;
+					if (isOccupied(x, y))
+					{return false;}
 				}
 			}
+			
 		}
 		else if (direction == 1)
 		{
 			// right
-			if (selected.x + selected.w == width) return false;
-			for (i = selected.y; i < selected.y + selected.h; ++i)
+			if ((selected.getDims()[0]) + ((selected.getDims()[2])) == width)
+			{return false;}
+			
+			int x = (selected.getDims()[0]) + 1;
+			int y = (selected.getDims()[1]);
+
+			for (int j = 0; j < (selected.getDims()[2]); j++)
 			{
-				if (isOccupied(selected.x + selected.w, i)) {
-					// there's a piece blocking this one
-					return false;
+				x = x + j;
+				for (int j1 = 0; j1 < (selected.getDims()[3]); j1++)
+				{
+					y = y + j1;
+					if (isOccupied(x, y))
+					{return false;}
 				}
 			}
 		}
 		else if (direction == 2)
 		{
 			// down
-			if (selected.y + selected.h == height) return false;
-			for (i = selected.x; i < selected.x + selected.w; ++i)
+			if ((selected.getDims()[1]) + selected.getDims()[3] == height)
+			{return false;}
+
+			int x = selected.getDims()[0];
+			int y = (selected.getDims()[1]) + 1;
+
+			for (int j = 0; j < (selected.getDims()[2]); j++)
 			{
-				if (isOccupied(i, selected.y + selected.h))
+				x = x + j;
+				for (int j1 = 0; j1 < (selected.getDims()[3]); j1++)
 				{
-					// there's a piece blocking this one
-					return false;
+					y = y + j1;
+					if (isOccupied(x, y))
+					{return false;}
 				}
 			}
 		}
 		else if (direction == 3)
 		{
 			// left
-			if (selected.x == 0) return false;
-			for (i = selected.y; i < selected.y + selected.h; ++i)
+			if ((selected.getDims()[0]) == 0)
+			{return false;}
+
+			int x = (selected.getDims()[0]) - 1;
+			int y = (selected.getDims()[1]);
+
+			for (int j = 0; j < (selected.getDims()[2]); j++)
 			{
-				if (isOccupied(selected.x - 1, i))
+				x = x + j;
+				for (int j1 = 0; j1 < (selected.getDims()[3]); j1++)
 				{
-					// there's a piece blocking this one
-					return false;
+					y = y + j1;
+					if (isOccupied(x, y))
+					{return false;}
 				}
 			}
 		}
@@ -171,42 +188,51 @@ public class Board {
 		return true;
 	}
 
-	public void reset() {
+	public void reset()
+	{
 		pieces = new Piece[10];
 		if (configuration == 1)
 		{
-			//arancio
 			pieces[0] = new Piece(0, 0, 1, 2);
-			//blu
 			pieces[1] = new Piece(3, 0, 1, 2);
-			//giallo
 			pieces[2] = new Piece(0, 2, 1, 2);
-			//verde
 			pieces[3] = new Piece(3, 2, 1, 2);
-			//rosa
 			pieces[4] = new Piece(1, 2, 2, 1);
-			//viola
 			pieces[5] = new Piece(0, 4, 1, 1);
-			//marrone
 			pieces[6] = new Piece(3, 4, 1, 1);
-			//grigio
 			pieces[7] = new Piece(1, 3, 1, 1);
-			//nero
 			pieces[8] = new Piece(2, 3, 1, 1);
-			//rosso
 			pieces[9] = new Piece(1, 0, 2, 2);
 		}
-		/*else if (configuration == 2)
+		else if (configuration == 2)
 		{
-			
+			pieces[0] = new Piece(0, 0, 1, 2);
+			pieces[1] = new Piece(3, 0, 1, 2);
+			pieces[2] = new Piece(0, 2, 1, 2);
+			pieces[3] = new Piece(3, 2, 1, 2);
+			pieces[4] = new Piece(1, 4, 2, 1);
+			pieces[5] = new Piece(1, 2, 1, 1);
+			pieces[6] = new Piece(2, 2, 1, 1);
+			pieces[7] = new Piece(1, 3, 1, 1);
+			pieces[8] = new Piece(2, 3, 1, 1);
+			pieces[9] = new Piece(1, 0, 2, 2);
 		}
 		else if (configuration == 3)
 		{
-
+			pieces[0] = new Piece(0, 1, 1, 2);
+			pieces[1] = new Piece(3, 1, 1, 2);
+			pieces[2] = new Piece(1, 2, 1, 2);
+			pieces[3] = new Piece(2, 2, 1, 2);
+			pieces[4] = new Piece(2, 4, 2, 1);
+			pieces[5] = new Piece(0, 0, 1, 1);
+			pieces[6] = new Piece(3, 0, 1, 1);
+			pieces[7] = new Piece(0, 3, 1, 1);
+			pieces[8] = new Piece(3, 3, 1, 1);
+			pieces[9] = new Piece(1, 0, 2, 2);
 		}
-		*/
+		
 		movesCounter = 0;
-		selected = null;
+		selected = pieces[9];
 		hasWon = false;
 	}
 	
