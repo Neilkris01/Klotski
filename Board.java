@@ -204,15 +204,33 @@ public class Board
 			pieces[8] = new Piece(2, 3, 1, 1);
 			pieces[9] = new Piece(1, 0, 2, 2);
 		}
-		/*else if (configuration == 2)
+		else if (configuration == 2)
 		{
-			
+			pieces[0] = new Piece(0, 0, 1, 2);
+			pieces[1] = new Piece(3, 0, 1, 2);
+			pieces[2] = new Piece(0, 2, 1, 2);
+			pieces[3] = new Piece(3, 2, 1, 2);
+			pieces[4] = new Piece(1, 4, 2, 1);
+			pieces[5] = new Piece(1, 2, 1, 1);
+			pieces[6] = new Piece(2, 2, 1, 1);
+			pieces[7] = new Piece(1, 3, 1, 1);
+			pieces[8] = new Piece(2, 3, 1, 1);
+			pieces[9] = new Piece(1, 0, 2, 2);
 		}
 		else if (configuration == 3)
 		{
-
+			pieces[0] = new Piece(0, 1, 1, 2);
+			pieces[1] = new Piece(3, 1, 1, 2);
+			pieces[2] = new Piece(1, 2, 1, 2);
+			pieces[3] = new Piece(2, 2, 1, 2);
+			pieces[4] = new Piece(2, 4, 2, 1);
+			pieces[5] = new Piece(0, 0, 1, 1);
+			pieces[6] = new Piece(3, 0, 1, 1);
+			pieces[7] = new Piece(0, 3, 1, 1);
+			pieces[8] = new Piece(3, 3, 1, 1);
+			pieces[9] = new Piece(1, 0, 2, 2);
 		}
-		*/
+		
 		movesCounter = 0;
 		selected = pieces[9];
 		hasWon = false;
