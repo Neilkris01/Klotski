@@ -67,12 +67,10 @@ public class Board
 	
 	public boolean isOccupied(int x, int y)
 	{
-		for (i=9; i<10; i++)
+		for (i=9; i<10; i++)//cambiare se aggiungi i pezzi
 		{
-			if ((pieces[i] != selected) && (pieces[i].getDims()[0]) == x && (pieces[i].getDims()[1]) == y)
-			{
-				return true;
-			}
+			if ((pieces[i] != selected) && ((pieces[i].getDims()[0]) == x) && ((pieces[i].getDims()[1]) == y))
+			{return true;}
 		}
 		return false;
 	}
