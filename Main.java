@@ -143,8 +143,9 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[7].setFill(Color.WHITE);
+                for (int i = 0; i < 10; i++)
+                {
+                    rect[i].setFill(Color.WHITE);
                 }
                 rect[7].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);

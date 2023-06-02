@@ -21,6 +21,9 @@ public class PiecesView
                 if(i != 9)
                 {a[i].setFill(Color.LIGHTGREY);}
                 else
+                if(i == 5)
+                {a[i].setFill(Color.BLACK);}
+                else
                 {a[i].setFill(Color.FIREBRICK);}
             }
             else
