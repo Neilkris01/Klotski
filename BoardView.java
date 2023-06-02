@@ -4,7 +4,7 @@ import javafx.scene.*;
 
 public class BoardView {
 
-    void printBoard(Rectangle[][]  squares, Group root)
+    void printBoard(Group root)
     {
 
         int squareSize = 100;

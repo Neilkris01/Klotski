@@ -18,16 +18,14 @@ public class ViewPrint
     ViewSettings primaryStageSetting = new ViewSettings();
     InsView ins = new InsView();
     Texts text = new Texts();
+    Rectangle[] a;
 
-    // dimensione del lato dei quadrati
-    private Rectangle[][] squares;
-
-    void print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo)
+    Rectangle[] print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo)
     {
 
-        printBoard.printBoard(squares, root);
+        printBoard.printBoard(root);
 
-        printPiece.printPiece(p, squares, root);
+        a = printPiece.printPiece(p, root, board);
 
         primaryStageSetting.viewSettings(primaryStage);
         
@@ -39,15 +37,18 @@ public class ViewPrint
         // mostro lo stage
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        return a;
     }
 
-    void rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo)
+    Rectangle[] rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo)
     {
-            printPiece.clearPiece(root);
-            printBoard.printBoard(squares, root);
-            printPiece.printPiece(p, squares, root);
-            ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
-            text.counterText(root, board);
+        printPiece.clearPiece(root);
+        printBoard.printBoard(root);
+        a = printPiece.printPiece(p, root, board);
+        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+        text.counterText(root, board);
+        return a;
     }
     
     void resetPrint()

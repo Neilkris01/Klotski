@@ -64,16 +64,36 @@ public class Board
 	{
 		selected = p;
 	}
-	
-	public boolean isOccupied(int x, int y)
+
+	public boolean isSelect(Piece p)
 	{
-		for (i=9; i<10; i++)//cambiare se aggiungi i pezzi
+		if((p.getDims()[0] == selected.getDims()[0]) && (p.getDims()[1] == selected.getDims()[1]))
 		{
-			if ((pieces[i] != selected) && ((pieces[i].getDims()[0]) == x) && ((pieces[i].getDims()[1]) == y))
-			{return true;}
+			return true;
 		}
 		return false;
 	}
+	
+	public boolean isOccupied(int x, int y)
+	{
+		for (i=0; i<10; i++)
+		{
+			int x1 = pieces[i].getDims()[0];
+			int y1 = pieces[i].getDims()[1];
+			for (int j = 0; j < (pieces[i].getDims()[2]); j++)
+			{
+				x1 = x1 + j;
+				for (int j1 = 0; j1 < (pieces[i].getDims()[3]); j1++)
+				{
+					y1 = y1 + j1;
+					if ((pieces[i] != selected) && (x1 == x) && (y1 == y))
+					{return true;}
+				}
+			}
+		}
+		return false;
+	}
+
 	
 	public boolean movePiece(int direction)
 	{
