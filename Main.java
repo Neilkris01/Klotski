@@ -283,7 +283,8 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-
+                System.out.println("Miao");
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
     }

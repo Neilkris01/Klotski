@@ -19,5 +19,6 @@ public class InsView
         root.getChildren().add(config2);
         root.getChildren().add(config3);
         root.getChildren().add(undo);
+        root.getChildren().add(bestNextMove);
     }
 }

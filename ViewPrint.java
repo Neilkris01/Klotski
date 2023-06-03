@@ -53,6 +53,6 @@ public class ViewPrint
     
     void resetPrint()
     {
-        root.getChildren().clear();  
+        root.getChildren().clear();
     }
 }
