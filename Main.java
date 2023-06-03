@@ -9,7 +9,6 @@ import javafx.scene.paint.Color;
 
 public class Main extends Application
 {
-
     private ViewPrint view;
     Board board = new Board();
     Piece[] p = board.getPieces();
