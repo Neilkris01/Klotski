@@ -286,8 +286,8 @@ public class Main extends Application
 
             }
         });
-        
     }
 }
 
 // javac Main.java Board.java BoardView.java Errors.java InsView.java Piece.java PiecesView.java ViewPrint.java
+//--
