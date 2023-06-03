@@ -74,9 +74,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for(int i = 0; i < 10; i++)
+                { rect[i].setFill(Color.WHITE);}
                 rect[2].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[2]);
@@ -88,9 +87,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for(int i = 0; i < 10; i++)
+                { rect[i].setFill(Color.WHITE);}
                 rect[3].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[3]);
@@ -102,9 +100,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for(int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}
                 rect[4].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[4]);
@@ -116,9 +113,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for (int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}
                 rect[5].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[5]);
@@ -130,9 +126,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for (int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}
                 rect[6].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[6]);
@@ -145,9 +140,7 @@ public class Main extends Application
             public void handle(MouseEvent t)
             {
                 for (int i = 0; i < 10; i++)
-                {
-                    rect[i].setFill(Color.WHITE);
-                }
+                {rect[i].setFill(Color.WHITE);}
                 rect[7].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[7]);
@@ -159,9 +152,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for (int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}
                 rect[8].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[8]);
@@ -173,9 +165,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for (int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}
                 rect[9].setFill(Color.FIREBRICK);
                 board.selectPiece(p[9]);
             }
