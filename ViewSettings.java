@@ -50,8 +50,8 @@ public class ViewSettings
         undo.setLayoutY(580);
         undo.setMinSize(50, 10);
 
-        bestNextMove.setLayoutX(100);
-        bestNextMove.setLayoutY(100);
+        bestNextMove.setLayoutX(580);
+        bestNextMove.setLayoutY(190);
         bestNextMove.setMinSize(50, 10);
     }
 } 
