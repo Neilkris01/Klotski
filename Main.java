@@ -26,6 +26,7 @@ public class Main extends Application
     private Button config2 = new Button("CONFIGURATION 2");
     private Button config3 = new Button("CONFIGURATION 3");
     private Button undo = new Button("UNDO");
+    private Button bestNextMove = new Button("BNM");
 
     public static void main(String[] args)
     {launch(args);}
@@ -37,7 +38,7 @@ public class Main extends Application
     public void start(Stage primaryStage)
     {
         view = new ViewPrint();
-        rect = view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+        rect = view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
         
         rect[0].setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
@@ -188,7 +189,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(0);
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
@@ -199,7 +200,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(2);
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
@@ -210,7 +211,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(1);
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
@@ -221,7 +222,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(3);
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
         
@@ -234,7 +235,7 @@ public class Main extends Application
                 board.setConfig(1);
                 board.reset();
                 p = board.getPieces();
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
@@ -247,7 +248,7 @@ public class Main extends Application
                 board.setConfig(2);
                 board.reset();
                 p = board.getPieces();
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
@@ -260,17 +261,29 @@ public class Main extends Application
                 board.setConfig(3);
                 board.reset();
                 p = board.getPieces();
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
-        reset.setOnAction(new EventHandler<ActionEvent>() {
+        reset.setOnAction(new EventHandler<ActionEvent>()
+        {
             @Override
 
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent event)
+            {
                 board.reset();
                 p = board.getPieces();
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
+            }
+        });
+
+        bestNextMove.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+
+            public void handle(ActionEvent event)
+            {
+
             }
         });
         
