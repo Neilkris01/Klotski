@@ -1,5 +1,6 @@
-import java.util.List;
 import java.io.*;
+import java.io.FileReader;
+import java.util.ArrayList;
 //import javax.crypto.spec.PSource.PSpecified;
 
 public class Board
@@ -13,6 +14,7 @@ public class Board
 	boolean hasWon;
 	int i;
 	int start = 0;
+	ArrayList<ArrayList<int[]>> queque = new ArrayList<>();
 	
 	/**
 	 * Basic constructor. Initializes height and width to standard klotski size.
@@ -39,27 +41,6 @@ public class Board
 	public int getWidth() { return width; }
 	public int getHeight() { return height; }
 	public Piece[] getPieces() { return pieces; }
-	
-	public boolean setPieces(List<String> lines)
-	{
-		int i;
-		String[] tokens;
-		if (lines.size() < 1 || lines.size() > this.width * this.height)
-		{
-			throw new IllegalArgumentException("Error");
-		}
-		this.movesCounter = Integer.parseInt(lines.get(0).trim());
-		pieces = new Piece[lines.size() - 1];
-		for (i = 1; i < lines.size(); ++i)
-		{
-			tokens = lines.get(i).trim().split("\\s+");
-			pieces[i - 1] = new Piece(Integer.parseInt(tokens[0]),
-					Integer.parseInt(tokens[1]),
-					Integer.parseInt(tokens[2]),
-					Integer.parseInt(tokens[3]));
-		}
-		return true;
-	}
 	
 	public void selectPiece(Piece p)
 	{
@@ -262,24 +243,80 @@ public class Board
 			// Create file
 			FileWriter fstream = new FileWriter("out.txt", true);
 			BufferedWriter out = new BufferedWriter(fstream);
-			if(start == 0)
-			{
-				out.write("LOG FILE:" + "\n \n \n");
-				start = 1;
-			}
 			for(int i = 0; i<10; i++)
 			{
+				//out.write("\n");
 				out.write("P" + i + ": ");
-				out.write(pieces[i].getDims()[0] + ", ");
-				out.write(pieces[i].getDims()[1] + ", ");
-				out.write(pieces[i].getDims()[2] + ", ");
-				out.write(pieces[i].getDims()[3] + "\n");
+				out.write(pieces[i].getDims()[0] + " ");
+				out.write(pieces[i].getDims()[1] + "\n");
 			}
-			out.write("N: " + movesCounter + "\n");
 			out.write("\n");
+			out.write("---------- \n \n");
 			out.close();
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		}
+	}
+
+	public ArrayList<ArrayList<int[]>> logRead()
+	{
+		String fileName = "C:/Users/smuga/OneDrive/Desktop/Gallo/out.txt";
+		try
+		{
+			File file = new File(fileName);
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			String line;
+			int moveN = 0;
+			int x1;
+			int y1;
+			while ((line = br.readLine()) != null) {
+				line = line.trim();
+
+				if (line.contains("----------")) {
+					moveN++;
+					continue;
+				}
+
+				if (line.isEmpty()) {
+					continue;
+				}
+
+				x1 = Character.getNumericValue(line.charAt(4));
+				y1 = Character.getNumericValue(line.charAt(6));
+				int[] coordinate = { x1, y1 };
+
+				if (moveN >= queque.size()) {
+					queque.add(new ArrayList<>());
+				}
+				queque.get(moveN).add(coordinate);
+			}
+			br.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			System.err.println("File non trovato");
+		}
+		catch (IOException e)
+		{
+			System.err.println("Errore durante la lettura del file");
+		}
+		return queque;
+	}
+
+	public void undo()
+	{
+		ArrayList<ArrayList<int[]>> q = logRead();
+		ArrayList<int[]> pI = q.get(movesCounter - 1);
+
+		int cX = 0;
+		int cY = 0;
+		for(int j = 0; j<10; j++)
+		{
+			cX = pI.get(j)[0];
+			cY = pI.get(j)[1];
+			pieces[j].setDims(cX, cY);
+		}
+		movesCounter--;
 	}
 }

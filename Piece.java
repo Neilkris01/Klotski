@@ -35,11 +35,19 @@ public class Piece {
 			this.x++;
 	}
 
-	public int[] getDims() {
+	public int[] getDims()
+	{
 		return new int[] {this.x, this.y, this.w, this.h};
 	}
+
+	public void setDims(int x1, int y1)
+	{
+		this.x = x1;
+		this.y = y1;
+	}
 	
-	public String toString() {
+	public String toString()
+	{
 		String out = "";
 		out = out.concat(Integer.toString(x) + " ")
 				.concat(Integer.toString(y) + " ")
