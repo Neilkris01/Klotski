@@ -1,5 +1,5 @@
 import java.util.List;
-
+import java.io.*;
 //import javax.crypto.spec.PSource.PSpecified;
 
 public class Board
@@ -12,6 +12,7 @@ public class Board
 	int configuration;
 	boolean hasWon;
 	int i;
+	int start = 0;
 	
 	/**
 	 * Basic constructor. Initializes height and width to standard klotski size.
@@ -201,6 +202,9 @@ public class Board
 		// if we've gotten here it means we're clear to move the selected piece
 		selected.move(direction);
 		++movesCounter;
+
+		logWrite();
+
 		return true;
 	}
 
@@ -252,13 +256,30 @@ public class Board
 		hasWon = false;
 	}
 	
-	public String toString()
+	public void logWrite()
 	{
-		String out = Integer.toString(movesCounter) + "\n";
-		for (Piece p : pieces)
-		{
-			out = out.concat(p.toString() + "\n");
+		try {
+			// Create file
+			FileWriter fstream = new FileWriter("out.txt", true);
+			BufferedWriter out = new BufferedWriter(fstream);
+			if(start == 0)
+			{
+				out.write("LOG FILE:" + "\n \n \n");
+				start = 1;
+			}
+			for(int i = 0; i<10; i++)
+			{
+				out.write("P" + i + ": ");
+				out.write(pieces[i].getDims()[0] + ", ");
+				out.write(pieces[i].getDims()[1] + ", ");
+				out.write(pieces[i].getDims()[2] + ", ");
+				out.write(pieces[i].getDims()[3] + "\n");
+			}
+			out.write("N: " + movesCounter + "\n");
+			out.write("\n");
+			out.close();
+		} catch (Exception e) {
+			System.err.println("Error: " + e.getMessage());
 		}
-		return out;
 	}
 }
