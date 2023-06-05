@@ -9,7 +9,6 @@ import javafx.scene.paint.Color;
 
 public class Main extends Application
 {
-
     private ViewPrint view;
     Board board = new Board();
     Piece[] p = board.getPieces();
@@ -26,6 +25,7 @@ public class Main extends Application
     private Button config2 = new Button("CONFIGURATION 2");
     private Button config3 = new Button("CONFIGURATION 3");
     private Button undo = new Button("UNDO");
+    private Button bestNextMove = new Button("BNM");
 
     public static void main(String[] args)
     {launch(args);}
@@ -37,7 +37,7 @@ public class Main extends Application
     public void start(Stage primaryStage)
     {
         view = new ViewPrint();
-        rect = view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+        rect = view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
         
         rect[0].setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
@@ -73,9 +73,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for(int i = 0; i < 10; i++)
+                { rect[i].setFill(Color.WHITE);}
                 rect[2].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[2]);
@@ -87,9 +86,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for(int i = 0; i < 10; i++)
+                { rect[i].setFill(Color.WHITE);}
                 rect[3].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[3]);
@@ -101,9 +99,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for(int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}
                 rect[4].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[4]);
@@ -115,9 +112,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for (int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}
                 rect[5].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[5]);
@@ -129,9 +125,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for (int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}
                 rect[6].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[6]);
@@ -144,9 +139,7 @@ public class Main extends Application
             public void handle(MouseEvent t)
             {
                 for (int i = 0; i < 10; i++)
-                {
-                    rect[i].setFill(Color.WHITE);
-                }
+                {rect[i].setFill(Color.WHITE);}
                 rect[7].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[7]);
@@ -158,9 +151,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for (int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}
                 rect[8].setFill(Color.LIGHTGREY);
                 rect[9].setFill(Color.RED);
                 board.selectPiece(p[8]);
@@ -172,9 +164,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++) {
-                    rect[i].setFill(Color.WHITE);
-                }
+                for (int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}
                 rect[9].setFill(Color.FIREBRICK);
                 board.selectPiece(p[9]);
             }
@@ -188,7 +179,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(0);
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
@@ -199,7 +190,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(2);
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
@@ -210,7 +201,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(1);
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
@@ -221,7 +212,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(3);
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
         
@@ -234,7 +225,7 @@ public class Main extends Application
                 board.setConfig(1);
                 board.reset();
                 p = board.getPieces();
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
@@ -247,7 +238,7 @@ public class Main extends Application
                 board.setConfig(2);
                 board.reset();
                 p = board.getPieces();
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
@@ -260,21 +251,34 @@ public class Main extends Application
                 board.setConfig(3);
                 board.reset();
                 p = board.getPieces();
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
 
-        reset.setOnAction(new EventHandler<ActionEvent>() {
+        reset.setOnAction(new EventHandler<ActionEvent>()
+        {
             @Override
 
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent event)
+            {
                 board.reset();
                 p = board.getPieces();
-                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo);
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
             }
         });
-        
+
+        bestNextMove.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+
+            public void handle(ActionEvent event)
+            {
+                System.out.println("Miao");
+                rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
+            }
+        });
     }
 }
 
 // javac Main.java Board.java BoardView.java Errors.java InsView.java Piece.java PiecesView.java ViewPrint.java
+//-------

@@ -12,7 +12,7 @@ public class ViewSettings
         // primaryStage.setFullScreen(true);
     }
 
-    void buttonsSettings(Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo)
+    void buttonsSettings(Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove)
     {
         sù.setLayoutX(615);
         sù.setLayoutY(350);
@@ -49,5 +49,9 @@ public class ViewSettings
         undo.setLayoutX(590);
         undo.setLayoutY(580);
         undo.setMinSize(50, 10);
+
+        bestNextMove.setLayoutX(580);
+        bestNextMove.setLayoutY(190);
+        bestNextMove.setMinSize(50, 10);
     }
 } 
