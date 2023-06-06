@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.Group;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 
 public class ViewPrint
 {
@@ -59,19 +60,66 @@ public class ViewPrint
         root.getChildren().clear();
     }
 
-    public void save(Board board)
+    public void saveView(Board board)
     {
         TextInputDialog inputDialog = new TextInputDialog();
+        String response = "";
         inputDialog.setTitle("Salva");
         inputDialog.setHeaderText(null);
         inputDialog.setContentText("Come vuoi salvare la tua partita?");
+        Optional<String> result;
 
-        Optional<String> result = inputDialog.showAndWait();
-        if (result.isPresent())
+        while (true)
         {
-            String response = result.get();
-            board.reenameFile(response + ".txt");
+            result = inputDialog.showAndWait();
+            if (result.isPresent()) 
+            {
+                response = result.get();
+                if (!response.equals("out"))
+                {break;}
+                else
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Errore");
+                    alert.setHeaderText(null);
+                    alert.setContentText("L'input non può essere 'out'. Inserisci un valore diverso.");
+                    alert.showAndWait();
+                }
+            }
+            else
+            {return;}
         }
+        board.renameFile(response + ".txt");
     }
 
+    public void winView(Board board)
+    {
+        TextInputDialog inputDialog = new TextInputDialog();
+        String response = "";
+        inputDialog.setTitle("!!!WIN!!!");
+        inputDialog.setHeaderText(null);
+        inputDialog.setContentText("Vuoi salvare la tua partita?");
+        Optional<String> result;
+        while (true)
+        {
+            result = inputDialog.showAndWait();
+            if (result.isPresent())
+            {
+                response = result.get();
+                if (!response.equals("out"))
+                {break;}
+                else
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Errore");
+                    alert.setHeaderText(null);
+                    alert.setContentText("L'input non può essere 'out'. Inserisci un valore diverso.");
+                    alert.showAndWait();
+                }
+            }
+            else
+            {return;}
+        }
+        board.renameFile(response + ".txt");
+    }
 }

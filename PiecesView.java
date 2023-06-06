@@ -13,7 +13,8 @@ public class PiecesView
     {
 
         // Crea i rettangoli e li inserisce nella scena
-        for (int i = 0; i <= 8; i++) {
+        for (int i = 0; i <= 8; i++)
+        {
             int[] dimensions = p[i].getDims();
             a[i] = new Rectangle(dimensions[0] * squareSize + 100, dimensions[1] * squareSize + 100, dimensions[2] * squareSize, dimensions[3] * squareSize);
             if(board.isSelect(p[i]))

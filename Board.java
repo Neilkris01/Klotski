@@ -1,7 +1,6 @@
 import java.io.*;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.List;
 //import javax.crypto.spec.PSource.PSpecified;
 
 public class Board
@@ -61,7 +60,7 @@ public class Board
 	
 	public boolean isOccupied(int x, int y)
 	{
-		for (i=0; i<10; i++)
+		for (i=9; i<10; i++)
 		{
 			int x1 = pieces[i].getDims()[0];
 			int y1 = pieces[i].getDims()[1];
@@ -127,7 +126,6 @@ public class Board
 		if (selected == pieces[9] && selected.x == 1 && selected.y == 3 && direction == 2)
 		{
 			hasWon = true;
-			System.out.println("HAI VINTO!!!!");
 			return true;
 		}
 		
@@ -218,12 +216,10 @@ public class Board
 			throw new IllegalArgumentException("direction must be 0..3");
 		}
 		
-		// if we've gotten here it means we're clear to move the selected piece
 		selected.move(direction);
 		++movesCounter;
 
 		logWrite();
-
 		return true;
 	}
 
@@ -279,7 +275,7 @@ public class Board
 	{
 		try {
 			// Create file
-			FileWriter fileName = new FileWriter("out.txt", true);
+			FileWriter fileName = new FileWriter("./Logs/out.txt", true);
 			BufferedWriter out = new BufferedWriter(fileName);
 			for(int i = 0; i<10; i++)
 			{
@@ -289,6 +285,11 @@ public class Board
 			}
 			out.write("\n");
 			out.write("---------- \n \n");
+			if(checkWin())
+			{
+				out.write("\n \n");
+				out.write("----- !!! WIN !!! -----");
+			}
 			out.close();
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
@@ -297,7 +298,7 @@ public class Board
 
 	public ArrayList<ArrayList<int[]>> logRead()
 	{
-		String fileName = "./out.txt";
+		String fileName = "./Logs/out.txt";
 		try
 		{
 			File file = new File(fileName);
@@ -307,15 +308,18 @@ public class Board
 			int moveN = 0;
 			int x1;
 			int y1;
-			while ((line = br.readLine()) != null) {
+			while ((line = br.readLine()) != null)
+			{
 				line = line.trim();
 
-				if (line.contains("----------")) {
+				if (line.contains("----------"))
+				{
 					moveN++;
 					continue;
 				}
 
-				if (line.isEmpty()) {
+				if (line.isEmpty()) 
+				{
 					continue;
 				}
 
@@ -323,7 +327,8 @@ public class Board
 				y1 = Character.getNumericValue(line.charAt(6));
 				int[] coordinate = { x1, y1 };
 
-				if (moveN >= queque.size()) {
+				if (moveN >= queque.size())
+				{
 					queque.add(new ArrayList<>());
 				}
 				queque.get(moveN).add(coordinate);
@@ -341,13 +346,49 @@ public class Board
 		return queque;
 	}
 
-	public void removeLastLines(List<String> lines, int numLinesToDelete)
+	public void removeLastLines()
 	{
-		int startIndex = lines.size() - numLinesToDelete;
-		if (startIndex >= 0)
+		String filePath = "./Logs/out.txt";
+		int linesToRemove = 13;
+		int lineCount = 0;
+		try
 		{
-			lines.subList(startIndex, lines.size()).clear();
+			File inputFile = new File(filePath);
+			File tempFile = new File("temp.txt");
+
+			BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+			String Line;
+
+			while ((Line = reader.readLine()) != null) 
+			{
+				lineCount++;
+			}
+
+			reader.close();
+			reader = new BufferedReader(new FileReader(inputFile));
+
+			while ((Line = reader.readLine()) != null && (lineCount - linesToRemove) != 0)
+			{
+				writer.write(Line);
+				writer.newLine();
+				lineCount--;
+			}
+
+			writer.close();
+			reader.close();
+
+			if (inputFile.delete())
+			{
+				if (!tempFile.renameTo(inputFile))
+				{throw new IOException("Impossibile rinominare il file temporaneo");}
+			}
+			else
+			{throw new IOException("Impossibile eliminare il file originale");}
 		}
+		catch (IOException e)
+		{e.printStackTrace();}
 	}
 
 	public void undo()
@@ -364,16 +405,43 @@ public class Board
 			pieces[j].setDims(cX, cY);
 		}
 		movesCounter--;
-		removeLastLines(lines, 13);
+		removeLastLines();
 	}
 
 	public void renameFile(String nuovoNomeFile)
 	{
 
-		String nomeFileOriginale = "out.txt";
+		String nomeFileOriginale = "./Logs/out.txt";
 		File fileOriginale = new File(nomeFileOriginale);
-		File fileRinominato = new File(nuovoNomeFile);
+		File fileRinominato = new File("./Logs/" + nuovoNomeFile);
 
 		fileOriginale.renameTo(fileRinominato);
+	}
+
+	public void deleteFile()
+	{
+		File file = new File("./Logs/out.txt");
+		try
+		{
+			if (file.exists())
+			{
+				if (file.delete())
+				{
+					System.out.println("Il file " + file.getAbsolutePath() + " è stato eliminato con successo.");
+				}
+				else
+				{
+					System.out.println("Impossibile eliminare il file " + file.getAbsolutePath());
+				}
+			}
+			else
+			{
+				System.out.println("Il file " + file.getAbsolutePath() + " non esiste.");
+			}
+		}
+		catch (Exception e)
+		{
+			System.err.println("Si è verificato un errore durante l'eliminazione del file: " + e.getMessage());
+		}
 	}
 }
