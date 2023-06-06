@@ -293,6 +293,16 @@ public class Main extends Application
                 rect = view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save);
             }
         });
+
+        save.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+
+            public void handle(ActionEvent event)
+            {
+                
+            }
+        });
     }
 }
 

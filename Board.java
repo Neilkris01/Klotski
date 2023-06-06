@@ -260,7 +260,7 @@ public class Board
 
 	public ArrayList<ArrayList<int[]>> logRead()
 	{
-		String fileName = "C:/Users/smuga/OneDrive/Desktop/Gallo/out.txt";
+		String fileName = "./out.txt";
 		try
 		{
 			File file = new File(fileName);
