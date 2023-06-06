@@ -4,11 +4,11 @@ import javafx.scene.*;
 public class InsView
 {
 
-    void insertButtons(Group root, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove)
+    void insertButtons(Group root, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove, Button save)
     {
         
         ViewSettings primaryStageSetting = new ViewSettings();
-        primaryStageSetting.buttonsSettings(sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
+        primaryStageSetting.buttonsSettings(sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save);
 
         root.getChildren().add(giù);
         root.getChildren().add(sù);
@@ -20,5 +20,6 @@ public class InsView
         root.getChildren().add(config3);
         root.getChildren().add(undo);
         root.getChildren().add(bestNextMove);
+        root.getChildren().add(save);
     }
 }

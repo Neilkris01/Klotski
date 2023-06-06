@@ -20,7 +20,7 @@ public class ViewPrint
     Texts text = new Texts();
     Rectangle[] a;
 
-    Rectangle[] print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove)
+    Rectangle[] print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove, Button save)
     {
 
         printBoard.printBoard(root);
@@ -30,7 +30,7 @@ public class ViewPrint
         primaryStageSetting.viewSettings(primaryStage);
         
         //inserimento bottoni
-        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
+        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save);
 
         text.counterText(root, board);
 
@@ -41,12 +41,12 @@ public class ViewPrint
         return a;
     }
 
-    Rectangle[] rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove)
+    Rectangle[] rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove, Button save)
     {
         printPiece.clearPiece(root);
         printBoard.printBoard(root);
         a = printPiece.printPiece(p, root, board);
-        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove);
+        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save);
         text.counterText(root, board);
         return a;
     }

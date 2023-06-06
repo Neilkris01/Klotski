@@ -14,6 +14,7 @@ public class Board
 	boolean hasWon;
 	int i;
 	int start = 0;
+	String fileName;
 	ArrayList<ArrayList<int[]>> queque = new ArrayList<>();
 	
 	/**
@@ -241,11 +242,10 @@ public class Board
 	{
 		try {
 			// Create file
-			FileWriter fstream = new FileWriter("out.txt", true);
-			BufferedWriter out = new BufferedWriter(fstream);
+			FileWriter fileName = new FileWriter("out.txt", true);
+			BufferedWriter out = new BufferedWriter(fileName);
 			for(int i = 0; i<10; i++)
 			{
-				//out.write("\n");
 				out.write("P" + i + ": ");
 				out.write(pieces[i].getDims()[0] + " ");
 				out.write(pieces[i].getDims()[1] + "\n");
@@ -318,5 +318,15 @@ public class Board
 			pieces[j].setDims(cX, cY);
 		}
 		movesCounter--;
+	}
+
+	public void reenameFile(String nuovoNomeFile)
+	{
+
+		String nomeFileOriginale = "out.txt";
+		File fileOriginale = new File(nomeFileOriginale);
+		File fileRinominato = new File(nuovoNomeFile);
+
+		fileOriginale.renameTo(fileRinominato);
 	}
 }
