@@ -77,6 +77,22 @@ public class Board
 		return false;
 	}
 
+	/*
+	for(i=0;i<10;i++)
+	{
+		int x1 = pieces[i].getDims()[0];
+		int y1 = pieces[i].getDims()[1];
+		for (int j = 0; j < (pieces[i].getDims()[2]); j++) {
+			x1 = x1 + j;
+			for (int j1 = 0; j1 < (pieces[i].getDims()[3]); j1++)
+			{
+				y1 = y1 + j1;
+				String a = "a";
+				}
+			}
+		}
+	}
+	*/
 	
 	public boolean movePiece(int direction)
 	{

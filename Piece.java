@@ -45,14 +45,4 @@ public class Piece {
 		this.x = x1;
 		this.y = y1;
 	}
-	
-	public String toString()
-	{
-		String out = "";
-		out = out.concat(Integer.toString(x) + " ")
-				.concat(Integer.toString(y) + " ")
-				.concat(Integer.toString(w) + " ")
-				.concat(Integer.toString(h));
-		return out;
-	}
 }
