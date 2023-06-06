@@ -1,6 +1,7 @@
 import java.io.*;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 //import javax.crypto.spec.PSource.PSpecified;
 
 public class Board
@@ -303,6 +304,15 @@ public class Board
 		return queque;
 	}
 
+	public void removeLastLines(List<String> lines, int numLinesToDelete)
+	{
+		int startIndex = lines.size() - numLinesToDelete;
+		if (startIndex >= 0)
+		{
+			lines.subList(startIndex, lines.size()).clear();
+		}
+	}
+
 	public void undo()
 	{
 		ArrayList<ArrayList<int[]>> q = logRead();
@@ -317,9 +327,10 @@ public class Board
 			pieces[j].setDims(cX, cY);
 		}
 		movesCounter--;
+		removeLastLines(lines, 13);
 	}
 
-	public void reenameFile(String nuovoNomeFile)
+	public void renameFile(String nuovoNomeFile)
 	{
 
 		String nomeFileOriginale = "out.txt";

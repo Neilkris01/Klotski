@@ -300,7 +300,7 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                
+                view.save(board);
             }
         });
     }

@@ -1,9 +1,12 @@
+import java.util.Optional;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.scene.*;
 import javafx.scene.paint.*;
 import javafx.scene.control.Button;
 import javafx.scene.Group;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.Scene;
+
 public class ViewPrint
 {
 
@@ -55,4 +58,20 @@ public class ViewPrint
     {
         root.getChildren().clear();
     }
+
+    public void save(Board board)
+    {
+        TextInputDialog inputDialog = new TextInputDialog();
+        inputDialog.setTitle("Salva");
+        inputDialog.setHeaderText(null);
+        inputDialog.setContentText("Come vuoi salvare la tua partita?");
+
+        Optional<String> result = inputDialog.showAndWait();
+        if (result.isPresent())
+        {
+            String response = result.get();
+            board.reenameFile(response + ".txt");
+        }
+    }
+
 }
