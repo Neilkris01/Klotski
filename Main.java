@@ -163,14 +163,13 @@ public class Main extends Application
                 board.selectPiece(p[8]);
             }
         });
-
         rect[9].setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
             public void handle(MouseEvent t)
             {
-                for (int i = 0; i < 10; i++)
-                {rect[i].setFill(Color.WHITE);}
+                /*for (int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}*/
                 rect[9].setFill(Color.FIREBRICK);
                 board.selectPiece(p[9]);
             }

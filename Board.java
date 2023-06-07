@@ -19,10 +19,10 @@ public class Board
 	ArrayList<ArrayList<int[]>> queque = new ArrayList<>();
 	int maxDeep;
 	
-	/**
-	 * Basic constructor. Initializes height and width to standard klotski size.
-	 * Initializes pieces to configuration 1
-	 */
+	/*
+	Basic constructor. Initializes height and width to standard klotski size.
+	Initializes pieces to configuration 1
+	*/
 	public Board()
 	{
 		this.pieces = new Piece[10];
