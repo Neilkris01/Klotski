@@ -272,7 +272,7 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.setConfig(3);
+                board.setConfig(4);
                 board.reset();
                 p = board.getPieces();
                 view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4,  reset, undo, bestNextMove, save, caricaPartita);
