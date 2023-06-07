@@ -68,7 +68,7 @@ public class Board
 			for (int j = 0; j < (pieces[i].getDims()[2]); j++)
 			{
 				x1 = x1 + j;
-				y1 = pieces[i].getDims()[1];;
+				y1 = pieces[i].getDims()[1];
 				for (int j1 = 0; j1 < (pieces[i].getDims()[3]); j1++)
 				{
 					y1 = y1 + j1;
