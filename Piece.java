@@ -4,9 +4,9 @@ public class Piece {
 	int y;
 	int w;
 	int h;
-	String L;
+	String name;
 	
-	public Piece(int x, int y, int w, int h)
+	public Piece(int x, int y, int w, int h, String n)
 	{
 		if (x < 0 || y < 0 || w < 1 || h < 1)
 			throw new IllegalArgumentException("Invalid Position");
@@ -14,6 +14,7 @@ public class Piece {
 		this.y = y;
 		this.w = w;
 		this.h= h;
+		this.name = n;
 	}
 
 	public boolean containsPoint(int x, int y)
@@ -42,11 +43,11 @@ public class Piece {
 		this.y = y1;
 	}
 
-	public void setL(String L1)
-	{this.L = L1;}
+	public void setName(String n)
+	{this.name = n;}
 
 	public int[] getDims()
 	{return new int[] {this.x, this.y, this.w, this.h};}
-	public String getL()
-	{return L;}
+	public String getName()
+	{return name;}
 }
