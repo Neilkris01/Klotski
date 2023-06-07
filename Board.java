@@ -32,13 +32,13 @@ public class Board
 	
 	public void setConfig(int number) {this.configuration = number;}
 	public void setCounter(int count) {this.movesCounter = count;}
-	public boolean checkWin() { return this.hasWon; }
-	public int getConfig() {return this.configuration;}
-	public int getCounter() { return this.movesCounter; }
-	public Piece getSelectedPiece() { return this.selected; }
-	public int getWidth() { return this.width; }
-	public int getHeight() { return this.height; }
-	public Piece[] getPieces() { return this.pieces; }
+	public boolean checkWin() { return hasWon; }
+	public int getConfig() {return configuration;}
+	public int getCounter() { return movesCounter; }
+	public Piece getSelectedPiece() { return selected; }
+	public int getWidth() { return width; }
+	public int getHeight() { return height; }
+	public Piece[] getPieces() { return pieces; }
 	
 	public void selectPiece(Piece p)
 	{
@@ -236,7 +236,7 @@ public class Board
 
 	public void reset(int config)
 	{
-		this.configuration = config;
+		configuration = config;
 		pieces = new Piece[10];
 		if (configuration == 1)
 		{
