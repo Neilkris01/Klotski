@@ -4,6 +4,7 @@ public class Piece {
 	int y;
 	int w;
 	int h;
+	String L;
 	
 	public Piece(int x, int y, int w, int h)
 	{
@@ -35,14 +36,17 @@ public class Piece {
 			this.x++;
 	}
 
-	public int[] getDims()
-	{
-		return new int[] {this.x, this.y, this.w, this.h};
-	}
-
 	public void setDims(int x1, int y1)
 	{
 		this.x = x1;
 		this.y = y1;
 	}
+
+	public void setL(String L1)
+	{this.L = L1;}
+
+	public int[] getDims()
+	{return new int[] {this.x, this.y, this.w, this.h};}
+	public String getL()
+	{return L;}
 }
