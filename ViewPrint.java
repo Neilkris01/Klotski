@@ -28,7 +28,7 @@ public class ViewPrint
     Texts text = new Texts();
     Rectangle[] a;
 
-    Rectangle[] print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove, Button save, Button caricaPartita)
+    Rectangle[] print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3,Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button caricaPartita)
     {
 
         printBoard.printBoard(root);
@@ -38,7 +38,7 @@ public class ViewPrint
         primaryStageSetting.viewSettings(primaryStage);
         
         //inserimento bottoni
-        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
 
         text.counterText(root, board);
 
@@ -49,12 +49,12 @@ public class ViewPrint
         return a;
     }
 
-    void rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove, Button save, Button caricaPartita)
+    void rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3,Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button caricaPartita)
     {
         printPiece.clearPiece(root);
         printBoard.printBoard(root);
         a = printPiece.rePrintPiece(p, root, board);
-        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
         text.counterText(root, board);
     }
     

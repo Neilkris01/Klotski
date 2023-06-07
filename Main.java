@@ -24,6 +24,7 @@ public class Main extends Application
     private Button config1 = new Button("CONFIGURATION 1");
     private Button config2 = new Button("CONFIGURATION 2");
     private Button config3 = new Button("CONFIGURATION 3");
+    private Button config4 = new Button("CONFIGURATION 4");
     private Button undo = new Button("UNDO");
     private Button bestNextMove = new Button("BNXM");
     private Button save = new Button("SAVE");
@@ -39,7 +40,7 @@ public class Main extends Application
     public void start(Stage primaryStage)
     {
         view = new ViewPrint();
-        rect = view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+        rect = view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
         board.deleteFile();
         board.logWrite();
         
@@ -183,7 +184,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(0);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
             }
         });
 
@@ -194,7 +195,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(2);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
                 if(board.checkWin())
                 {
                     view.winView(board);
@@ -211,7 +212,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(1);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
             }
         });
 
@@ -222,7 +223,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 board.movePiece(3);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
             }
         });
         
@@ -235,7 +236,7 @@ public class Main extends Application
                 board.setConfig(1);
                 board.reset();
                 p = board.getPieces();
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config4, config3, reset, undo, bestNextMove, save, caricaPartita);
             }
         });
 
@@ -248,7 +249,7 @@ public class Main extends Application
                 board.setConfig(2);
                 board.reset();
                 p = board.getPieces();
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
             }
         });
 
@@ -261,7 +262,20 @@ public class Main extends Application
                 board.setConfig(3);
                 board.reset();
                 p = board.getPieces();
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+            }
+        });
+
+        config4.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+
+            public void handle(ActionEvent event)
+            {
+                board.setConfig(3);
+                board.reset();
+                p = board.getPieces();
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4,  reset, undo, bestNextMove, save, caricaPartita);
             }
         });
 
@@ -273,7 +287,7 @@ public class Main extends Application
             {
                 board.reset();
                 p = board.getPieces();
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
             }
         });
 
@@ -287,7 +301,7 @@ public class Main extends Application
                 {
                     board.undo();
                 }
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
             }
         });
 
@@ -298,7 +312,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 System.out.println("Miao");
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
             }
         });
 
@@ -320,7 +334,7 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 view.loadView(board);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
             }
         });
     }
