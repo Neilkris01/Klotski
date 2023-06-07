@@ -1,12 +1,13 @@
-/* a class that represents a single klotski piece */
-public class Piece {
+
+public class Piece
+{
 	int x;
 	int y;
 	int w;
 	int h;
-	String name;
+	String lecter;
 	
-	public Piece(int x, int y, int w, int h, String n)
+	public Piece(int x, int y, int w, int h, String l)
 	{
 		if (x < 0 || y < 0 || w < 1 || h < 1)
 			throw new IllegalArgumentException("Invalid Position");
@@ -14,7 +15,7 @@ public class Piece {
 		this.y = y;
 		this.w = w;
 		this.h= h;
-		this.name = n;
+		this.lecter = l;
 	}
 
 	public boolean containsPoint(int x, int y)
@@ -43,11 +44,11 @@ public class Piece {
 		this.y = y1;
 	}
 
-	public void setName(String n)
-	{this.name = n;}
+	public void setName(String l1)
+	{this.lecter = l1;}
 
 	public int[] getDims()
 	{return new int[] {this.x, this.y, this.w, this.h};}
 	public String getName()
-	{return name;}
+	{return lecter;}
 }
