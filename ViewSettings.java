@@ -12,7 +12,7 @@ public class ViewSettings
         // primaryStage.setFullScreen(true);
     }
 
-    void buttonsSettings(Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove, Button save)
+    void buttonsSettings(Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove, Button save, Button caricaPartita)
     {
         sù.setLayoutX(615);
         sù.setLayoutY(350);
@@ -42,20 +42,24 @@ public class ViewSettings
         config3.setLayoutY(160);
         config3.setMinSize(50, 10);
 
-        reset.setLayoutX(650);
-        reset.setLayoutY(580);
-        reset.setMinSize(50, 10);
+        bestNextMove.setLayoutX(650);
+        bestNextMove.setLayoutY(580);
+        bestNextMove.setMinSize(50, 10);
 
         undo.setLayoutX(590);
         undo.setLayoutY(580);
         undo.setMinSize(50, 10);
 
-        bestNextMove.setLayoutX(580);
-        bestNextMove.setLayoutY(190);
-        bestNextMove.setMinSize(50, 10);
+        reset.setLayoutX(590);
+        reset.setLayoutY(610);
+        reset.setMinSize(50, 10);
 
         save.setLayoutX(650);
         save.setLayoutY(610);
         save.setMinSize(50, 10);
+
+        caricaPartita.setLayoutX(580);
+        caricaPartita.setLayoutY(190);
+        caricaPartita.setMinSize(50, 10);
     }
 } 

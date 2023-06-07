@@ -7,6 +7,10 @@ import javafx.scene.Group;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class ViewPrint
 {
@@ -24,7 +28,7 @@ public class ViewPrint
     Texts text = new Texts();
     Rectangle[] a;
 
-    Rectangle[] print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove, Button save)
+    Rectangle[] print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove, Button save, Button caricaPartita)
     {
 
         printBoard.printBoard(root);
@@ -34,7 +38,7 @@ public class ViewPrint
         primaryStageSetting.viewSettings(primaryStage);
         
         //inserimento bottoni
-        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save);
+        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
 
         text.counterText(root, board);
 
@@ -45,12 +49,12 @@ public class ViewPrint
         return a;
     }
 
-    Rectangle[] rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove, Button save)
+    Rectangle[] rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button reset, Button undo, Button bestNextMove, Button save, Button caricaPartita)
     {
         printPiece.clearPiece(root);
         printBoard.printBoard(root);
         a = printPiece.printPiece(p, root, board);
-        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save);
+        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, reset, undo, bestNextMove, save, caricaPartita);
         text.counterText(root, board);
         return a;
     }
@@ -60,36 +64,54 @@ public class ViewPrint
         root.getChildren().clear();
     }
 
-    public void saveView(Board board)
+    public boolean saveView(Board board)
     {
         TextInputDialog inputDialog = new TextInputDialog();
         String response = "";
-        inputDialog.setTitle("Salva");
-        inputDialog.setHeaderText(null);
+        inputDialog.setTitle("SALVA");
+        inputDialog.setHeaderText("(salva ed esci)");
         inputDialog.setContentText("Come vuoi salvare la tua partita?");
         Optional<String> result;
+        String file;
 
         while (true)
         {
             result = inputDialog.showAndWait();
-            if (result.isPresent()) 
+            if (result.isPresent())
             {
                 response = result.get();
-                if (!response.equals("out"))
-                {break;}
+                file = "./Logs/" + response + ".txt";
+                Path path = Paths.get(file);
+                if(!Files.exists(path))
+                {
+                    
+                    if (!response.equals("out"))
+                    {break;}
+                    else
+                    {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Errore");
+                        alert.setHeaderText(null);
+                        alert.setContentText("L'input non può essere 'out'. Inserisci un valore diverso.");
+                        alert.showAndWait();
+                    }
+                }
                 else
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Errore");
                     alert.setHeaderText(null);
-                    alert.setContentText("L'input non può essere 'out'. Inserisci un valore diverso.");
+                    alert.setContentText("Il nome del file è già utilizzato.");
                     alert.showAndWait();
                 }
             }
             else
-            {return;}
+            {
+                return false;
+            }
         }
         board.renameFile(response + ".txt");
+        return true;
     }
 
     public void winView(Board board)
@@ -97,7 +119,7 @@ public class ViewPrint
         TextInputDialog inputDialog = new TextInputDialog();
         String response = "";
         inputDialog.setTitle("!!!WIN!!!");
-        inputDialog.setHeaderText(null);
+        inputDialog.setHeaderText("(salva ed esci)");
         inputDialog.setContentText("Vuoi salvare la tua partita?");
         Optional<String> result;
         while (true)
@@ -121,5 +143,46 @@ public class ViewPrint
             {return;}
         }
         board.renameFile(response + ".txt");
+    }
+
+    public void loadView(Board board)
+    {
+        TextInputDialog inputDialog = new TextInputDialog();
+        Optional<String> result;
+        String fileName;
+        inputDialog.setTitle("CARICA PARTITA");
+        inputDialog.setContentText("Inserisci il nome:");
+        result = inputDialog.showAndWait();
+        if (result.isPresent())
+        {
+            fileName = "./Logs/" + result.get() + ".txt";
+            Path path = Paths.get(fileName);
+            if(Files.exists(path))
+            {
+                ArrayList<ArrayList<int[]>> q = board.read(fileName);
+                ArrayList<int[]> pI = q.get(q.size()-1);
+                int cX = 0;
+                int cY = 0;
+                for (int j = 0; j < 10; j++)
+                {
+                    cX = pI.get(j)[0];
+                    cY = pI.get(j)[1];
+                    Piece[] p = board.getPieces();
+                    p[j].setDims(cX, cY);
+                }
+                board.LogRewrite(fileName);
+                board.setCounter(q.size()-1);
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Errore");
+                alert.setHeaderText(null);
+                alert.setContentText("Il file non esiste");
+                alert.showAndWait();
+            }
+        }
+        else
+        {return;}
     }
 }

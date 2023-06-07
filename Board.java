@@ -17,6 +17,7 @@ public class Board
 	int start = 0;
 	String fileName;
 	ArrayList<ArrayList<int[]>> queque = new ArrayList<>();
+	int maxDeep;
 	
 	/**
 	 * Basic constructor. Initializes height and width to standard klotski size.
@@ -265,10 +266,11 @@ public class Board
 			pieces[8] = new Piece(3, 3, 1, 1);
 			pieces[9] = new Piece(1, 0, 2, 2);
 		}
-		
-		movesCounter = 0;
 		selected = pieces[9];
-		hasWon = false;
+		while(movesCounter != 0)
+		{
+			undo();
+		}
 	}
 	
 	public void logWrite()
@@ -296,9 +298,14 @@ public class Board
 		}
 	}
 
-	public ArrayList<ArrayList<int[]>> logRead()
+	public void setMoveDeep(int n)
+	{maxDeep = n;}
+
+	public int getMoveDeep()
+	{return maxDeep;}
+
+	public ArrayList<ArrayList<int[]>> read(String fileName)
 	{
-		String fileName = "./Logs/out.txt";
 		try
 		{
 			File file = new File(fileName);
@@ -318,7 +325,7 @@ public class Board
 					continue;
 				}
 
-				if (line.isEmpty()) 
+				if (line.isEmpty())
 				{
 					continue;
 				}
@@ -334,16 +341,66 @@ public class Board
 				queque.get(moveN).add(coordinate);
 			}
 			br.close();
+			setMoveDeep(queque.size());
 		}
 		catch (FileNotFoundException e)
+		{System.err.println("File non trovato");}
+		catch (IOException e)
+		{System.err.println("Errore durante la lettura del file");}
+		return queque;
+	}
+
+	public ArrayList<ArrayList<int[]>> logRead()
+	{
+		String fileName = "./Logs/out.txt";
+		queque = read(fileName);
+		return queque;
+	}
+
+	public void LogRewrite(String filePath)
+	{
+		String outPath = "./Logs/out.txt";
+		int lineCount = 0;
+		try
 		{
-			System.err.println("File non trovato");
+			File outFile = new File(outPath);
+			File inputFile = new File(filePath);
+			File tempFile = new File("temp.txt");
+
+			BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+			String Line;
+
+			while ((Line = reader.readLine()) != null)
+			{
+				lineCount++;
+			}
+
+			reader.close();
+			reader = new BufferedReader(new FileReader(inputFile));
+
+			while ((Line = reader.readLine()) != null && (lineCount) != 0)
+			{
+				writer.write(Line);
+				writer.newLine();
+				lineCount--;
+			}
+
+			writer.close();
+			reader.close();
+
+			if (outFile.delete())
+			{
+				if (!tempFile.renameTo(outFile))
+				{throw new IOException("Impossibile rinominare il file temporaneo");}
+			}
+			else 
+			{throw new IOException("Impossibile eliminare il file originale");}
+			//inputFile.delete(); ?????????????????????????????????????????????????????????????????????????????????
 		}
 		catch (IOException e)
-		{
-			System.err.println("Errore durante la lettura del file");
-		}
-		return queque;
+		{e.printStackTrace();}
 	}
 
 	public void removeLastLines()
