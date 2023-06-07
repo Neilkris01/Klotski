@@ -61,18 +61,26 @@ public class Board
 	
 	public boolean isOccupied(int x, int y)
 	{
-		for (i=9; i<10; i++)
+		for (i=0; i<10; i++)
 		{
 			int x1 = pieces[i].getDims()[0];
 			int y1 = pieces[i].getDims()[1];
 			for (int j = 0; j < (pieces[i].getDims()[2]); j++)
 			{
 				x1 = x1 + j;
+				y1 = pieces[i].getDims()[1];;
 				for (int j1 = 0; j1 < (pieces[i].getDims()[3]); j1++)
 				{
 					y1 = y1 + j1;
-					if ((pieces[i] != selected) && (x1 == x) && (y1 == y))
-					{return true;}
+					if (pieces[i] != selected)
+					{
+						if((x1 == x) && (y1 == y))
+						{
+							System.out.println("a" + i);
+							return true;
+						}
+					}
+					
 				}
 			}
 		}
@@ -140,7 +148,7 @@ public class Board
 			int x = selected.getDims()[0];
 			int y = (selected.getDims()[1]) - 1;
 
-			for(int j =0; j<(selected.getDims()[2]); j++)
+			for(int j = 0; j<(selected.getDims()[2]); j++)
 			{
 				x = x + j;
 				for(int j1 =0; j1<(selected.getDims()[3]); j1++)
