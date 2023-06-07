@@ -68,7 +68,7 @@ public class Board
 			for (int j = 0; j < (pieces[i].getDims()[2]); j++)
 			{
 				x1 = x1 + j;
-				y1 = pieces[i].getDims()[1];;
+				y1 = pieces[i].getDims()[1];
 				for (int j1 = 0; j1 < (pieces[i].getDims()[3]); j1++)
 				{
 					y1 = y1 + j1;
@@ -155,7 +155,8 @@ public class Board
 			for(int j = 0; j<(selected.getDims()[2]); j++)
 			{
 				x = x + j;
-				for(int j1 =0; j1<(selected.getDims()[3]); j1++)
+				y = (selected.getDims()[1]) - 1;
+				for(int j1 = 0; j1<(selected.getDims()[3]); j1++)
 				{
 					y = y + j1;
 					if (isOccupied(x, y))
@@ -176,6 +177,7 @@ public class Board
 			for (int j = 0; j < (selected.getDims()[2]); j++)
 			{
 				x = x + j;
+				y = (selected.getDims()[1]);
 				for (int j1 = 0; j1 < (selected.getDims()[3]); j1++)
 				{
 					y = y + j1;
@@ -196,6 +198,7 @@ public class Board
 			for (int j = 0; j < (selected.getDims()[2]); j++)
 			{
 				x = x + j;
+				y = (selected.getDims()[1]) + 1;
 				for (int j1 = 0; j1 < (selected.getDims()[3]); j1++)
 				{
 					y = y + j1;
@@ -216,6 +219,7 @@ public class Board
 			for (int j = 0; j < (selected.getDims()[2]); j++)
 			{
 				x = x + j;
+				y = (selected.getDims()[1]);
 				for (int j1 = 0; j1 < (selected.getDims()[3]); j1++)
 				{
 					y = y + j1;
