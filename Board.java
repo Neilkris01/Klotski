@@ -87,12 +87,14 @@ public class Board
 		return false;
 	}
 
-	/*public boolean boardToGrid() {
+	/*public boolean boardToGrid()
+	{
 		for(i=0;i<10;i++)
 		{
 			int x1 = pieces[i].getDims()[0];
 			int y1 = pieces[i].getDims()[1];
-			if(pieces[i].getDims()[2]==2 && pieces[i].getDims()[3]==2) { //pezzi 2x2
+			if(pieces[i].getDims()[2]==2 && pieces[i].getDims()[3]==2) //pezzi 2x2
+			{ 
 				int x2 = x1;
 				int y2 = y1++;
 				int x3 = x1++;
@@ -104,7 +106,8 @@ public class Board
 				grid[3-y3][x3] = pieces[i].getName();
 				grid[3-y4][x4] = pieces[i].getName();
 			}
-			else if(pieces[i].getDims()[2]==2 || pieces[i].getDims()[3]==2) { // pezzi 1x2 o 2x1
+			else if(pieces[i].getDims()[2]==2 || pieces[i].getDims()[3]==2) // pezzi 1x2 o 2x1
+			{ 
 				for (int j = 0; j < (pieces[i].getDims()[2]); j++) {
 					int x2 = x1 + j;
 					for (int j1 = 0; j1 < (pieces[i].getDims()[3]); j1++)
@@ -116,7 +119,8 @@ public class Board
 				grid[3-y1][x1] = pieces[i].getName();
 				grid[3-y2][x2] = pieces[i].getName();
 			}
-			else if(pieces[i].getDims()[2]==1 && pieces[i].getDims()[3]==1) {
+			else if(pieces[i].getDims()[2]==1 && pieces[i].getDims()[3]==1)
+			{
 				grid[3-y1][x1] = pieces[i].getName();
 			}
 		}
