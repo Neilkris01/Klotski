@@ -15,14 +15,21 @@ public class PiecesView
         {
             int[] dimensions = p[i].getDims();
             a[i] = new Rectangle(dimensions[0] * squareSize + 100, dimensions[1] * squareSize + 100, dimensions[2] * squareSize, dimensions[3] * squareSize);
-            a[i].setFill(Color.WHITE);
+            if (board.isSelect(p[i]))
+            {a[i].setFill(Color.LIGHTGREY);}
+            else
+            {a[i].setFill(Color.WHITE);}
             a[i].setStrokeWidth(3);
             a[i].setStroke(Color.BLACK);
             root.getChildren().add(a[i]);
         }
         int[] dimensions = p[9].getDims();
         a[9] = new Rectangle(dimensions[0] * squareSize + 100, dimensions[1] * squareSize + 100, dimensions[2] * squareSize, dimensions[3] * squareSize);
-        a[9].setFill(Color.RED);
+        if (board.isSelect(p[9])) {
+            a[9].setFill(Color.FIREBRICK);
+        } else {
+            a[9].setFill(Color.RED);
+        }
         a[9].setStrokeWidth(3);
         a[9].setStroke(Color.BLACK);
 

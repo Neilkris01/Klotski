@@ -169,8 +169,8 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent t)
             {
-                /*for (int i = 0; i < 10; i++)
-                {rect[i].setFill(Color.WHITE);}*/
+                for (int i = 0; i < 10; i++)
+                {rect[i].setFill(Color.WHITE);}
                 rect[9].setFill(Color.FIREBRICK);
                 board.selectPiece(p[9]);
             }
@@ -233,10 +233,11 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.setConfig(1);
-                board.reset();
+                board.reset(1);
                 p = board.getPieces();
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config4, config3, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                board.fileOutDelater();
+                board.logWrite();
             }
         });
 
@@ -246,9 +247,10 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.setConfig(2);
-                board.reset();
+                board.reset(2);
                 p = board.getPieces();
+                board.fileOutDelater();
+                board.logWrite();
                 view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
             }
         });
@@ -259,10 +261,11 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.setConfig(3);
-                board.reset();
+                board.reset(3);
                 p = board.getPieces();
                 view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                board.fileOutDelater();
+                board.logWrite();
             }
         });
 
@@ -272,10 +275,11 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.setConfig(4);
-                board.reset();
+                board.reset(4);
                 p = board.getPieces();
                 view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4,  reset, undo, bestNextMove, save, caricaPartita);
+                board.fileOutDelater();
+                board.logWrite();
             }
         });
 
@@ -285,7 +289,7 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.reset();
+                board.reset(board.getConfig());
                 p = board.getPieces();
                 view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
             }

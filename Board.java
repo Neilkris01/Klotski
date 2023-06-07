@@ -19,18 +19,12 @@ public class Board
 	ArrayList<ArrayList<int[]>> queque = new ArrayList<>();
 	int maxDeep;
 	
-	/*
-	Basic constructor. Initializes height and width to standard klotski size.
-	Initializes pieces to configuration 1
-	*/
 	public Board()
 	{
 		this.pieces = new Piece[10];
 		this.configuration = 1;
 		
-		// initialize all pieces to configuration 1, set moves to 0, set
-		// selectedPiece to null, and set hasWon to false
-		reset();
+		reset(configuration);
 		
 		this.width = 4;
 		this.height = 5;
@@ -38,12 +32,13 @@ public class Board
 	
 	public void setConfig(int number) {this.configuration = number;}
 	public void setCounter(int count) {this.movesCounter = count;}
-	public boolean checkWin() { return hasWon; }
-	public int getCounter() { return movesCounter; }
-	public Piece getSelectedPiece() { return selected; }
-	public int getWidth() { return width; }
-	public int getHeight() { return height; }
-	public Piece[] getPieces() { return pieces; }
+	public boolean checkWin() { return this.hasWon; }
+	public int getConfig() {return this.configuration;}
+	public int getCounter() { return this.movesCounter; }
+	public Piece getSelectedPiece() { return this.selected; }
+	public int getWidth() { return this.width; }
+	public int getHeight() { return this.height; }
+	public Piece[] getPieces() { return this.pieces; }
 	
 	public void selectPiece(Piece p)
 	{
@@ -76,7 +71,6 @@ public class Board
 					{
 						if((x1 == x) && (y1 == y))
 						{
-							System.out.println("a" + i);
 							return true;
 						}
 					}
@@ -240,8 +234,9 @@ public class Board
 		return true;
 	}
 
-	public void reset()
+	public void reset(int config)
 	{
+		this.configuration = config;
 		pieces = new Piece[10];
 		if (configuration == 1)
 		{
@@ -296,10 +291,6 @@ public class Board
 			pieces[9] = new Piece(0, 3, 2, 2, "J");
 		}
 		selected = pieces[9];
-		while(movesCounter != 0)
-		{
-			undo();
-		}
 	}
 	
 	public void logWrite()
@@ -388,11 +379,10 @@ public class Board
 
 	public void LogRewrite(String filePath)
 	{
-		String outPath = "./Logs/out.txt";
 		int lineCount = 0;
 		try
 		{
-			File outFile = new File(outPath);
+			File outFile = new File("./Logs/out.txt");
 			File inputFile = new File(filePath);
 			File tempFile = new File("temp.txt");
 
@@ -430,6 +420,12 @@ public class Board
 		}
 		catch (IOException e)
 		{e.printStackTrace();}
+	}
+
+	public void fileOutDelater()
+	{
+		File outFile = new File("./Logs/out.txt");
+		outFile.delete();
 	}
 
 	public void removeLastLines()
