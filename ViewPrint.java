@@ -167,7 +167,7 @@ public class ViewPrint
                     cX = pI.get(j)[0];
                     cY = pI.get(j)[1];
                     Piece[] p = board.getPieces();
-                    p[j].setDims(cX, cY);
+                    p[j].setPos(cX, cY);
                 }
                 board.LogRewrite(fileName);
                 board.setCounter(q.size()-1);

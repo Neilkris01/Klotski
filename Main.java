@@ -317,7 +317,7 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                System.out.println("Miao");
+                board.puzzleTranslate();
                 view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
             }
         });

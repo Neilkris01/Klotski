@@ -38,7 +38,7 @@ public class Piece
 			this.x++;
 	}
 
-	public void setDims(int x1, int y1)
+	public void setPos(int x1, int y1)
 	{
 		this.x = x1;
 		this.y = y1;
