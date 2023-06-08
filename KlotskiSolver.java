@@ -306,7 +306,7 @@ public class KlotskiSolver {
 		System.out.println("Solving puzzle...");
 		
 		//compute solution
-		String solution = findValidPath(puzzle.getGridCode(),verbose);
+		String solution = findValidPath(puzzle.getGridCode(),verbose); //QUESTO è L'OUTPUT!!!!!!!!!!!!!!
 		System.out.println(solution);
 		KlotskiPuzzle a = new KlotskiPuzzle(solution);
 		System.out.println(a.blocks.get("A").toString());
