@@ -291,6 +291,7 @@ public class Board
 			pieces[9] = new Piece(0, 3, 2, 2, "J");
 		}
 		selected = pieces[9];
+		setCounter(0);
 	}
 	
 	public void logWrite()

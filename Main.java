@@ -291,7 +291,9 @@ public class Main extends Application
             {
                 board.reset(board.getConfig());
                 p = board.getPieces();
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4,  reset, undo, bestNextMove, save, caricaPartita);
+                board.fileOutDelater();
+                board.logWrite();
             }
         });
 
