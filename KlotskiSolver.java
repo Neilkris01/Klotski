@@ -300,24 +300,25 @@ public class KlotskiSolver {
 		solve(false);
 	}
 	
-	public void solve(Boolean verbose){
-    	long start = Calendar.getInstance().getTimeInMillis();
+	public String solve(Boolean verbose){
+    	//long start = Calendar.getInstance().getTimeInMillis();
     	
-		System.out.println("Solving puzzle...");
+		//System.out.println("Solving puzzle...");
 		
 		//compute solution
 		String solution = findValidPath(puzzle.getGridCode(),verbose); //QUESTO è L'OUTPUT!!!!!!!!!!!!!!
-		System.out.println(solution);
-		KlotskiPuzzle a = new KlotskiPuzzle(solution);
-		System.out.println(a.blocks.get("A").toString());
-		printSolution(solution);
+        return solution;
+		//System.out.println(solution);
+		//KlotskiPuzzle a = new KlotskiPuzzle(solution);
+		//System.out.println(a.blocks.get("A").toString());
+		//printSolution(solution);
 		
 		//calculate duration to solve
-		long end = Calendar.getInstance().getTimeInMillis();
-		long duration = (end - start)/1000;
-		long durationExt = (end - start)%1000;
+		//long end = Calendar.getInstance().getTimeInMillis();
+		//long duration = (end - start)/1000;
+		//long durationExt = (end - start)%1000;
 		
-		System.out.println("Duration: " + duration + "." + durationExt + "s");
+		//System.out.println("Duration: " + duration + "." + durationExt + "s");
 	}
 	
 	//Root is the grids gridCode
@@ -435,9 +436,6 @@ public class KlotskiSolver {
 /* 
 public class Main {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 //		KlotskiSolver solver = new KlotskiSolver(new KlotskiPuzzle());
 //		solver.solve(true);
@@ -466,4 +464,11 @@ public class Main {
 		
 	}
 }
+per far andare il codice quando schiacci bottone: (hai la tua Board board)
+board.boardToGrid();    //inserisco nella matrice la config
+String config = board.getGridCode();  //trasformo la matrice in stringa
+KlotskiPuzzle puzzle = new KlotskiPuzzle(config); // creo il puzzle da risolvere con la config attuale
+KlotskiSolver answer = new KlotskiSolver(puzzle); //risolvo il mio puzzle
+String solution = answer.solve(false); //una volta risolto ricevo la configurazione in stringa
+board.funzioneDiOutputGallo(solution); //ora Gallo usa la configurazione per muovere il pezzo
 */
