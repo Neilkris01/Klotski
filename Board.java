@@ -83,7 +83,7 @@ public class Board
 		{
 			int x1 = pieces[i].getDims()[0];
 			int y1 = pieces[i].getDims()[1];
-			if(pieces[i].getDims()[2]==2 && pieces[i].getDims()[3]==2) //pezzi 2x2
+			if(pieces[i].getDims()[2]==2 && pieces[i].getDims()[3]==2) //pezzo 2x2
 			{ 
 				int x2 = x1;
 				int y2 = y1++;
@@ -98,11 +98,12 @@ public class Board
 			}
 			else if(pieces[i].getDims()[2]==2 || pieces[i].getDims()[3]==2) // pezzi 1x2 o 2x1
 			{ 
+				int x2, y2 = 0;
 				for (int j = 0; j < (pieces[i].getDims()[2]); j++) {
-					int x2 = x1 + j;
+					x2 = x1 + j;
 					for (int j1 = 0; j1 < (pieces[i].getDims()[3]); j1++)
 					{
-						int y2 = y1 + j1;
+						y2 = y1 + j1;
 					
 					}
 				}
