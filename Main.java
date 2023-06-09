@@ -16,6 +16,9 @@ public class Main extends Application
     PiecesView pView = new PiecesView();
     Rectangle[] rect;
 
+    LogFile logFile = board.getLog();
+    KlotskiSolver solver = new KlotskiSolver(null);
+
     private Button sù = new Button("SU");
     private Button giù = new Button("GIU");
     private Button destra = new Button("DESTRA");
@@ -35,7 +38,6 @@ public class Main extends Application
 
     int f;
     int conf;
-    LogFile logFile = board.getLog();
 
     @Override
     public void start(Stage primaryStage)
@@ -319,8 +321,6 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 String s;
-                s = board.puzzleTranslateInput();
-                board.puzzleTranslateOutput(s);
                 view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
                 logFile.logWrite(p, board);
             }

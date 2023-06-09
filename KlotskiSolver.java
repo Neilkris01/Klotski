@@ -9,44 +9,7 @@ import java.util.Set;
 
 
 
-public class KlotskiSolver
-{
-
-	String[][] grid = new String[4][5]; // board girata di 90gradi
-
-	public void boardToGrid(Piece[] pieces) {
-		for (int i = 0; i < 10; i++) {
-			int x1 = pieces[i].getDims()[0];
-			int y1 = pieces[i].getDims()[1];
-			if (pieces[i].getDims()[2] == 2 && pieces[i].getDims()[3] == 2) // pezzo 2x2
-			{
-				int x2 = x1;
-				int y2 = y1++;
-				int x3 = x1++;
-				int y3 = y1;
-				int x4 = x1++;
-				int y4 = y1++;
-				grid[3 - y1][x1] = pieces[i].getName();
-				grid[3 - y2][x2] = pieces[i].getName();
-				grid[3 - y3][x3] = pieces[i].getName();
-				grid[3 - y4][x4] = pieces[i].getName();
-			} else if (pieces[i].getDims()[2] == 2 || pieces[i].getDims()[3] == 2) // pezzi 1x2 o 2x1
-			{
-				int x2 = 0, y2 = 0;
-				for (int j = 0; j < (pieces[i].getDims()[2]); j++) {
-					x2 = x1 + j;
-					for (int j1 = 0; j1 < (pieces[i].getDims()[3]); j1++) {
-						y2 = y1 + j1;
-
-					}
-				}
-				grid[3 - y1][x1] = pieces[i].getName();
-				grid[3 - y2][x2] = pieces[i].getName();
-			} else if (pieces[i].getDims()[2] == 1 && pieces[i].getDims()[3] == 1) {
-				grid[3 - y1][x1] = pieces[i].getName();
-			}
-		}
-	}
+public class KlotskiSolver {
 	
 	KlotskiPuzzle puzzle;
 	Map<String, String> tree = new Hashtable<String, String>();
@@ -244,7 +207,8 @@ public class KlotskiSolver
 			}
 		}
 	}
-	
+}
+	/*private void printSolution(String solution){
 	/*private void printSolution(String solution){
 		Stack<String> reverse = new Stack<String>();
 		KlotskiPuzzle puzzle;
@@ -263,7 +227,7 @@ public class KlotskiSolver
 			puzzle.printPuzzle();
 		}
 		System.out.println("Solution in " + (moves-1) + " moves!");
-	}*/
+	}
 }
 
 //---------------------
