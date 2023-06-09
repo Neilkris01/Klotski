@@ -10,12 +10,14 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
-class Move {
+class Move
+{
 	int x;
 	int y;
 	Block block;
 	
-	public Move(int x, int y, Block block){
+	public Move(int x, int y, Block block)
+	{
 		this.x = x;
 		this.y = y;
 		this.block = block;
@@ -29,7 +31,8 @@ class Move {
  * @version 0.1
  *
  */
-public class Block {
+public class Block
+{
 	String name;
 	int id;
 	int area;
@@ -37,11 +40,13 @@ public class Block {
 	int width;
 	Type type;
 	
-	public enum Type{
+	public enum Type
+	{
 		SINGLE,DOUBLE_WIDE,DOUBLE_TALL,QUAD
 	}
 	
-	public Block(int i, int h, int w, String n){
+	public Block(int i, int h, int w, String n)
+	{
 		this.name = n;
 		this.height = h;
 		this.width = w;
@@ -56,7 +61,8 @@ public class Block {
 
 //-------------------------
 
-public class KlotskiPuzzle {
+public class KlotskiPuzzle
+{
 	static final String EMPTY = "0";		//an empty space in the grid
 	static final String SOLVED_CHAR = "J";	//Block name that meets victory condition
 	static final int GRID_WIDTH = 5;
@@ -77,15 +83,14 @@ public class KlotskiPuzzle {
 	Stack<Move> moves = new Stack<Move>();
 	
 	//CONSTRUCTOR
-	public KlotskiPuzzle(){
-		init(DEFAULT_CONFIG);
-	}
+	public KlotskiPuzzle()
+	{init(DEFAULT_CONFIG);}
 	
-	public KlotskiPuzzle(String code){
-		init(code);
-	}
+	public KlotskiPuzzle(String code)
+	{init(code);}
 	
-	private void init(String code){
+	private void init(String code)
+	{
 		initBlocks();
 		codeToGrid(code);
 		grids.push(getGridCode());
@@ -96,11 +101,13 @@ public class KlotskiPuzzle {
 	 * @param y - y-coord to move to
 	 * @param b - Block being moved
 	 */
-	public Boolean move(int x, int y, String block){
+	public Boolean move(int x, int y, String block)
+	{
 		if(block.isEmpty() || !blocks.containsKey(block)) return false;
 		Block b = blocks.get(block);
 		if(!isValidMove(x,y,b)) return false;
-		else {
+		else
+		{
 			replaceBlock(b.name,EMPTY);
 			insertBlock(x,y,b);
 			grids.push(getGridCode());
@@ -109,20 +116,25 @@ public class KlotskiPuzzle {
 		return true;
 	}
 	
-	public Boolean isSolved(){
-		if(grid[4][1].equals(SOLVED_CHAR) && grid[4][2].equals(SOLVED_CHAR)){
+	public Boolean isSolved()
+	{
+		if(grid[4][1].equals(SOLVED_CHAR) && grid[4][2].equals(SOLVED_CHAR))
+		{
 			return true;
 		}
 		return false;
 	}
 	
 	//Prints out the puzzles current state
-	public void printPuzzle(){
+	public void printPuzzle()
+	{
 		System.out.println("    0 1 2 3 4 ");
 		System.out.println("   -----------");
-		for(int j=0; j<GRID_HEIGHT;j++){
+		for(int j=0; j<GRID_HEIGHT;j++)
+		{
 			System.out.print(j + " | ");
-			for(int i=0; i<GRID_WIDTH;i++){
+			for(int i=0; i<GRID_WIDTH;i++)
+			{
 				System.out.print(grid[i][j] + " ");
 			}
 			if(j==1 || j==2) System.out.print("+");
@@ -132,33 +144,37 @@ public class KlotskiPuzzle {
 		System.out.println("   -----------");
 	}
 	
-	public String getGrid(int x, int y){
+	public String getGrid(int x, int y)
+	{
 		if(x < 0 || x >= GRID_WIDTH) return "";
 		if(y < 0 || y >= GRID_HEIGHT) return "";
 		return grid[x][y];
 	}
 	
 	//TODO make more efficient, use Huffman encoding
-	public String getGridCode(){
+	public String getGridCode()
+	{
 		String code = "";
 		for(int i=0;i<GRID_WIDTH;i++){
-			for(int j=0;j<GRID_HEIGHT;j++){
+			for(int j=0;j<GRID_HEIGHT;j++)
+			{
 				code += grid[i][j];
 			}
 		}
 		return code;
 	}
 	
-	public Stack<Move> getMoves(){
-		return moves;
-	}
+	public Stack<Move> getMoves()
+	{return moves;}
 	
-	public Block getBlock(String block){
+	public Block getBlock(String block)
+	{
 		if(!blocks.containsKey(block)) return null;
 		return blocks.get(block);
 	}
 	
-	public Boolean undo(){
+	public Boolean undo()
+	{
 		if(grids.size() < 2) return false;
 		grids.pop();
 		moves.pop();
@@ -166,11 +182,14 @@ public class KlotskiPuzzle {
 		return true;
 	}
 	
-	public void codeToGrid(String code){
+	public void codeToGrid(String code)
+	{
 		int s = 0;
 		int max = GRID_WIDTH * GRID_HEIGHT;
-		for(int i=0;i<GRID_WIDTH;i++){
-			for(int j=0;j<GRID_HEIGHT;j++){
+		for(int i=0;i<GRID_WIDTH;i++)
+		{
+			for(int j=0;j<GRID_HEIGHT;j++)
+			{
 				if(s>code.length() || s>=max) break;
 				grid[i][j] = Character.toString(code.charAt(s));
 				s++;
@@ -178,8 +197,10 @@ public class KlotskiPuzzle {
 		}
 	}
 	
-	public void printMoves(){
-		while(!moves.isEmpty()){
+	public void printMoves()
+	{
+		while(!moves.isEmpty())
+		{
 			Move m = moves.pop();
 			System.out.println("Move " + m.block.name + " to (" + m.x + "," + m.y + ")");
 		}
@@ -210,24 +231,33 @@ public class KlotskiPuzzle {
 	 * @param y - y-coord to move to
 	 * @param b - Block being moved
 	 */
-	private Boolean isCollision(int x, int y, Block b){
-		if(grid[x][y].equals(EMPTY) || grid[x][y].equals(b.name)){
+	private Boolean isCollision(int x, int y, Block b)
+	{
+		if(grid[x][y].equals(EMPTY) || grid[x][y].equals(b.name))
+		{
 			//check for width collision
-			for(int i=1;i<b.width;i++){
-				if(!grid[x+i][y].equals(EMPTY) && !grid[x+i][y].equals(b.name)){
+			for(int i=1;i<b.width;i++)
+			{
+				if(!grid[x+i][y].equals(EMPTY) && !grid[x+i][y].equals(b.name))
+				{
 					return true;
 				}
 			}
 			//check for height collision
-			for(int i=1;i<b.height;i++){
-				if(!grid[x][y+i].equals(EMPTY) && !grid[x][y+i].equals(b.name)){
+			for(int i=1;i<b.height;i++)
+			{
+				if(!grid[x][y+i].equals(EMPTY) && !grid[x][y+i].equals(b.name))
+				{
 					return true;
 				}
 			}
 			//check for inner
-			for(int i=1;i<b.width;i++){
-				for(int j=1;j<b.height;j++){
-					if(!grid[x+i][y+j].equals(EMPTY) && !grid[x+i][y+j].equals(b.name)){
+			for(int i=1;i<b.width;i++)
+			{
+				for(int j=1;j<b.height;j++)
+				{
+					if(!grid[x+i][y+j].equals(EMPTY) && !grid[x+i][y+j].equals(b.name))
+					{
 						return true;
 					}
 				}
@@ -237,7 +267,8 @@ public class KlotskiPuzzle {
 		return true;
 	}
 	
-	private Boolean isValidMove(int x, int y, Block b){
+	private Boolean isValidMove(int x, int y, Block b)
+	{
 		Move c = getBlockPos(b);
 		if(x+(b.width-1) >= GRID_WIDTH || y+(b.height-1) >= GRID_HEIGHT) return false;
 		if(isCollision(x,y,b)) return false;
@@ -247,12 +278,17 @@ public class KlotskiPuzzle {
 	}
 	
 	//returns move object with current position of block b
-	public Move getBlockPos(Block b){
-		if(b != null && blocks.containsKey(b.name)){
+	public Move getBlockPos(Block b)
+	{
+		if(b != null && blocks.containsKey(b.name))
+		{
 			Move c = new Move(0,0,b);
-			for(int i=0;i<GRID_WIDTH;i++){
-				for(int j=0;j<GRID_HEIGHT;j++){
-					if(grid[i][j].equals(b.name)){
+			for(int i=0;i<GRID_WIDTH;i++)
+			{
+				for(int j=0;j<GRID_HEIGHT;j++)
+				{
+					if(grid[i][j].equals(b.name))
+					{
 						c.x = i;
 						c.y = j;
 						return c;
@@ -266,19 +302,25 @@ public class KlotskiPuzzle {
 	/*
 	 * Replaces Block B1 with B2
 	 */
-	private void replaceBlock(String b1, String b2){
+	private void replaceBlock(String b1, String b2)
+	{
 		for(int i=0;i<GRID_WIDTH;i++){
-			for(int j=0;j<GRID_HEIGHT;j++){
-				if(grid[i][j].equals(b1)){
+			for(int j=0;j<GRID_HEIGHT;j++)
+			{
+				if(grid[i][j].equals(b1))
+				{
 					grid[i][j] = b2;
 				}
 			}
 		}
 	}
 	
-	private void insertBlock(int x, int y, Block b){
-		for(int i=x;i<x+b.width;i++){
-			for(int j=y;j<y+b.height;j++){
+	private void insertBlock(int x, int y, Block b)
+	{
+		for(int i=x;i<x+b.width;i++)
+		{
+			for(int j=y;j<y+b.height;j++)
+			{
 				grid[i][j] = b.name;
 			}
 		}
@@ -287,20 +329,60 @@ public class KlotskiPuzzle {
 
 //--------------------------
 
-public class KlotskiSolver {
-	
+public class KlotskiSolver
+{
+	String[][] grid = new String[4][5]; // board girata di 90gradi
+	public void boardToGrid(Piece[] pieces)
+	{
+		for(int i=0;i<10;i++)
+		{
+			int x1 = pieces[i].getDims()[0];
+			int y1 = pieces[i].getDims()[1];
+			if(pieces[i].getDims()[2]==2 && pieces[i].getDims()[3]==2) //pezzo 2x2
+			{ 
+				int x2 = x1;
+				int y2 = y1++;
+				int x3 = x1++;
+				int y3 = y1;
+				int x4 = x1++;
+				int y4 = y1++;
+				grid[3-y1][x1] = pieces[i].getName();
+				grid[3-y2][x2] = pieces[i].getName();
+				grid[3-y3][x3] = pieces[i].getName();
+				grid[3-y4][x4] = pieces[i].getName();
+			}
+			else if(pieces[i].getDims()[2]==2 || pieces[i].getDims()[3]==2) // pezzi 1x2 o 2x1
+			{ 
+				int x2 = 0, y2 = 0;
+				for (int j = 0; j < (pieces[i].getDims()[2]); j++) {
+					x2 = x1 + j;
+					for (int j1 = 0; j1 < (pieces[i].getDims()[3]); j1++)
+					{
+						y2 = y1 + j1;
+					
+					}
+				}
+				grid[3-y1][x1] = pieces[i].getName();
+				grid[3-y2][x2] = pieces[i].getName();
+			}
+			else if(pieces[i].getDims()[2]==1 && pieces[i].getDims()[3]==1)
+			{
+				grid[3-y1][x1] = pieces[i].getName();
+			}
+		}
+	}
+
 	KlotskiPuzzle puzzle;
 	Map<String, String> tree = new Hashtable<String, String>();
 	
-	public KlotskiSolver(KlotskiPuzzle puzzle){
-			this.puzzle = puzzle;
-	}
+	public KlotskiSolver(KlotskiPuzzle puzzle)
+	{this.puzzle = puzzle;}
 	
-	public void solve(){
-		solve(false);
-	}
+	public void solve()
+	{solve(false);}
 	
-	public String solve(Boolean verbose){
+	public String solve(Boolean verbose)
+	{
     	//long start = Calendar.getInstance().getTimeInMillis();
     	
 		//System.out.println("Solving puzzle...");
@@ -322,7 +404,8 @@ public class KlotskiSolver {
 	}
 	
 	//Root is the grids gridCode
-	private String findValidPath(String rootCode, Boolean verbose){
+	private String findValidPath(String rootCode, Boolean verbose)
+	{
 		Queue<String> grids = new LinkedList<String>();
 		Set<String> pastGrid = new HashSet<String>();
 		int moveCount = 0;
@@ -333,15 +416,18 @@ public class KlotskiSolver {
 		tree.put(rootCode, "");
 		
 		//while(!grids.isEmpty()){
-		for(int i = 0; i < 2;i++) {
+		for(int i = 0; i < 2;i++)
+		{
 			current = grids.remove();
 			
-			if(isSolved(current)){
+			if(isSolved(current))
+			{
 				if(verbose) System.out.println("Solution found in " + moveCount + " tries!");
 				//break;
 			}
 			String[] nextGrid = findAllMoves(current, verbose);
-			for(String g : nextGrid){
+			for(String g : nextGrid)
+			{
 				if(pastGrid.contains(g)) continue;
 				if(verbose) System.out.println(moveCount + "\tAdding grid " + g + " to queue. ");
 				//add nodes to current, set each node parent to current node
@@ -354,23 +440,28 @@ public class KlotskiSolver {
 		return current;
 	}
 	
-	private String[] findAllMoves(String gridCode,Boolean verbose){
+	private String[] findAllMoves(String gridCode,Boolean verbose)
+	{
 		if(verbose) System.out.println("\tFinding all moves for " + gridCode);
 		//String[] blocks = KlotskiPuzzle.BLOCK_NAMES;
 		List<String> results = new ArrayList<String>();
 		KlotskiPuzzle p = new KlotskiPuzzle(gridCode);
 		
 		//Iterate through each column
-		for(int i=0; i<KlotskiPuzzle.GRID_WIDTH;i++){
-			for(int j=0;j<KlotskiPuzzle.GRID_HEIGHT;j++){
-				if(p.getGrid(i,j).equals(KlotskiPuzzle.EMPTY)){
+		for(int i=0; i<KlotskiPuzzle.GRID_WIDTH;i++)
+		{
+			for(int j=0;j<KlotskiPuzzle.GRID_HEIGHT;j++)
+			{
+				if(p.getGrid(i,j).equals(KlotskiPuzzle.EMPTY))
+				{
 					String moveBlock = "";
 					Move blockPos = null;
 					
 					//look up, check if you can move it down
 					moveBlock = p.getGrid(i, j-1);
 					blockPos = p.getBlockPos(p.getBlock(moveBlock));
-					if(blockPos != null && p.move(blockPos.x, blockPos.y+1,moveBlock)){
+					if(blockPos != null && p.move(blockPos.x, blockPos.y+1,moveBlock))
+					{
 						results.add(p.getGridCode());
 						p = new KlotskiPuzzle(gridCode);
 					}
@@ -378,7 +469,8 @@ public class KlotskiSolver {
 					//look left, check if you can move it right
 					moveBlock = p.getGrid(i-1, j);
 					blockPos = p.getBlockPos(p.getBlock(moveBlock));
-					if(blockPos != null && p.move(blockPos.x+1, blockPos.y,moveBlock)){
+					if(blockPos != null && p.move(blockPos.x+1, blockPos.y,moveBlock))
+					{
 						results.add(p.getGridCode());
 						p = new KlotskiPuzzle(gridCode);
 					}
@@ -386,7 +478,8 @@ public class KlotskiSolver {
 					//look right, check if you can move it left
 					moveBlock = p.getGrid(i+1, j);
 					blockPos = p.getBlockPos(p.getBlock(moveBlock));
-					if(blockPos != null && p.move(blockPos.x-1, blockPos.y,moveBlock)){
+					if(blockPos != null && p.move(blockPos.x-1, blockPos.y,moveBlock))
+					{
 						results.add(p.getGridCode());
 						p = new KlotskiPuzzle(gridCode);
 					}
@@ -394,7 +487,8 @@ public class KlotskiSolver {
 					//look down, check if you can move it up
 					moveBlock = p.getGrid(i, j+1);
 					blockPos = p.getBlockPos(p.getBlock(moveBlock));
-					if(blockPos != null && p.move(blockPos.x, blockPos.y-1,moveBlock)){
+					if(blockPos != null && p.move(blockPos.x, blockPos.y-1,moveBlock))
+					{
 						results.add(p.getGridCode());
 						p = new KlotskiPuzzle(gridCode);
 					}
@@ -406,12 +500,14 @@ public class KlotskiSolver {
 		return results.toArray(resultsArray);
 	}
 	
-	private Boolean isSolved(String gridCode){
+	private Boolean isSolved(String gridCode)
+	{
 		KlotskiPuzzle p = new KlotskiPuzzle(gridCode);
 		return p.isSolved();
 	}
 	
-	private void printSolution(String solution){
+	private void printSolution(String solution)
+	{
 		Stack<String> reverse = new Stack<String>();
 		KlotskiPuzzle puzzle;
 		int moves = 0;
