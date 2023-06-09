@@ -320,7 +320,11 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                String s;
+                String config = solver.boardToGrid(p); //trasformo la matrice in stringa
+                KlotskiPuzzle puzzle = new KlotskiPuzzle(config); // creo il puzzle da risolvere con la config attuale
+                KlotskiSolver answer = new KlotskiSolver(puzzle); //risolvo il mio puzzle
+                String solution = answer.solve(false); //una volta risolto ricevo la configurazione in stringa
+                solver.puzzleTranslateOutput(solution, p); //muove il pezzo
                 view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
                 logFile.logWrite(p, board);
             }

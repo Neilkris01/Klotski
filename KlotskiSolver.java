@@ -8,27 +8,30 @@ import java.util.Queue;
 import java.util.Set;
 public class KlotskiSolver
 {
+	static final int GRID_WIDTH = 5;
+	static final int GRID_HEIGHT = 4;
 	String[][] grid = new String[4][5]; // board girata di 90gradi
 
 	KlotskiPuzzle puzzle;
 	Map<String, String> tree = new Hashtable<String, String>();
 	
+	
 	public String boardToGrid(Piece[] pieces) {
-		for (int i = 0; i < 10; i++) {
+		/*for (int i = 0; i < 10; i++) {
 			int x1 = pieces[i].getDims()[0];
 			int y1 = pieces[i].getDims()[1];
 			if (pieces[i].getDims()[2] == 2 && pieces[i].getDims()[3] == 2) // pezzo 2x2
 			{
 				int x2 = x1;
-				int y2 = y1++;
-				int x3 = x1++;
+				int y2 = ++y1;
+				int x3 = ++x1;
 				int y3 = y1;
 				int x4 = x1++;
 				int y4 = y1++;
-				grid[3 - y1][x1] = pieces[i].getName();
-				grid[3 - y2][x2] = pieces[i].getName();
-				grid[3 - y3][x3] = pieces[i].getName();
-				grid[3 - y4][x4] = pieces[i].getName();
+				grid[x2][y2] = pieces[i].getName();
+				grid[x1][y1] = pieces[i].getName();
+				grid[y4][x4] = pieces[i].getName();
+				grid[x3][y3] = pieces[i].getName();
 			} else if (pieces[i].getDims()[2] == 2 || pieces[i].getDims()[3] == 2) // pezzi 1x2 o 2x1
 			{
 				int x2 = 0, y2 = 0;
@@ -39,13 +42,68 @@ public class KlotskiSolver
 
 					}
 				}
-				grid[3 - y1][x1] = pieces[i].getName();
-				grid[3 - y2][x2] = pieces[i].getName();
+				grid[3 - x1][y1] = pieces[i].getName();
+				grid[3 - x2][y2] = pieces[i].getName();
 			} else if (pieces[i].getDims()[2] == 1 && pieces[i].getDims()[3] == 1) {
-				grid[3 - y1][x1] = pieces[i].getName();
+				grid[3 - x1][y1] = pieces[i].getName();
 			}
 		}
-		return puzzle.getGridCode();
+		String code = "";
+		for(int i=0;i<GRID_WIDTH;i++){
+			for(int j=0;j<GRID_HEIGHT;j++){
+				code += grid[i][j];
+			}
+		}
+		
+		return code;*/
+		String l = "";
+        char[][] grid1 = new char[4][5];
+
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                grid1[i][j] = '0';
+            }
+        }
+
+        for (int j = 0; j < 10; j++)
+        {
+            int x = pieces[j].getDims()[0];
+            int y = pieces[j].getDims()[1];
+            int w = pieces[j].getDims()[2];
+            int h = pieces[j].getDims()[3];
+            String name = pieces[j].getName();
+
+            for (int i = x; i < x + w; i++)
+            {
+                for (int k = y; k < y + h; k++)
+                {
+                    grid1[i][k] = name.charAt(0);
+                }
+            }
+        }
+
+        // Stampa la griglia
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                System.out.print(grid1[i][j] + " ");
+            }
+            System.out.println();
+        }
+        
+        for (int j0 = 0; j0 < 5; j0++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                l = l + grid1[j][j0];
+            }
+        }
+            System.out.println(l);
+            return l;
+
 	}
 
 	public KlotskiSolver(KlotskiPuzzle puzzle)
