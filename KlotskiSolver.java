@@ -14,8 +14,10 @@ public class KlotskiSolver
 
 	String[][] grid = new String[4][5]; // board girata di 90gradi
 
-	public void boardToGrid(Piece[] pieces) {
-		for (int i = 0; i < 10; i++) {
+	public String boardToGrid(Piece[] pieces) 
+	{
+		for (int i = 0; i < 10; i++)
+		{
 			int x1 = pieces[i].getDims()[0];
 			int y1 = pieces[i].getDims()[1];
 			if (pieces[i].getDims()[2] == 2 && pieces[i].getDims()[3] == 2) // pezzo 2x2
@@ -46,6 +48,7 @@ public class KlotskiSolver
 				grid[3 - y1][x1] = pieces[i].getName();
 			}
 		}
+		return getGridCode();
 	}
 	
 	KlotskiPuzzle puzzle;
