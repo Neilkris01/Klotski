@@ -318,7 +318,9 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                board.puzzleTranslate("HEEGAFC0A0CIBDJJBDJJ");
+                String s;
+                s = board.puzzleTranslateInput();
+                board.puzzleTranslateOutput(s);
                 view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
                 logFile.logWrite(p, board);
             }
