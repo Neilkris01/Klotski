@@ -16,46 +16,8 @@ public class KlotskiSolver
 	Map<String, String> tree = new Hashtable<String, String>();
 	
 	
-	public String boardToGrid(Piece[] pieces) {
-		/*for (int i = 0; i < 10; i++) {
-			int x1 = pieces[i].getDims()[0];
-			int y1 = pieces[i].getDims()[1];
-			if (pieces[i].getDims()[2] == 2 && pieces[i].getDims()[3] == 2) // pezzo 2x2
-			{
-				int x2 = x1;
-				int y2 = ++y1;
-				int x3 = ++x1;
-				int y3 = y1;
-				int x4 = x1++;
-				int y4 = y1++;
-				grid[x2][y2] = pieces[i].getName();
-				grid[x1][y1] = pieces[i].getName();
-				grid[y4][x4] = pieces[i].getName();
-				grid[x3][y3] = pieces[i].getName();
-			} else if (pieces[i].getDims()[2] == 2 || pieces[i].getDims()[3] == 2) // pezzi 1x2 o 2x1
-			{
-				int x2 = 0, y2 = 0;
-				for (int j = 0; j < (pieces[i].getDims()[2]); j++) {
-					x2 = x1 + j;
-					for (int j1 = 0; j1 < (pieces[i].getDims()[3]); j1++) {
-						y2 = y1 + j1;
-
-					}
-				}
-				grid[3 - x1][y1] = pieces[i].getName();
-				grid[3 - x2][y2] = pieces[i].getName();
-			} else if (pieces[i].getDims()[2] == 1 && pieces[i].getDims()[3] == 1) {
-				grid[3 - x1][y1] = pieces[i].getName();
-			}
-		}
-		String code = "";
-		for(int i=0;i<GRID_WIDTH;i++){
-			for(int j=0;j<GRID_HEIGHT;j++){
-				code += grid[i][j];
-			}
-		}
-		
-		return code;*/
+	public String boardToGrid(Piece[] pieces)
+	{
 		String l = "";
         char[][] grid1 = new char[4][5];
 
@@ -85,7 +47,7 @@ public class KlotskiSolver
         }
 
         // Stampa la griglia
-        for (int i = 0; i < 4; i++)
+        for (int i = 3; i >= 0; i--)
         {
             for (int j = 0; j < 5; j++)
             {
@@ -96,7 +58,7 @@ public class KlotskiSolver
         
         for (int j0 = 0; j0 < 5; j0++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int j = 3; j >= 0; j--)
             {
                 l = l + grid1[j][j0];
             }
@@ -109,17 +71,17 @@ public class KlotskiSolver
 	public KlotskiSolver(KlotskiPuzzle puzzle)
 	{this.puzzle = puzzle;}
 	
-	public void solve()
-	{solve(false);}
+	public void solve(Board board)
+	{solve(false, board);}
 	
-	public String solve(Boolean verbose)
+	public String solve(Boolean verbose, Board board)
 	{
     	//long start = Calendar.getInstance().getTimeInMillis();
     	
 		//System.out.println("Solving puzzle...");
 		
 		//compute solution
-		String solution = findValidPath(puzzle.getGridCode(),verbose); //QUESTO è L'OUTPUT!!!!!!!!!!!!!!
+		String solution = findValidPath(puzzle.getGridCode(), verbose, board); //QUESTO è L'OUTPUT!!!!!!!!!!!!!!
         return solution;
 		//System.out.println(solution);
 		//KlotskiPuzzle a = new KlotskiPuzzle(solution);
@@ -135,7 +97,7 @@ public class KlotskiSolver
 	}
 	
 	//Root is the grids gridCode
-	private String findValidPath(String rootCode, Boolean verbose)
+	private String findValidPath(String rootCode, Boolean verbose, Board board)
 	{
 		Queue<String> grids = new LinkedList<String>();
 		Set<String> pastGrid = new HashSet<String>();
@@ -147,7 +109,7 @@ public class KlotskiSolver
 		tree.put(rootCode, "");
 		
 		//while(!grids.isEmpty()){
-		for(int i = 0; i < 2;i++)
+		for(int i = 0; i < 200000;i++)
 		{
 			current = grids.remove();
 			
@@ -166,7 +128,7 @@ public class KlotskiSolver
 				pastGrid.add(g);
 				tree.put(g,current);
 			}
-			moveCount++;
+			board.setCounter(board.getCounter() + 1);
 		}
 		return current;
 	}
