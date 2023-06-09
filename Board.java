@@ -533,131 +533,105 @@ public class Board
 		char[] caratteri = kSolverOutput.toCharArray();
 		int aC = 0, bC = 0, cC = 0, dC = 0, eC = 0, jC = 0, countx = 3, county = 0, j = 0;
 
-		pieces[0].setPos(100, 100);
-		pieces[1].setPos(100, 100);
-		pieces[2].setPos(100, 100);
-		pieces[3].setPos(100, 100);
-		pieces[4].setPos(100, 100);
-		pieces[5].setPos(100, 100);
-		pieces[6].setPos(100, 100);
-		pieces[7].setPos(100, 100);
-		pieces[8].setPos(100, 100);
-		pieces[9].setPos(100, 100);
-
-		//for(j=0; j<20; j++)
-		//{
-			System.out.println("j= " + j);
-			for (county = 0; county < 5; county++)
+		for (county = 0; county < 5; county++)
+		{
+			for (countx = 3; countx >= 0; countx--)
 			{
-				for (countx = 3; countx >= 0; countx--)
+				if(caratteri[j] == 'A' && aC == 0)
 				{
-					if(caratteri[j] == 'A' && aC == 0)
-					{
-						System.out.println("A");
-						pieces[0].setPos(countx, county);
-						j++;
-						aC++;
-					}
-					else if (caratteri[j] == 'A' && aC == 1)
-					{
-						j++;
-					}
-					else
-					if (caratteri[j] == 'B' && bC == 0)
-					{
-						System.out.println("B");
-						pieces[1].setPos(countx, county);
-						j++;
-						bC++;
-					}
-					else if (caratteri[j] == 'B' && bC == 1)
-					{
-						j++;
-					}
-					else
-					if (caratteri[j] == 'C' && cC == 0)
-					{
-						System.out.println("C");
-						pieces[2].setPos(countx, county);
-						j++;
-						cC++;
-					} else if (caratteri[j] == 'C' && cC == 1) 
-					{
-						j++;
-					}
-					else
-					if (caratteri[j] == 'D' && dC == 0)
-					{
-						System.out.println("D");
-						pieces[3].setPos(countx, county);
-						j++;
-						dC++;
-					}
-					else if (caratteri[j] == 'D' && dC == 1)
-					{
-						j++;
-					}
-					else
-					if (caratteri[j] == 'E' && eC == 1)
-					{
-						System.out.println("E");
-						pieces[4].setPos(countx, county);
-						j++;
-					}
-					else if(caratteri[j] == 'E' && eC == 0)
-					{
-						eC++;
-						j++;
-					}
-					else
-					if (caratteri[j] == 'F')
-					{
-						System.out.println("F");
-						pieces[5].setPos(countx, county);
-						j++;
-					}
-					else
-					if (caratteri[j] == 'G')
-					{
-						System.out.println("G");
-						pieces[6].setPos(countx, county);
-						j++;
-					}
-					else
-					if (caratteri[j] == 'H')
-					{
-						System.out.println("H");
-						pieces[7].setPos(countx, county);
-						j++;
-					}
-					else
-					if (caratteri[j] == 'I')
-					{
-						System.out.println("I");
-						pieces[8].setPos(countx, county);
-						j++;
-					}
-					else
-					if (caratteri[j] == 'J' && jC == 1)
-					{
-						System.out.println("J");
-						pieces[9].setPos(countx, county);
-						jC++;
-					}
-					else if(caratteri[j] == 'J' && jC == 0)
-					{
-						j++;
-						jC++;
-					}
-					else
-					if (caratteri[j] == '0')
-					{
-						j++;
-					}
+					pieces[0].setPos(countx, county);
+					j++;
+					aC++;
+				}
+				else if (caratteri[j] == 'A' && aC == 1)
+				{
+					j++;
+				}
+				else
+				if (caratteri[j] == 'B' && bC == 0)
+				{
+					pieces[1].setPos(countx, county);
+					j++;
+					bC++;
+				}
+				else if (caratteri[j] == 'B' && bC == 1)
+				{
+					j++;
+				}
+				else
+				if (caratteri[j] == 'C' && cC == 0)
+				{
+
+					pieces[2].setPos(countx, county);
+					j++;
+					cC++;
+				} else if (caratteri[j] == 'C' && cC == 1) 
+				{
+					j++;
+				}
+				else
+				if (caratteri[j] == 'D' && dC == 0)
+				{
+					pieces[3].setPos(countx, county);
+					j++;
+					dC++;
+				}
+				else if (caratteri[j] == 'D' && dC == 1)
+				{
+					j++;
+				}
+				else
+				if (caratteri[j] == 'E' && eC == 1)
+				{
+					pieces[4].setPos(countx, county);
+					j++;
+				}
+				else if(caratteri[j] == 'E' && eC == 0)
+				{
+					eC++;
+					j++;
+				}
+				else
+				if (caratteri[j] == 'F')
+				{
+					pieces[5].setPos(countx, county);
+					j++;
+				}
+				else
+				if (caratteri[j] == 'G')
+				{
+					pieces[6].setPos(countx, county);
+					j++;
+				}
+				else
+				if (caratteri[j] == 'H')
+				{
+					pieces[7].setPos(countx, county);
+					j++;
+				}
+				else
+				if (caratteri[j] == 'I')
+				{
+					pieces[8].setPos(countx, county);
+					j++;
+				}
+				else
+				if (caratteri[j] == 'J' && jC == 1)
+				{
+					pieces[9].setPos(countx, county);
+					jC++;
+				}
+				else if(caratteri[j] == 'J' && jC == 0)
+				{
+					j++;
+					jC++;
+				}
+				else
+				if (caratteri[j] == '0')
+				{
+					j++;
 				}
 			}
-		//}
+		}
 	}
 }
-
-// if (j % 4 != 0){countx--;}
