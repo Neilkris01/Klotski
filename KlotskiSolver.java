@@ -6,18 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
-
-
-
 public class KlotskiSolver
 {
-
 	String[][] grid = new String[4][5]; // board girata di 90gradi
 
-	public String boardToGrid(Piece[] pieces) 
-	{
-		for (int i = 0; i < 10; i++)
-		{
+	KlotskiPuzzle puzzle;
+	Map<String, String> tree = new Hashtable<String, String>();
+	
+	public String boardToGrid(Piece[] pieces) {
+		for (int i = 0; i < 10; i++) {
 			int x1 = pieces[i].getDims()[0];
 			int y1 = pieces[i].getDims()[1];
 			if (pieces[i].getDims()[2] == 2 && pieces[i].getDims()[3] == 2) // pezzo 2x2
@@ -48,12 +45,9 @@ public class KlotskiSolver
 				grid[3 - y1][x1] = pieces[i].getName();
 			}
 		}
-		return getGridCode();
+		return puzzle.getGridCode();
 	}
-	
-	KlotskiPuzzle puzzle;
-	Map<String, String> tree = new Hashtable<String, String>();
-	
+
 	public KlotskiSolver(KlotskiPuzzle puzzle)
 	{this.puzzle = puzzle;}
 	
