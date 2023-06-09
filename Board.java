@@ -77,7 +77,7 @@ public class Board
 		return false;
 	}
 
-	/*public boolean boardToGrid()
+	public boolean boardToGrid()
 	{
 		for(i=0;i<10;i++)
 		{
@@ -114,7 +114,7 @@ public class Board
 				grid[3-y1][x1] = pieces[i].getName();
 			}
 		}
-	}*/
+	}
 	
 	
 	public boolean movePiece(Board board, int direction)
@@ -288,57 +288,6 @@ public class Board
 		}
 		selected = pieces[9];
 		setCounter(0);
-	}
-
-	public String puzzleTranslateInput()
-	{
-		String l = "";
-		char[][] grid = new char[4][5];
-
-		for (int i = 0; i < 4; i++)
-		{
-			for (int j = 0; j < 5; j++)
-			{
-				grid[i][j] = '0';
-			}
-		}
-
-		for (int j = 0; j < 10; j++)
-		{
-			int x = pieces[j].getDims()[0];
-			int y = pieces[j].getDims()[1];
-			int w = pieces[j].getDims()[2];
-			int h = pieces[j].getDims()[3];
-			String name = pieces[j].getName();
-
-			for (int i = x; i < x + w; i++)
-			{
-				for (int k = y; k < y + h; k++)
-				{
-					grid[i][k] = name.charAt(0);
-				}
-			}
-		}
-
-		// Stampa la griglia
-		for (int i = 0; i < 4; i++)
-		{
-			for (int j = 0; j < 5; j++)
-			{
-				System.out.print(grid[i][j] + " ");
-			}
-			System.out.println();
-		}
-		
-		for (int j0 = 0; j0 < 5; j0++)
-		{
-			for (int j = 0; j < 4; j++)
-			{
-				l = l + grid[j][j0];
-			}
-		}
-			System.out.println(l);
-			return l;
 	}
 
 	public void puzzleTranslateOutput(String kSolverOutput)
