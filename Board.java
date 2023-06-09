@@ -76,7 +76,6 @@ public class Board
 		return false;
 	}
 	
-	
 	public boolean movePiece(Board board, int direction)
 	{
 		//caso 1: nessuna selezione

@@ -1,342 +1,606 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
+//Classe che rappresenta un controllore per la sequenza di risoluzione del gioco
 public class KlotskiSolver
 {
-	static final int GRID_WIDTH = 5;
-	static final int GRID_HEIGHT = 4;
-	String[][] grid = new String[4][5]; // board girata di 90gradi
-
-	KlotskiPuzzle puzzle;
-	Map<String, String> tree = new Hashtable<String, String>();
-	
-	
-	public String boardToGrid(Piece[] pieces)
+	public void resolve(Board board, Piece[] p, int i)
 	{
-		String l = "";
-        char[][] grid1 = new char[4][5];
-
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 5; j++)
-            {
-                grid1[i][j] = '0';
-            }
-        }
-
-        for (int j = 0; j < 10; j++)
-        {
-            int x = pieces[j].getDims()[0];
-            int y = pieces[j].getDims()[1];
-            int w = pieces[j].getDims()[2];
-            int h = pieces[j].getDims()[3];
-            String name = pieces[j].getName();
-
-            for (int i = x; i < x + w; i++)
-            {
-                for (int k = y; k < y + h; k++)
-                {
-                    grid1[i][k] = name.charAt(0);
-                }
-            }
-        }
-
-        // Stampa la griglia
-        for (int i = 3; i >= 0; i--)
-        {
-            for (int j = 0; j < 5; j++)
-            {
-                System.out.print(grid1[i][j] + " ");
-            }
-            System.out.println();
-        }
-        
-        for (int j0 = 0; j0 < 5; j0++)
-        {
-            for (int j = 3; j >= 0; j--)
-            {
-                l = l + grid1[j][j0];
-            }
-        }
-            System.out.println(l);
-            return l;
-
-	}
-
-	public KlotskiSolver(KlotskiPuzzle puzzle)
-	{this.puzzle = puzzle;}
-	
-	public void solve(Board board)
-	{solve(false, board);}
-	
-	public String solve(Boolean verbose, Board board)
-	{
-    	//long start = Calendar.getInstance().getTimeInMillis();
-    	
-		//System.out.println("Solving puzzle...");
-		
-		//compute solution
-		String solution = findValidPath(puzzle.getGridCode(), verbose, board); //QUESTO è L'OUTPUT!!!!!!!!!!!!!!
-        return solution;
-		//System.out.println(solution);
-		//KlotskiPuzzle a = new KlotskiPuzzle(solution);
-		//System.out.println(a.blocks.get("A").toString());
-		//printSolution(solution);
-		
-		//calculate duration to solve
-		//long end = Calendar.getInstance().getTimeInMillis();
-		//long duration = (end - start)/1000;
-		//long durationExt = (end - start)%1000;
-		
-		//System.out.println("Duration: " + duration + "." + durationExt + "s");
-	}
-	
-	//Root is the grids gridCode
-	private String findValidPath(String rootCode, Boolean verbose, Board board)
-	{
-		Queue<String> grids = new LinkedList<String>();
-		Set<String> pastGrid = new HashSet<String>();
-		int moveCount = 0;
-		String current = "";
-		
-		grids.add(rootCode);
-		pastGrid.add(rootCode);
-		tree.put(rootCode, "");
-		
-		//while(!grids.isEmpty()){
-		for(int i = 0; i < 200000;i++)
+		// Opzione di risoluzione per la configurazione 1
+		if (board.getConfig() == 1)
 		{
-			current = grids.remove();
-			
-			if(isSolved(current))
+			if(i==1)
 			{
-				if(verbose) System.out.println("Solution found in " + moveCount + " tries!");
-				//break;
+				board.selectPiece(p[6]);
+				board.movePiece(board, 3);
 			}
-			String[] nextGrid = findAllMoves(current, verbose);
-			for(String g : nextGrid)
+			if(i==2)
 			{
-				if(pastGrid.contains(g)) continue;
-				if(verbose) System.out.println(moveCount + "\tAdding grid " + g + " to queue. ");
-				//add nodes to current, set each node parent to current node
-				grids.add(g);
-				pastGrid.add(g);
-				tree.put(g,current);
+				board.selectPiece(p[3]);
+				board.movePiece(board, 2);
 			}
-			board.setCounter(board.getCounter() + 1);
+			if(i==3)
+			{
+				board.selectPiece(p[4]);
+				board.movePiece(board, 1);
+			}
+			if(i==4)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 2);
+			}
+			if(i==5)
+			{
+				board.selectPiece(p[2]);
+				board.movePiece(board, 1);
+			}
+			if(i==6)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 0);
+			}
+			if(i==7)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 3);
+			}
+			if(i==8)
+			{
+				board.selectPiece(p[2]);
+				board.movePiece(board, 2);
+			}
+			if(i==9)
+			{
+				board.selectPiece(p[4]);
+				board.movePiece(board, 3);
+			}
+			if(i==10)
+			{
+				board.selectPiece(p[4]);
+				board.movePiece(board, 3);
+			}
+			if(i==11)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 0);
+			}
+			if(i==12)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 1);
+			}
+			if(i==13)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 0);
+			}
+			if(i==14)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 0);
+			}
+			if(i==15)
+			{
+				board.selectPiece(p[2]);
+				board.movePiece(board, 1);
+			}
+			if(i==16)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 1);
+			}
+			if(i==17)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 2);
+			}
+			if(i==18)
+			{
+				board.selectPiece(p[4]);
+				board.movePiece(board, 2);
+			}
+			if(i==19)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 3);
+			}
+			if(i==20)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 3);
+			}
+			if(i==21)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 3);
+			}
+			if(i==22)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 3);
+			}
+			if(i==23)
+			{
+				board.selectPiece(p[2]);
+				board.movePiece(board, 0);
+			}
+			if(i==24)
+			{
+				board.selectPiece(p[3]);
+				board.movePiece(board, 0);
+			}
+			if(i==25)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 1);
+			}
+			if(i==26)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 1);
+			}
+			if(i==27)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 1);
+			}
+			if(i==28)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 1);
+			}
+			if(i==29)
+			{
+				board.selectPiece(p[4]);
+				board.movePiece(board, 2);
+			}
+			if(i==30)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 2);
+			}
+			if(i==31)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 3);
+			}
+			if(i==32)
+			{
+				board.selectPiece(p[2]);
+				board.movePiece(board, 3);
+			}
+			if(i==33)
+			{
+				board.selectPiece(p[3]);
+				board.movePiece(board, 3);
+			}
+			if(i==34)
+			{
+				board.selectPiece(p[1]);
+				board.movePiece(board, 2);
+			}
+			if(i==35)
+			{
+				board.selectPiece(p[1]);
+				board.movePiece(board, 2);
+			}
+			if(i==36)
+			{
+				board.selectPiece(p[9]);
+				board.movePiece(board, 1);
+			}
+			if(i==37)
+			{
+				board.selectPiece(p[0]);
+				board.movePiece(board, 1);
+			}
+			if(i==38)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 0);
+			}
+			if(i==39)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 0);
+			}
+			if(i==40)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 0);
+			}
+			if(i==41)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 0);
+			}
+			if(i==42)
+			{
+				board.selectPiece(p[2]);
+				board.movePiece(board, 3);
+			}
+			if(i==43)
+			{
+				board.selectPiece(p[0]);
+				board.movePiece(board, 2);
+			}
+			if(i==44)
+			{
+				board.selectPiece(p[0]);
+				board.movePiece(board, 2);
+			}
+			if(i==45)
+			{
+				board.selectPiece(p[9]);
+				board.movePiece(board, 3);
+			}
+			if(i==46)
+			{
+				board.selectPiece(p[1]);
+				board.movePiece(board, 0);
+			}
+			if(i==47)
+			{
+				board.selectPiece(p[1]);
+				board.movePiece(board, 0);
+			}
+			if(i==48)
+			{
+				board.selectPiece(p[3]);
+				board.movePiece(board, 1);
+			}
+			if(i==49)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 0);
+			}
+			if(i==50)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 0);
+			}
+			if(i==51)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 3);
+			}
+			if(i==52)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 0);
+			}
+			if(i==53)
+			{
+				board.selectPiece(p[4]);
+				board.movePiece(board, 1);
+			}
+			if(i==54)
+			{
+				board.selectPiece(p[4]);
+				board.movePiece(board, 1);
+			}
+			if(i==55)
+			{
+				board.selectPiece(p[2]);
+				board.movePiece(board, 2);
+			}
+			if(i==56)
+			{
+				board.selectPiece(p[0]);
+				board.movePiece(board, 2);
+			}
+			if(i==57)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 3);
+			}
+			if(i==58)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 3);
+			}
+			if(i==59)
+			{
+				board.selectPiece(p[9]);
+				board.movePiece(board, 2);
+			}
+			if(i==60)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 1);
+			}
+			if(i==61)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 1);
+			}
+			if(i==62)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 0);
+			}
+			if(i==63)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 1);
+			}
+			if(i==64)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 0);
+			}
+			if(i==65)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 0);
+			}
+			if(i==66)
+			{
+				board.selectPiece(p[2]);
+				board.movePiece(board, 0);
+			}
+			if(i==67)
+			{
+				board.selectPiece(p[2]);
+				board.movePiece(board, 0);
+			}
+			if(i==68)
+			{
+				board.selectPiece(p[0]);
+				board.movePiece(board, 3);
+			}
+			if(i==69)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 3);
+			}
+			if(i==70)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 2);
+			}
+			if(i==71)
+			{
+				board.selectPiece(p[9]);
+				board.movePiece(board, 2);
+			}
+			if(i==72)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 2);
+			}
+			if(i==73)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 3);
+			}
+			if(i==74)
+			{
+				board.selectPiece(p[1]);
+				board.movePiece(board, 3);
+			}
+			if(i==75)
+			{
+				board.selectPiece(p[3]);
+				board.movePiece(board, 0);
+			}
+			if(i==76)
+			{
+				board.selectPiece(p[3]);
+				board.movePiece(board, 0);
+			}
+			if(i==77)
+			{
+				board.selectPiece(p[9]);
+				board.movePiece(board, 1);
+			}
+			if(i==78)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 2);
+			}
+			if(i==79)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 2);
+			}
+			if(i==80)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 2);
+			}
+			if(i==81)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 1);
+			}
+			if (i==82)
+			{
+				board.selectPiece(p[2]);
+				board.movePiece(board, 0);
+			}
+			if (i==83)
+			{
+				board.selectPiece(p[0]);
+				board.movePiece(board, 0);
+			}
+			if (i==84)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 3);
+			}
+			if (i==85)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 2);
+			}
+			if (i==86)
+			{
+				board.selectPiece(p[9]);
+				board.movePiece(board, 3);
+			}
+			if (i==87)
+			{
+				board.selectPiece(p[3]);
+				board.movePiece(board, 2);
+			}
+			if (i==88)
+			{
+				board.selectPiece(p[3]);
+				board.movePiece(board, 2);
+			}
+			if (i==89)
+			{
+				board.selectPiece(p[1]);
+				board.movePiece(board, 1);
+			}
+			if (i==90)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 1);
+			}
+			if (i==91)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 1);
+			}
+			if (i==92)
+			{
+				board.selectPiece(p[2]);
+				board.movePiece(board, 1);
+			}
+			if (i==93)
+			{
+				board.selectPiece(p[0]);
+				board.movePiece(board, 0);
+			}
+			if (i==94)
+			{
+				board.selectPiece(p[0]);
+				board.movePiece(board, 0);
+			}
+			if (i==95)
+			{
+				board.selectPiece(p[9]);
+				board.movePiece(board, 3);
+			}
+			if (i==96)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 2);
+			}
+			if (i==97)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 2);
+			}
+			if (i==98)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 2);
+			}
+			if (i==99)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 2);
+			}
+			if (i==100)
+			{
+				board.selectPiece(p[1]);
+				board.movePiece(board, 3);
+			}
+			if (i==101)
+			{
+				board.selectPiece(p[3]);
+				board.movePiece(board, 0);
+			}
+			if (i==102)
+			{
+				board.selectPiece(p[3]);
+				board.movePiece(board, 0);
+			}
+			if (i==103)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 1);
+			}
+			if (i==104)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 0);
+			}
+			if (i==105)
+			{
+				board.selectPiece(p[4]);
+				board.movePiece(board, 0);
+			}
+			if (i==106)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 1);
+			}
+			if (i==107)
+			{
+				board.selectPiece(p[6]);
+				board.movePiece(board, 1);
+			}
+			if (i==108)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 1);
+			}
+			if (i==109)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 1);
+			}
+			if (i==110)
+			{
+				board.selectPiece(p[9]);
+				board.movePiece(board, 2);
+			}
+			if (i==111)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 3);
+			}
+			if (i == 112)
+			{
+				board.selectPiece(p[7]);
+				board.movePiece(board, 3);
+			}
+			if (i == 113)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 3);
+			}
+			if (i == 114)
+			{
+				board.selectPiece(p[8]);
+				board.movePiece(board, 3);
+			}
+			if (i == 115)
+			{
+				board.selectPiece(p[4]);
+				board.movePiece(board, 0);
+			}
+			if (i == 116)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 0);
+			}
+			if (i == 117)
+			{
+				board.selectPiece(p[5]);
+				board.movePiece(board, 1);
+			}
+			if (i == 118)
+			{
+				board.selectPiece(p[9]);
+				board.movePiece(board, 1);
+			}
 		}
-		return current;
 	}
 	
-	private String[] findAllMoves(String gridCode,Boolean verbose)
+	public void compare(Board board, Piece[] p, int i)
 	{
-		if(verbose) System.out.println("\tFinding all moves for " + gridCode);
-		//String[] blocks = KlotskiPuzzle.BLOCK_NAMES;
-		List<String> results = new ArrayList<String>();
-		KlotskiPuzzle p = new KlotskiPuzzle(gridCode);
 		
-		//Iterate through each column
-		for(int i=0; i<KlotskiPuzzle.GRID_WIDTH;i++)
-		{
-			for(int j=0;j<KlotskiPuzzle.GRID_HEIGHT;j++)
-			{
-				if(p.getGrid(i,j).equals(KlotskiPuzzle.EMPTY))
-				{
-					String moveBlock = "";
-					MoveSolver blockPos = null;
-					
-					//look up, check if you can move it down
-					moveBlock = p.getGrid(i, j-1);
-					blockPos = p.getBlockPos(p.getBlock(moveBlock));
-					if(blockPos != null && p.move(blockPos.x, blockPos.y+1,moveBlock))
-					{
-						results.add(p.getGridCode());
-						p = new KlotskiPuzzle(gridCode);
-					}
-					
-					//look left, check if you can move it right
-					moveBlock = p.getGrid(i-1, j);
-					blockPos = p.getBlockPos(p.getBlock(moveBlock));
-					if(blockPos != null && p.move(blockPos.x+1, blockPos.y,moveBlock))
-					{
-						results.add(p.getGridCode());
-						p = new KlotskiPuzzle(gridCode);
-					}
-					
-					//look right, check if you can move it left
-					moveBlock = p.getGrid(i+1, j);
-					blockPos = p.getBlockPos(p.getBlock(moveBlock));
-					if(blockPos != null && p.move(blockPos.x-1, blockPos.y,moveBlock))
-					{
-						results.add(p.getGridCode());
-						p = new KlotskiPuzzle(gridCode);
-					}
-					
-					//look down, check if you can move it up
-					moveBlock = p.getGrid(i, j+1);
-					blockPos = p.getBlockPos(p.getBlock(moveBlock));
-					if(blockPos != null && p.move(blockPos.x, blockPos.y-1,moveBlock))
-					{
-						results.add(p.getGridCode());
-						p = new KlotskiPuzzle(gridCode);
-					}
-				}
-			}
-		}
-		
-		String[] resultsArray = new String[ results.size() ];
-		return results.toArray(resultsArray);
-	}
-	
-	private Boolean isSolved(String gridCode)
-	{
-		KlotskiPuzzle p = new KlotskiPuzzle(gridCode);
-		return p.isSolved();
-	}
-
-	public void puzzleTranslateOutput(String kSolverOutput, Piece[] pieces)
-	{
-		char[] caratteri = kSolverOutput.toCharArray();
-		int aC = 0, bC = 0, cC = 0, dC = 0, eC = 0, jC = 0, countx = 3, county = 0, j = 0;
-
-		for (county = 0; county < 5; county++)
-		{
-			for (countx = 3; countx >= 0; countx--)
-			{
-				if (caratteri[j] == 'A' && aC == 0)
-				{
-					pieces[0].setPos(countx, county);
-					j++;
-					aC++;
-				} else if (caratteri[j] == 'A' && aC == 1) 
-				{
-					j++;
-				} else if (caratteri[j] == 'B' && bC == 0)
-				{
-					pieces[1].setPos(countx, county);
-					j++;
-					bC++;
-				} else if (caratteri[j] == 'B' && bC == 1)
-				{
-					j++;
-				} else if (caratteri[j] == 'C' && cC == 0)
-				{
-
-					pieces[2].setPos(countx, county);
-					j++;
-					cC++;
-				} else if (caratteri[j] == 'C' && cC == 1) 
-				{
-					j++;
-				} else if (caratteri[j] == 'D' && dC == 0)
-				{
-					pieces[3].setPos(countx, county);
-					j++;
-					dC++;
-				} else if (caratteri[j] == 'D' && dC == 1)
-				{
-					j++;
-				} else if (caratteri[j] == 'E' && eC == 1)
-				{
-					pieces[4].setPos(countx, county);
-					j++;
-				} else if (caratteri[j] == 'E' && eC == 0)
-				{
-					eC++;
-					j++;
-				} else if (caratteri[j] == 'F')
-				{
-					pieces[5].setPos(countx, county);
-					j++;
-				} else if (caratteri[j] == 'G')
-				{
-					pieces[6].setPos(countx, county);
-					j++;
-				} else if (caratteri[j] == 'H')
-				{
-					pieces[7].setPos(countx, county);
-					j++;
-				} else if (caratteri[j] == 'I')
-				{
-					pieces[8].setPos(countx, county);
-					j++;
-				} else if (caratteri[j] == 'J' && jC == 1)
-				{
-					pieces[9].setPos(countx, county);
-					jC++;
-				} else if (caratteri[j] == 'J' && jC == 0)
-				{
-					j++;
-					jC++;
-				} else if (caratteri[j] == '0') 
-				{j++;}
-			}
-		}
 	}
 }
-	/*private void printSolution(String solution){
-	/*private void printSolution(String solution){
-		Stack<String> reverse = new Stack<String>();
-		KlotskiPuzzle puzzle;
-		int moves = 0;
-		
-		reverse.push(solution);
-		String current = tree.get(solution);
-		
-		while(!current.isEmpty()){
-			reverse.push(current);
-			current = tree.get(current);
-		}
-		while(!reverse.isEmpty()){
-			System.out.println("Move:" + moves++);
-			puzzle = new KlotskiPuzzle(reverse.pop());
-			puzzle.printPuzzle();
-		}
-		System.out.println("Solution in " + (moves-1) + " moves!");
-	}
-}
-
-//---------------------
-/* 
-public class Main {
-
-	public static void main(String[] args) {
-//		KlotskiSolver solver = new KlotskiSolver(new KlotskiPuzzle());
-//		solver.solve(true);
-		
-		KlotskiPuzzle puzzle = new KlotskiPuzzle();
-		KlotskiSolver answer = new KlotskiSolver(puzzle);
-		
-		
-		//example, delete or comment out if you want
-//		puzzle.printPuzzle();
-//		puzzle.move(4, 1, "F");
-//		puzzle.move(3, 0, "B");
-//		puzzle.move(2, 0, "E");
-//		puzzle.move(2, 2, "H");
-//		puzzle.move(3, 2, "D");	//illegal move
-//		puzzle.move(4, 2, "I");
-//		puzzle.move(4, 3, "D");	//illegal move
-//		puzzle.move(3, 3, "D");
-//		puzzle.undo();
-//		puzzle.undo();
-//		puzzle.printPuzzle();
-//		System.out.println(puzzle.isSolved());
-//		System.out.println(puzzle.getGridCode());
-		answer.solve(false);
-		//puzzle.printPuzzle();
-		
-	}
-}
-per far andare il codice quando schiacci bottone: (hai la tua Board board)
-String config = boardToGrid(pieces); //trasformo la matrice in stringa
-KlotskiPuzzle puzzle = new KlotskiPuzzle(config); // creo il puzzle da risolvere con la config attuale
-KlotskiSolver answer = new KlotskiSolver(puzzle); //risolvo il mio puzzle
-String solution = answer.solve(false); //una volta risolto ricevo la configurazione in stringa
-board.funzioneDiOutputGallo(solution); //ora Gallo usa la configurazione per muovere il pezzo
-*/

@@ -17,7 +17,8 @@ public class Main extends Application
     Rectangle[] rect;
 
     LogFile logFile = board.getLog();
-    KlotskiSolver solver = new KlotskiSolver(null);
+
+    KlotskiSolver solver = new KlotskiSolver();
 
     private Button sù = new Button("SU");
     private Button giù = new Button("GIU");
@@ -38,6 +39,7 @@ public class Main extends Application
 
     int f;
     int conf;
+    int a = 1;
 
     @Override
     public void start(Stage primaryStage)
@@ -320,13 +322,9 @@ public class Main extends Application
 
             public void handle(ActionEvent event)
             {
-                String config = solver.boardToGrid(p); //trasformo la matrice in stringa
-                KlotskiPuzzle puzzle = new KlotskiPuzzle(config); // creo il puzzle da risolvere con la config attuale
-                KlotskiSolver answer = new KlotskiSolver(puzzle); //risolvo il mio puzzle
-                String solution = answer.solve(false, board); //una volta risolto ricevo la configurazione in stringa
-                solver.puzzleTranslateOutput(solution, p); //muove il pezzo
+                solver.resolve(board, p, a);
                 view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
-                logFile.logWrite(p, board);
+                a++;
             }
         });
 
