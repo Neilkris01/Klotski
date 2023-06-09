@@ -77,7 +77,7 @@ public class Board
 		return false;
 	}
 
-	public boolean boardToGrid()
+	public String boardToGrid()
 	{
 		for(i=0;i<10;i++)
 		{
@@ -115,6 +115,7 @@ public class Board
 				grid[3-y1][x1] = pieces[i].getName();
 			}
 		}
+		return getGridCode();
 	}
 	
 	
