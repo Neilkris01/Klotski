@@ -63,7 +63,7 @@ public class ViewPrint
         root.getChildren().clear();
     }
 
-    public boolean saveView(Board board)
+    public boolean saveView(Board board, LogFile log)
     {
         TextInputDialog inputDialog = new TextInputDialog();
         String response = "";
@@ -109,11 +109,11 @@ public class ViewPrint
                 return false;
             }
         }
-        board.renameFile(response + ".txt");
+        log.renameFile(response + ".txt");
         return true;
     }
 
-    public void winView(Board board)
+    public void winView(Board board, LogFile log)
     {
         TextInputDialog inputDialog = new TextInputDialog();
         String response = "";
@@ -141,10 +141,10 @@ public class ViewPrint
             else
             {return;}
         }
-        board.renameFile(response + ".txt");
+        log.renameFile(response + ".txt");
     }
 
-    public void loadView(Board board)
+    public void loadView(Board board, LogFile log)
     {
         TextInputDialog inputDialog = new TextInputDialog();
         Optional<String> result;
@@ -158,7 +158,7 @@ public class ViewPrint
             Path path = Paths.get(fileName);
             if(Files.exists(path))
             {
-                ArrayList<ArrayList<int[]>> q = board.read(fileName);
+                ArrayList<ArrayList<int[]>> q = log.read(fileName);
                 ArrayList<int[]> pI = q.get(q.size()-1);
                 int cX = 0;
                 int cY = 0;
@@ -169,7 +169,7 @@ public class ViewPrint
                     Piece[] p = board.getPieces();
                     p[j].setPos(cX, cY);
                 }
-                board.LogRewrite(fileName);
+                log.LogRewrite(fileName);
                 board.setCounter(q.size()-1);
             }
             else
