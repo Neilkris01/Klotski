@@ -561,8 +561,7 @@ public class Main {
 	}
 }
 per far andare il codice quando schiacci bottone: (hai la tua Board board)
-board.boardToGrid();    //inserisco nella matrice la config
-String config = board.getGridCode();  //trasformo la matrice in stringa
+String config = boardToGrid(pieces); //trasformo la matrice in stringa
 KlotskiPuzzle puzzle = new KlotskiPuzzle(config); // creo il puzzle da risolvere con la config attuale
 KlotskiSolver answer = new KlotskiSolver(puzzle); //risolvo il mio puzzle
 String solution = answer.solve(false); //una volta risolto ricevo la configurazione in stringa
