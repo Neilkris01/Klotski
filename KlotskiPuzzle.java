@@ -2,7 +2,8 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Stack;
 
-public class KlotskiPuzzle {
+public class KlotskiPuzzle
+{
 	static final String EMPTY = "0";		//an empty space in the grid
 	static final String SOLVED_CHAR = "J";	//Block name that meets victory condition
 	static final int GRID_WIDTH = 5;
