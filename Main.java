@@ -27,7 +27,7 @@ public class Main extends Application
     //create all buttons
     private Button up = new Button("UP");
     private Button down = new Button("DOWN");
-    private Button rigth = new Button("RIGTH");
+    private Button rigth = new Button("RIGHT");
     private Button left = new Button("LEFT");
     private Button reset = new Button("RESET");
     private Button config1 = new Button("CONFIGURATION 1");

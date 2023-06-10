@@ -17,7 +17,7 @@ public class ViewSettings
         up.setLayoutX(615);
         up.setLayoutY(350);
         up.setMinSize(50, 10);
-        up.setPrefWidth(55);
+        up.setPrefWidth(60);
 
         down.setLayoutX(615);
         down.setLayoutY(450);
@@ -34,42 +34,42 @@ public class ViewSettings
         left.setMinSize(50, 10);
         left.setPrefWidth(60);
 
-        config1.setLayoutX(580);
+        config1.setLayoutX(586);
         config1.setLayoutY(100);
         config1.setMinSize(50, 10);
 
-        config2.setLayoutX(580);
+        config2.setLayoutX(586);
         config2.setLayoutY(130);
         config2.setMinSize(50, 10);
 
-        config3.setLayoutX(580);
+        config3.setLayoutX(586);
         config3.setLayoutY(160);
         config3.setMinSize(50, 10);
 
-        config4.setLayoutX(580);
+        config4.setLayoutX(586);
         config4.setLayoutY(190);
         config4.setMinSize(50, 10);
 
-        loadGame.setLayoutX(604);
+        loadGame.setLayoutX(610);
         loadGame.setLayoutY(220);
         loadGame.setMinSize(50, 10);
 
-        bestNextMove.setLayoutX(645);
-        bestNextMove.setLayoutY(580);
-        bestNextMove.setMinSize(50, 10);
-        bestNextMove.setPrefWidth(60);
-
-        undo.setLayoutX(590);
+        undo.setLayoutX(581);
         undo.setLayoutY(580);
         undo.setMinSize(50, 10);
         undo.setPrefWidth(60);
 
-        reset.setLayoutX(590);
+        reset.setLayoutX(581);
         reset.setLayoutY(610);
         reset.setMinSize(50, 10);
         reset.setPrefWidth(60);
 
-        save.setLayoutX(645);
+        bestNextMove.setLayoutX(650);
+        bestNextMove.setLayoutY(580);
+        bestNextMove.setMinSize(50, 10);
+        bestNextMove.setPrefWidth(60);
+
+        save.setLayoutX(650);
         save.setLayoutY(610);
         save.setMinSize(50, 10);
         save.setPrefWidth(60);
