@@ -27,7 +27,7 @@ public class ViewPrint
     Rectangle[] a;
 
     //Print the board, pieces, buttons, and text on the scene
-    Rectangle[] print(Stage primaryStage, Board board, Piece[] p, Button up, Button down, Button rigth, Button left, Button config1, Button config2, Button config3,Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button loadGame)
+    Rectangle[] print(Stage primaryStage, Board board, Piece[] p, Button up, Button down, Button rigth, Button sinistra, Button config1, Button config2, Button config3,Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button loadGame)
     {
 
         printBoard.printBoard(root);
@@ -37,7 +37,7 @@ public class ViewPrint
         primaryStageSetting.viewSettings(primaryStage);
         
         //inserimento bottoni
-        ins.insertButtons(root, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
+        ins.insertButtons(root, up, down, rigth, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
 
         text.counterText(root, board);
 
@@ -49,12 +49,12 @@ public class ViewPrint
     }
 
     //Repaint the board, pieces, buttons, and text on the scene
-    void rePrint(Stage primaryStage, Board board, Piece[] p, Button up, Button down, Button rigth, Button left, Button config1, Button config2, Button config3,Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button loadGame)
+    void rePrint(Stage primaryStage, Board board, Piece[] p, Button up, Button down, Button rigth, Button sinistra, Button config1, Button config2, Button config3,Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button loadGame)
     {
         printPiece.clearPiece(root);
         printBoard.printBoard(root);
         a = printPiece.rePrintPiece(p, root, board);
-        ins.insertButtons(root, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
+        ins.insertButtons(root, up, down, rigth, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
         text.counterText(root, board);
     }
     
@@ -85,7 +85,6 @@ public class ViewPrint
                 Path path = Paths.get(file);
                 if(!Files.exists(path))
                 {
-                    
                     if (!response.equals("out"))
                     {break;}
                     else
@@ -96,6 +95,14 @@ public class ViewPrint
                         alert.setContentText("L'input non può essere 'out'. Inserisci un valore diverso.");
                         alert.showAndWait();
                     }
+                }
+                else if(response.equals("Config1Database"))
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Errore");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Il nome del file è già utilizzato. (DataBase)");
+                    alert.showAndWait();
                 }
                 else
                 {
@@ -154,8 +161,16 @@ public class ViewPrint
         Optional<String> result;
         String fileName;
         inputDialog.setTitle("CARICA PARTITA");
-        inputDialog.setContentText("Inserisci il nome:");
+        inputDialog.setContentText("Inserisci il nome del file da caricare:");
         result = inputDialog.showAndWait();
+        if(result.get().equals("Config1Database"))
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Errore");
+            alert.setHeaderText(null);
+            alert.setContentText("Il file non può essere caricato (DataBase)");
+            alert.showAndWait();
+        }
         if (result.isPresent())
         {
             fileName = "./Logs/" + result.get() + ".txt";

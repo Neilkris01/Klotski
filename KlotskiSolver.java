@@ -1,8 +1,42 @@
 //Classe che rappresenta un controllore per la sequenza di risoluzione del gioco
+
+import java.util.ArrayList;
+
 public class KlotskiSolver
 {
-	public void resolve(Board board, Piece[] p, int i)
+	ArrayList<ArrayList<int[]>> queque;
+	int i = 0;
+
+	public void solve(Board board, Piece[] p)
 	{
+		LogFile f = board.getLog();
+		queque = f.logReadForSolve();
+
+		for(int c =0; c< queque.size()-1; c++)
+		{
+			ArrayList<int[]> temp = queque.get(c);
+			int cX = 0;
+			int cY = 0;
+			int hl = 0;
+			for (int j = 0; j < 10; j++)
+			{
+				cX = temp.get(j)[0];
+				cY = temp.get(j)[1];
+				if(cX == p[j].getDims()[0] && cY == p[j].getDims()[1])
+				{hl++;}
+			}
+			if(hl == 10)
+			{
+				i = c + 1;
+				resolve(board, p);
+				break;
+			}
+		}
+	}
+
+	public void resolve(Board board, Piece[] p)
+	{
+
 		// Opzione di risoluzione per la configurazione 1
 		if (board.getConfig() == 1)
 		{

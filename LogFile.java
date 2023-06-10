@@ -93,6 +93,13 @@ public class LogFile
         return queque;
     }
 
+    public ArrayList<ArrayList<int[]>> logReadForSolve()
+    {
+        String fileName = "./Logs/Config1database.txt";
+        queque = read(fileName);
+        return queque;
+    }
+
     //Rewrite the log file with contents from another file
     public void LogRewrite(String filePath)
     {
@@ -131,7 +138,7 @@ public class LogFile
             }
             else
             {throw new IOException("Impossibile eliminare il file originale");}
-            inputFile.delete();
+            //inputFile.delete();
         }
         catch (IOException e)
         { e.printStackTrace();}
@@ -238,4 +245,8 @@ public class LogFile
         catch (Exception e)
         { System.err.println("Si è verificato un errore durante l'eliminazione del file: " + e.getMessage());}
     }
+
+
+    public ArrayList<ArrayList<int[]>> getQ()
+    {return queque;}
 }
