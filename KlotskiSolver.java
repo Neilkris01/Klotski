@@ -598,9 +598,4 @@ public class KlotskiSolver
 			}
 		}
 	}
-	
-	public void compare(Board board, Piece[] p, int i)
-	{
-		
-	}
 }
