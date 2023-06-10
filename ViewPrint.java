@@ -104,6 +104,14 @@ public class ViewPrint
                     alert.setContentText("Il nome del file è già utilizzato. (DataBase)");
                     alert.showAndWait();
                 }
+                else if(response.equals("temp"))
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Errore");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Il nome del file è già utilizzato. (Script)");
+                    alert.showAndWait();
+                }
                 else
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);

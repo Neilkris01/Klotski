@@ -202,55 +202,55 @@ public class Board
 		pieces = new Piece[10];
 		if (configuration == 1)
 		{
-			pieces[0] = new Piece(0, 0, 1, 2, "A");
-			pieces[1] = new Piece(3, 0, 1, 2, "B");
-			pieces[2] = new Piece(0, 2, 1, 2, "C");
-			pieces[3] = new Piece(3, 2, 1, 2, "D");
-			pieces[4] = new Piece(1, 2, 2, 1, "E");
-			pieces[5] = new Piece(0, 4, 1, 1, "F");
-			pieces[6] = new Piece(3, 4, 1, 1, "G");
-			pieces[7] = new Piece(1, 3, 1, 1, "H");
-			pieces[8] = new Piece(2, 3, 1, 1, "I");
-			pieces[9] = new Piece(1, 0, 2, 2, "J");
+			pieces[0] = new Piece(0, 0, 1, 2);
+			pieces[1] = new Piece(3, 0, 1, 2);
+			pieces[2] = new Piece(0, 2, 1, 2);
+			pieces[3] = new Piece(3, 2, 1, 2);
+			pieces[4] = new Piece(1, 2, 2, 1);
+			pieces[5] = new Piece(0, 4, 1, 1);
+			pieces[6] = new Piece(3, 4, 1, 1);
+			pieces[7] = new Piece(1, 3, 1, 1);
+			pieces[8] = new Piece(2, 3, 1, 1);
+			pieces[9] = new Piece(1, 0, 2, 2);
 		}
 		else if (configuration == 2)
 		{
-			pieces[0] = new Piece(0, 0, 1, 2, "A");
-			pieces[1] = new Piece(3, 0, 1, 2, "B");
-			pieces[2] = new Piece(0, 2, 1, 2, "C");
-			pieces[3] = new Piece(3, 2, 1, 2, "D");
-			pieces[4] = new Piece(1, 4, 2, 1, "E");
-			pieces[5] = new Piece(1, 2, 1, 1, "F");
-			pieces[6] = new Piece(2, 2, 1, 1, "G");
-			pieces[7] = new Piece(1, 3, 1, 1, "H");
-			pieces[8] = new Piece(2, 3, 1, 1, "I");
-			pieces[9] = new Piece(1, 0, 2, 2, "J");
+			pieces[0] = new Piece(0, 0, 1, 2);
+			pieces[1] = new Piece(3, 0, 1, 2);
+			pieces[2] = new Piece(0, 2, 1, 2);
+			pieces[3] = new Piece(3, 2, 1, 2);
+			pieces[4] = new Piece(1, 4, 2, 1);
+			pieces[5] = new Piece(1, 2, 1, 1);
+			pieces[6] = new Piece(2, 2, 1, 1);
+			pieces[7] = new Piece(1, 3, 1, 1);
+			pieces[8] = new Piece(2, 3, 1, 1);
+			pieces[9] = new Piece(1, 0, 2, 2);
 		}
 		else if (configuration == 3)
 		{
-			pieces[0] = new Piece(0, 1, 1, 2, "A");
-			pieces[1] = new Piece(3, 1, 1, 2, "B");
-			pieces[2] = new Piece(1, 2, 1, 2, "C");
-			pieces[3] = new Piece(2, 2, 1, 2, "D");
-			pieces[4] = new Piece(2, 4, 2, 1, "E");
-			pieces[5] = new Piece(0, 0, 1, 1, "F");
-			pieces[6] = new Piece(3, 0, 1, 1, "G");
-			pieces[7] = new Piece(0, 3, 1, 1, "H");
-			pieces[8] = new Piece(3, 3, 1, 1, "I");
-			pieces[9] = new Piece(1, 0, 2, 2, "J");
+			pieces[0] = new Piece(0, 1, 1, 2);
+			pieces[1] = new Piece(3, 1, 1, 2);
+			pieces[2] = new Piece(1, 2, 1, 2);
+			pieces[3] = new Piece(2, 2, 1, 2);
+			pieces[4] = new Piece(2, 4, 2, 1);
+			pieces[5] = new Piece(0, 0, 1, 1);
+			pieces[6] = new Piece(3, 0, 1, 1);
+			pieces[7] = new Piece(0, 3, 1, 1);
+			pieces[8] = new Piece(3, 3, 1, 1);
+			pieces[9] = new Piece(1, 0, 2, 2);
 		}
 		else if (configuration == 4)
 		{
-			pieces[0] = new Piece(3, 1, 1, 2, "A");
-			pieces[1] = new Piece(3, 3, 1, 2, "B");
-			pieces[2] = new Piece(1, 1, 1, 2, "C");
-			pieces[3] = new Piece(2, 3, 1, 2, "D");
-			pieces[4] = new Piece(1, 0, 2, 1, "E");
-			pieces[5] = new Piece(2, 2, 1, 1, "F");
-			pieces[6] = new Piece(0, 0, 1, 1, "G");
-			pieces[7] = new Piece(3, 0, 1, 1, "H");
-			pieces[8] = new Piece(0, 2, 1, 1, "I");
-			pieces[9] = new Piece(0, 3, 2, 2, "J");
+			pieces[0] = new Piece(3, 1, 1, 2);
+			pieces[1] = new Piece(3, 3, 1, 2);
+			pieces[2] = new Piece(1, 1, 1, 2);
+			pieces[3] = new Piece(2, 3, 1, 2);
+			pieces[4] = new Piece(1, 0, 2, 1);
+			pieces[5] = new Piece(2, 2, 1, 1);
+			pieces[6] = new Piece(0, 0, 1, 1);
+			pieces[7] = new Piece(3, 0, 1, 1);
+			pieces[8] = new Piece(0, 2, 1, 1);
+			pieces[9] = new Piece(0, 3, 2, 2);
 		}
 		selected = pieces[9];
 		setCounter(0);

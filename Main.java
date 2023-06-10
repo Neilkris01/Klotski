@@ -13,7 +13,7 @@ public class Main extends Application
     //create the board, view and the solver
     Board board = new Board();
     PiecesView pView = new PiecesView();
-    KlotskiSolver solver = new KlotskiSolver();
+    Solver solver = new Solver();
 
     //inizialize the variables
     Piece[] p = board.getPieces();

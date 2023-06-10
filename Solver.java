@@ -2,7 +2,7 @@
 
 import java.util.ArrayList;
 
-public class KlotskiSolver
+public class Solver
 {
 	ArrayList<ArrayList<int[]>> queque;
 	int i = 0;

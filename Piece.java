@@ -7,10 +7,9 @@ public class Piece
 	int y;
 	int w;
 	int h;
-	String lecter;
 	
 	//piece constructor
-	public Piece(int x, int y, int w, int h, String l)
+	public Piece(int x, int y, int w, int h)
 	{
 		if (x < 0 || y < 0 || w < 1 || h < 1)
 			throw new IllegalArgumentException("Invalid Position");
@@ -18,7 +17,6 @@ public class Piece
 		this.y = y;
 		this.w = w;
 		this.h= h;
-		this.lecter = l;
 	}
 
 	//change the x, y of the piece based on the move made
@@ -40,12 +38,6 @@ public class Piece
 		this.x = x1;
 		this.y = y1;
 	}
-
-	//setter and getter of piece's name
-	public void setName(String l1)
-	{this.lecter = l1;}
-	public String getName()
-	{return lecter;}
 
 	//getter of piece's x, y, w, h
 	public int[] getDims()
