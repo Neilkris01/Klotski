@@ -79,9 +79,9 @@ public class LogFile
             setMoveDeep(queque.size());
         }
         catch (FileNotFoundException e)
-        {System.err.println("File non trovato");}
+        {System.err.println("File not found");}
         catch (IOException e)
-        {System.err.println("Errore durante la lettura del file");}
+        {System.err.println("Error reading file");}
         return queque;
     }
 
@@ -134,10 +134,10 @@ public class LogFile
             if (outFile.delete())
             {
                 if (!tempFile.renameTo(outFile))
-                {throw new IOException("Impossibile rinominare il file temporaneo");}
+                {throw new IOException("Unable to rename temporary file");}
             }
             else
-            {throw new IOException("Impossibile eliminare il file originale");}
+            {throw new IOException("Unable to delete the original file");}
             //inputFile.delete();
         }
         catch (IOException e)
@@ -187,11 +187,11 @@ public class LogFile
             {
                 if (!tempFile.renameTo(inputFile))
                 {
-                    throw new IOException("Impossibile rinominare il file temporaneo");
+                    throw new IOException("Unable to rename temporary file");
                 }
             }
             else
-            {throw new IOException("Impossibile eliminare il file originale");}
+            {throw new IOException("Unable to delete the original file");}
         }
         catch (IOException e)
         {e.printStackTrace();}
@@ -235,17 +235,16 @@ public class LogFile
             if (file.exists())
             {
                 if (file.delete())
-                {System.out.println("Il file " + file.getAbsolutePath() + " è stato eliminato con successo.");}
+                {System.out.println("The file '" + file.getAbsolutePath() + "' has been successfully deleted.");}
                 else
-                {System.out.println("Impossibile eliminare il file " + file.getAbsolutePath());}
+                {System.out.println("Unable to delete file '" + file.getAbsolutePath() + "'");}
             }
             else
-            {System.out.println("Il file " + file.getAbsolutePath() + " non esiste.");}
+            {System.out.println("The file '" + file.getAbsolutePath() + "' does not exist.");}
         }
         catch (Exception e)
-        { System.err.println("Si è verificato un errore durante l'eliminazione del file: " + e.getMessage());}
+        { System.err.println("An error occurred while deleting the file '" + e.getMessage() + "'");}
     }
-
 
     public ArrayList<ArrayList<int[]>> getQ()
     {return queque;}

@@ -69,9 +69,9 @@ public class ViewPrint
     {
         TextInputDialog inputDialog = new TextInputDialog();
         String response = "";
-        inputDialog.setTitle("SALVA");
-        inputDialog.setHeaderText("(salva ed esci)");
-        inputDialog.setContentText("Come vuoi salvare la tua partita?");
+        inputDialog.setTitle("SAVE");
+        inputDialog.setHeaderText("(save and quit)");
+        inputDialog.setContentText("How do you want to save your game?");
         Optional<String> result;
         String file;
 
@@ -90,34 +90,34 @@ public class ViewPrint
                     else
                     {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Errore");
+                        alert.setTitle("Error");
                         alert.setHeaderText(null);
-                        alert.setContentText("L'input non può essere 'out'. Inserisci un valore diverso.");
+                        alert.setContentText("Input cannot be 'out'. Enter a different value.");
                         alert.showAndWait();
                     }
                 }
                 else if(response.equals("Config1Database"))
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Errore");
+                    alert.setTitle("Error");
                     alert.setHeaderText(null);
-                    alert.setContentText("Il nome del file è già utilizzato. (DataBase)");
+                    alert.setContentText("The file name is already in use. (DataBase)");
                     alert.showAndWait();
                 }
                 else if(response.equals("temp"))
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Errore");
+                    alert.setTitle("Error");
                     alert.setHeaderText(null);
-                    alert.setContentText("Il nome del file è già utilizzato. (Script)");
+                    alert.setContentText("The file name is already in use. (scripts)");
                     alert.showAndWait();
                 }
                 else
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Errore");
+                    alert.setTitle("Error");
                     alert.setHeaderText(null);
-                    alert.setContentText("Il nome del file è già utilizzato.");
+                    alert.setContentText("The file name is already in use.");
                     alert.showAndWait();
                 }
             }
@@ -136,8 +136,8 @@ public class ViewPrint
         TextInputDialog inputDialog = new TextInputDialog();
         String response = "";
         inputDialog.setTitle("!!!WIN!!!");
-        inputDialog.setHeaderText("(salva ed esci)");
-        inputDialog.setContentText("Vuoi salvare la tua partita?");
+        inputDialog.setHeaderText("(save and quit)");
+        inputDialog.setContentText("Do you want to save your game?");
         Optional<String> result;
         while (true)
         {
@@ -150,9 +150,9 @@ public class ViewPrint
                 else
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Errore");
+                    alert.setTitle("Error");
                     alert.setHeaderText(null);
-                    alert.setContentText("L'input non può essere 'out'. Inserisci un valore diverso.");
+                    alert.setContentText("Input cannot be 'out'. Enter a different value.");
                     alert.showAndWait();
                 }
             }
@@ -168,15 +168,15 @@ public class ViewPrint
         TextInputDialog inputDialog = new TextInputDialog();
         Optional<String> result;
         String fileName;
-        inputDialog.setTitle("CARICA PARTITA");
-        inputDialog.setContentText("Inserisci il nome del file da caricare:");
+        inputDialog.setTitle("LOAD GAME");
+        inputDialog.setContentText("Enter the name of the file to upload:");
         result = inputDialog.showAndWait();
         if(result.get().equals("Config1Database"))
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Errore");
+            alert.setTitle("Error");
             alert.setHeaderText(null);
-            alert.setContentText("Il file non può essere caricato (DataBase)");
+            alert.setContentText("The file cannot be uploaded (DataBase)");
             alert.showAndWait();
         }
         if (result.isPresent())
@@ -202,13 +202,22 @@ public class ViewPrint
             else
             {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Errore");
+                alert.setTitle("Error");
                 alert.setHeaderText(null);
-                alert.setContentText("Il file non esiste");
+                alert.setContentText("The file does not exist");
                 alert.showAndWait();
             }
         }
         else
         {return;}
+    }
+
+    public void solveError()
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Unrecognized pieces pattern");
+        alert.showAndWait();
     }
 }

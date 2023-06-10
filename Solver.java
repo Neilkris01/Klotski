@@ -1,14 +1,12 @@
-//Classe che rappresenta un controllore per la sequenza di risoluzione del gioco
-
 import java.util.ArrayList;
 
 public class Solver
 {
 	ArrayList<ArrayList<int[]>> queque;
 	int i = 0;
-
-	public void solve(Board board, Piece[] p)
+	public void solve(Board board, Piece[] p, ViewPrint view)
 	{
+		boolean found = false;
 		LogFile f = board.getLog();
 		queque = f.logReadForSolve();
 
@@ -28,9 +26,14 @@ public class Solver
 			if(hl == 10)
 			{
 				i = c + 1;
+				found = true;
 				resolve(board, p);
-				break;
+				c = queque.size()-1;
 			}
+		}
+		if(!found)
+		{
+			view.solveError();
 		}
 	}
 
