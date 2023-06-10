@@ -4,31 +4,31 @@ public class ViewSettings
 {
     void viewSettings(Stage primaryStage)
     {
-        // modifico lo stage
+        // Modify the primary stage settings
         primaryStage.setTitle("Klotski Game");
         primaryStage.setHeight(4 * 200);
         primaryStage.setWidth(4 * 200);
         primaryStage.setResizable(false);
-        // primaryStage.setFullScreen(true);
     }
 
-    void buttonsSettings(Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button caricaPartita)
+    //Set the layout and size of each button
+    void buttonsSettings(Button up, Button down, Button rigth, Button left, Button config1, Button config2, Button config3, Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button loadGame)
     {
-        sù.setLayoutX(615);
-        sù.setLayoutY(350);
-        sù.setMinSize(50, 10);
+        up.setLayoutX(615);
+        up.setLayoutY(350);
+        up.setMinSize(50, 10);
 
-        giù.setLayoutX(615);
-        giù.setLayoutY(450);
-        giù.setMinSize(50, 10);
+        down.setLayoutX(615);
+        down.setLayoutY(450);
+        down.setMinSize(50, 10);
 
-        destra.setLayoutX(670);
-        destra.setLayoutY(400);
-        destra.setMinSize(50, 10);
+        rigth.setLayoutX(670);
+        rigth.setLayoutY(400);
+        rigth.setMinSize(50, 10);
 
-        sinistra.setLayoutX(550);
-        sinistra.setLayoutY(400);
-        sinistra.setMinSize(50, 10);
+        left.setLayoutX(550);
+        left.setLayoutY(400);
+        left.setMinSize(50, 10);
 
         config1.setLayoutX(580);
         config1.setLayoutY(100);
@@ -46,9 +46,9 @@ public class ViewSettings
         config4.setLayoutY(190);
         config4.setMinSize(50, 10);
 
-        caricaPartita.setLayoutX(580);
-        caricaPartita.setLayoutY(220);
-        caricaPartita.setMinSize(50, 10);
+        loadGame.setLayoutX(580);
+        loadGame.setLayoutY(220);
+        loadGame.setMinSize(50, 10);
 
         bestNextMove.setLayoutX(650);
         bestNextMove.setLayoutY(580);

@@ -9,21 +9,26 @@ import javafx.scene.paint.Color;
 
 public class Main extends Application
 {
-    private ViewPrint view;
+
+    //create the board, view and the solver
     Board board = new Board();
-    Piece[] p = board.getPieces();
-
     PiecesView pView = new PiecesView();
-    Rectangle[] rect;
-
-    LogFile logFile = board.getLog();
-
     KlotskiSolver solver = new KlotskiSolver();
 
-    private Button sù = new Button("SU");
-    private Button giù = new Button("GIU");
-    private Button destra = new Button("DESTRA");
-    private Button sinistra = new Button("SINISTRA");
+    //inizialize the variables
+    Piece[] p = board.getPieces();
+    LogFile logFile = board.getLog();
+    ViewPrint view;
+    Rectangle[] rect;
+    int f;
+    int conf;
+    int a = 1;
+
+    //create all buttons
+    private Button up = new Button("UP");
+    private Button down = new Button("DOWN");
+    private Button rigth = new Button("RIGTH");
+    private Button left = new Button("LEFT");
     private Button reset = new Button("RESET");
     private Button config1 = new Button("CONFIGURATION 1");
     private Button config2 = new Button("CONFIGURATION 2");
@@ -32,23 +37,23 @@ public class Main extends Application
     private Button undo = new Button("UNDO");
     private Button bestNextMove = new Button("BNXM");
     private Button save = new Button("SAVE");
-    private Button caricaPartita = new Button("CARICA  (LOG FILE)");
+    private Button loadGame = new Button("LOAD FILE");
 
+    //main constructor (runner)
     public static void main(String[] args)
     {launch(args);}
 
-    int f;
-    int conf;
-    int a = 1;
-
     @Override
+
     public void start(Stage primaryStage)
     {
+        //inizialize the game and the view
         view = new ViewPrint();
-        rect = view.print(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+        rect = view.print(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
         logFile.deleteFile();
         logFile.logWrite(p, board);
         
+        //select p0
         rect[0].setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
             @Override
@@ -64,6 +69,7 @@ public class Main extends Application
             }
         });
 
+        //select p1 rectangle and change the selected rectangle color
         rect[1].setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
@@ -79,6 +85,7 @@ public class Main extends Application
             }
         });
 
+        //select p2 rectangle and change the selected rectangle color
         rect[2].setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
@@ -92,6 +99,7 @@ public class Main extends Application
             }
         });
 
+        //select p3 rectangle and change the selected rectangle color
         rect[3].setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
@@ -105,6 +113,7 @@ public class Main extends Application
             }
         });
 
+        //select p4 rectangle and change the selected rectangle color
         rect[4].setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
@@ -118,6 +127,7 @@ public class Main extends Application
             }
         });
 
+        //select p5 rectangle and change the selected rectangle color
         rect[5].setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
@@ -131,6 +141,7 @@ public class Main extends Application
             }
         });
 
+        //select p6 rectangle and change the selected rectangle color
         rect[6].setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
             @Override
@@ -144,6 +155,7 @@ public class Main extends Application
             }
         });
 
+        //select p7 rectangle and change the selected rectangle color
         rect[7].setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
@@ -157,6 +169,7 @@ public class Main extends Application
             }
         });
 
+        //select p8 rectangle and change the selected rectangle color
         rect[8].setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
@@ -169,6 +182,8 @@ public class Main extends Application
                 board.selectPiece(p[8]);
             }
         });
+
+        //select p9 rectangle and change the selected rectangle color
         rect[9].setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
@@ -181,26 +196,27 @@ public class Main extends Application
             }
         });
         
-            
-        sù.setOnAction(new EventHandler<ActionEvent>()
+        //buttons implementations (makes the selected rectangle move)
+        up.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
 
             public void handle(ActionEvent event)
             {
                 board.movePiece(board, 0);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
             }
         });
 
-        giù.setOnAction(new EventHandler<ActionEvent>()
+        down.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
 
             public void handle(ActionEvent event)
             {
                 board.movePiece(board, 2);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
+                //check if the red rectangle is on the win posiction
                 if(board.checkWin())
                 {
                     view.winView(board, logFile);
@@ -210,28 +226,29 @@ public class Main extends Application
             }
         });
 
-        destra.setOnAction(new EventHandler<ActionEvent>()
+        rigth.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
 
             public void handle(ActionEvent event)
             {
                 board.movePiece(board, 1);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
             }
         });
 
-        sinistra.setOnAction(new EventHandler<ActionEvent>()
+        left.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
 
             public void handle(ActionEvent event)
             {
                 board.movePiece(board, 3);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
             }
         });
         
+        //select the start configuration nad update the log file (restatrt the game with the new config. if the game is already started)
         config1.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -240,7 +257,7 @@ public class Main extends Application
             {
                 board.reset(1);
                 p = board.getPieces();
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
                 logFile.fileOutDelater();
                 logFile.logWrite(p, board);
             }
@@ -256,7 +273,7 @@ public class Main extends Application
                 p = board.getPieces();
                 logFile.fileOutDelater();
                 logFile.logWrite(p, board);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
             }
         });
 
@@ -268,7 +285,7 @@ public class Main extends Application
             {
                 board.reset(3);
                 p = board.getPieces();
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
                 logFile.fileOutDelater();
                 logFile.logWrite(p, board);
             }
@@ -282,12 +299,13 @@ public class Main extends Application
             {
                 board.reset(4);
                 p = board.getPieces();
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4,  reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4,  reset, undo, bestNextMove, save, loadGame);
                 logFile.fileOutDelater();
                 logFile.logWrite(p, board);
             }
         });
 
+        //restart the game and logLile (keep the current config) 
         reset.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -296,12 +314,13 @@ public class Main extends Application
             {
                 board.reset(board.getConfig());
                 p = board.getPieces();
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4,  reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4,  reset, undo, bestNextMove, save, loadGame);
                 logFile.fileOutDelater();
                 logFile.logWrite(p, board);
             }
         });
 
+        //put in the board the last rect. onfiguration (undo the move) and remove the last move from the log file
         undo.setOnAction(new EventHandler<ActionEvent>()
         {
              @Override
@@ -312,9 +331,10 @@ public class Main extends Application
                 {
                     logFile.undo(p, board);
                 }
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
             }
         });
+
 
         bestNextMove.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -323,11 +343,12 @@ public class Main extends Application
             public void handle(ActionEvent event)
             {
                 solver.resolve(board, p, a);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
                 a++;
             }
         });
 
+        //save all the move playad sinse now in this game in the file log and name it
         save.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -339,17 +360,16 @@ public class Main extends Application
             }
         });
 
-        caricaPartita.setOnAction(new EventHandler<ActionEvent>()
+        //load all the move playad in a game and rewrite the file
+        loadGame.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
 
             public void handle(ActionEvent event)
             {
                 view.loadView(board, logFile);
-                view.rePrint(primaryStage, board, p, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+                view.rePrint(primaryStage, board, p, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
             }
         });
     }
 }
-
-// javac Main.java Board.java BoardView.java Errors.java InsView.java Piece.java PiecesView.java ViewPrint.java

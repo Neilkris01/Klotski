@@ -14,13 +14,11 @@ import java.util.ArrayList;
 
 public class ViewPrint
 {
-
-    //crea la board
-
-
+    //Create the root group and scene
     Group root = new Group();
     Scene scene = new Scene(root, Color.SIENNA);
 
+    //Initialize necessary views and components
     BoardView printBoard = new BoardView();
     PiecesView printPiece = new PiecesView();
     ViewSettings primaryStageSetting = new ViewSettings();
@@ -28,7 +26,8 @@ public class ViewPrint
     Texts text = new Texts();
     Rectangle[] a;
 
-    Rectangle[] print(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3,Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button caricaPartita)
+    //Print the board, pieces, buttons, and text on the scene
+    Rectangle[] print(Stage primaryStage, Board board, Piece[] p, Button up, Button down, Button rigth, Button left, Button config1, Button config2, Button config3,Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button loadGame)
     {
 
         printBoard.printBoard(root);
@@ -38,7 +37,7 @@ public class ViewPrint
         primaryStageSetting.viewSettings(primaryStage);
         
         //inserimento bottoni
-        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+        ins.insertButtons(root, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
 
         text.counterText(root, board);
 
@@ -49,20 +48,23 @@ public class ViewPrint
         return a;
     }
 
-    void rePrint(Stage primaryStage, Board board, Piece[] p, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3,Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button caricaPartita)
+    //Repaint the board, pieces, buttons, and text on the scene
+    void rePrint(Stage primaryStage, Board board, Piece[] p, Button up, Button down, Button rigth, Button left, Button config1, Button config2, Button config3,Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button loadGame)
     {
         printPiece.clearPiece(root);
         printBoard.printBoard(root);
         a = printPiece.rePrintPiece(p, root, board);
-        ins.insertButtons(root, sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+        ins.insertButtons(root, up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
         text.counterText(root, board);
     }
     
+    //Clear the scene
     void resetPrint()
     {
         root.getChildren().clear();
     }
 
+    //Save the current game state to a file
     public boolean saveView(Board board, LogFile log)
     {
         TextInputDialog inputDialog = new TextInputDialog();
@@ -113,6 +115,7 @@ public class ViewPrint
         return true;
     }
 
+    //Show a win message and prompt for saving the game state
     public void winView(Board board, LogFile log)
     {
         TextInputDialog inputDialog = new TextInputDialog();
@@ -144,6 +147,7 @@ public class ViewPrint
         log.renameFile(response + ".txt");
     }
 
+    //Load a game state from a file
     public void loadView(Board board, LogFile log)
     {
         TextInputDialog inputDialog = new TextInputDialog();

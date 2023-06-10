@@ -3,17 +3,17 @@ import javafx.scene.*;
 
 public class InsView
 {
-
-    void insertButtons(Group root, Button sù, Button giù, Button destra, Button sinistra, Button config1, Button config2, Button config3, Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button caricaPartita)
+    //insert all buttons on the view
+    void insertButtons(Group root, Button up, Button down, Button rigth, Button left, Button config1, Button config2, Button config3, Button config4, Button reset, Button undo, Button bestNextMove, Button save, Button loadGame)
     {
-        
+        //change the buttons view settings
         ViewSettings primaryStageSetting = new ViewSettings();
-        primaryStageSetting.buttonsSettings(sù, giù, destra, sinistra, config1, config2, config3, config4, reset, undo, bestNextMove, save, caricaPartita);
+        primaryStageSetting.buttonsSettings(up, down, rigth, left, config1, config2, config3, config4, reset, undo, bestNextMove, save, loadGame);
 
-        root.getChildren().add(giù);
-        root.getChildren().add(sù);
-        root.getChildren().add(destra);
-        root.getChildren().add(sinistra);
+        root.getChildren().add(down);
+        root.getChildren().add(up);
+        root.getChildren().add(rigth);
+        root.getChildren().add(left);
         root.getChildren().add(reset);
         root.getChildren().add(config1);
         root.getChildren().add(config2);
@@ -22,6 +22,6 @@ public class InsView
         root.getChildren().add(undo);
         root.getChildren().add(bestNextMove);
         root.getChildren().add(save);
-        root.getChildren().add(caricaPartita);
+        root.getChildren().add(loadGame);
     }
 }

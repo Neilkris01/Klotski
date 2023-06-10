@@ -4,6 +4,7 @@ import javafx.scene.text.Text;
 import javafx.scene.Group;
 public class Texts
 {
+    //Display the counter value on the scene
     void counterText(Group root, Board board)
     {
         Text text1 = new Text();

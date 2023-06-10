@@ -7,10 +7,11 @@ public class PiecesView
     private int squareSize = 100;
     Rectangle[] a = new Rectangle[10];
 
+    //Print the pieces on the scene
     Rectangle[] printPiece(Piece[] p, Group root, Board board)
     {
 
-        // Crea i rettangoli e li inserisce nella scena
+        //Create rectangles and add them to the scene
         for (int i = 0; i <= 8; i++)
         {
             int[] dimensions = p[i].getDims();
@@ -37,9 +38,10 @@ public class PiecesView
         return a;
     }
 
+    //Reposition and update the pieces on the scene
     Rectangle[] rePrintPiece(Piece[] p, Group root, Board board)
     {
-        // Crea i rettangoli e li inserisce nella scena
+        //Update the position and appearance of the rectangles
         for (int i = 0; i <= 8; i++)
         {
             int[] dimensions = p[i].getDims();
@@ -68,6 +70,7 @@ public class PiecesView
         return a;
     }
 
+    //Clear the pieces from the scene
     void clearPiece(Group root)
     {
         root.getChildren().clear();

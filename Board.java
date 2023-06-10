@@ -1,5 +1,6 @@
 public class Board
 {
+	//inizialize the variables
 	Piece[] pieces;
 	Piece selected;
 	int width;
@@ -10,9 +11,9 @@ public class Board
 	int i;
 	int start = 0;
 	String fileName;
-
 	LogFile log = new LogFile();
 	
+	//board constructor
 	public Board()
 	{
 		this.pieces = new Piece[10];
@@ -24,6 +25,7 @@ public class Board
 		this.height = 5;
 	}
 	
+	//setter and getter
 	public void setConfig(int number) {this.configuration = number;}
 	public void setCounter(int count) {this.movesCounter = count;}
 	public boolean checkWin() { return hasWon; }
@@ -35,11 +37,13 @@ public class Board
 	public Piece[] getPieces() { return pieces; }
 	public LogFile getLog() { return log; }
 	
+	//select the piece
 	public void selectPiece(Piece p)
 	{
 		selected = p;
 	}
 
+	//check if the piece pointed is the selected one
 	public boolean isSelect(Piece p)
 	{
 		if((p.getDims()[0] == selected.getDims()[0]) && (p.getDims()[1] == selected.getDims()[1]))
@@ -49,6 +53,7 @@ public class Board
 		return false;
 	}
 	
+	//check the collision of rectangles with the board and other rectangles
 	public boolean isOccupied(int x, int y)
 	{
 		for (i=0; i<10; i++)
@@ -76,6 +81,7 @@ public class Board
 		return false;
 	}
 	
+	//move the selected piece and check if the move is a winning move
 	public boolean movePiece(Board board, int direction)
 	{
 		//caso 1: nessuna selezione
@@ -189,6 +195,7 @@ public class Board
 		return true;
 	}
 
+	//reset the game and reinizialize the game with the chosen configuration
 	public void reset(int config)
 	{
 		configuration = config;
