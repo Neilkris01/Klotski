@@ -92,7 +92,6 @@ public class LogFile
         queque = read(fileName);
         return queque;
     }
-
     public ArrayList<ArrayList<int[]>> logReadForSolve()
     {
         String fileName = "./Logs/Config1database.txt";
@@ -246,6 +245,7 @@ public class LogFile
         { System.err.println("An error occurred while deleting the file '" + e.getMessage() + "'");}
     }
 
+    //Getter
     public ArrayList<ArrayList<int[]>> getQ()
     {return queque;}
 }
