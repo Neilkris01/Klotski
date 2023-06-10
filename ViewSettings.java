@@ -22,17 +22,17 @@ public class ViewSettings
         down.setLayoutX(615);
         down.setLayoutY(450);
         down.setMinSize(50, 10);
-        down.setPrefWidth(55);
+        down.setPrefWidth(60);
 
         rigth.setLayoutX(680);
         rigth.setLayoutY(400);
         rigth.setMinSize(50, 10);
-        rigth.setPrefWidth(55);
+        rigth.setPrefWidth(60);
 
         left.setLayoutX(550);
         left.setLayoutY(400);
         left.setMinSize(50, 10);
-        rigth.setPrefWidth(55);
+        left.setPrefWidth(60);
 
         config1.setLayoutX(580);
         config1.setLayoutY(100);
@@ -57,17 +57,21 @@ public class ViewSettings
         bestNextMove.setLayoutX(645);
         bestNextMove.setLayoutY(580);
         bestNextMove.setMinSize(50, 10);
+        bestNextMove.setPrefWidth(60);
 
         undo.setLayoutX(590);
         undo.setLayoutY(580);
         undo.setMinSize(50, 10);
+        undo.setPrefWidth(60);
 
         reset.setLayoutX(590);
         reset.setLayoutY(610);
         reset.setMinSize(50, 10);
+        reset.setPrefWidth(60);
 
         save.setLayoutX(645);
         save.setLayoutY(610);
         save.setMinSize(50, 10);
+        save.setPrefWidth(60);
     }
 } 
