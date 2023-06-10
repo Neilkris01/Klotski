@@ -1,9 +1,11 @@
 import java.util.ArrayList;
-
 public class Solver
 {
+	//inizialize the variables
 	ArrayList<ArrayList<int[]>> queque;
 	int i = 0;
+	
+	//Read the logFile "Config1Database" into the queue to search if the game is in a possible solve pattern saved
 	public void solve(Board board, Piece[] p, ViewPrint view)
 	{
 		boolean found = false;
@@ -37,10 +39,11 @@ public class Solver
 		}
 	}
 
+	//"Database of solution moves"
 	public void resolve(Board board, Piece[] p)
 	{
 
-		// Opzione di risoluzione per la configurazione 1
+		//Solution option for configuration 1
 		if (board.getConfig() == 1)
 		{
 			if(i==1)
