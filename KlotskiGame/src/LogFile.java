@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-
 public class LogFile
 {
     ArrayList<ArrayList<int[]>> queque = new ArrayList<>();
@@ -12,8 +11,7 @@ public class LogFile
         try
         {
             //Create file
-
-            FileWriter fileName = new FileWriter("Logs/out.txt", true);
+            FileWriter fileName = new FileWriter("src/Logs/out.txt", true);
             BufferedWriter out = new BufferedWriter(fileName);
 
             //Write piece dimensions for each piece
@@ -74,7 +72,7 @@ public class LogFile
                 int[] coordinate = { x1, y1 };
 
                 if (moveN >= queque.size())
-                {queque.add(new ArrayList<int[]>());}
+                {queque.add(new ArrayList<>());}
                 queque.get(moveN).add(coordinate);
             }
             br.close();
@@ -90,14 +88,14 @@ public class LogFile
     //Read log file and return the queue of coordinates
     public ArrayList<ArrayList<int[]>> logRead()
     {
-        String fileName = "/Users/alvisestella/Desktop/KlotskiProject/src/main/java/com/klotski/Logs/outTest.txt";
+        String fileName = "src/Logs/out.txt";
         queque = read(fileName);
         return queque;
     }
 
     public ArrayList<ArrayList<int[]>> logReadForSolve()
     {
-        String fileName = "./Logs/Config1database.txt";
+        String fileName = "src/Logs/Config1database.txt";
         queque = read(fileName);
         return queque;
     }
@@ -108,7 +106,7 @@ public class LogFile
         int lineCount = 0;
         try
         {
-            File outFile = new File("./Logs/out.txt");
+            File outFile = new File("src/Logs/out.txt");
             File inputFile = new File(filePath);
             File tempFile = new File("temp.txt");
 
@@ -149,20 +147,20 @@ public class LogFile
     //Delete the temp log file (out)
     public void fileOutDelater()
     {
-        File outFile = new File("./Logs/out.txt");
+        File outFile = new File("src/Logs/out.txt");
         outFile.delete();
     }
 
     //Remove the last lines from the log file
     public void removeLastLines()
     {
-        String filePath = "./Logs/out.txt";
+        String filePath = "src/Logs/out.txt";
         int linesToRemove = 13;
         int lineCount = 0;
         try
         {
             File inputFile = new File(filePath);
-            File tempFile = new File("temp.txt");
+            File tempFile = new File("src/Logs/temp.txt");
 
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
@@ -221,9 +219,9 @@ public class LogFile
     public void renameFile(String nuovoNomeFile)
     {
 
-        String nomeFileOriginale = "./Logs/out.txt";
+        String nomeFileOriginale = "src/Logs/out.txt";
         File fileOriginale = new File(nomeFileOriginale);
-        File fileRinominato = new File("./Logs/" + nuovoNomeFile);
+        File fileRinominato = new File("src/Logs/" + nuovoNomeFile);
 
         fileOriginale.renameTo(fileRinominato);
     }
@@ -231,7 +229,7 @@ public class LogFile
     //Delete the log file
     public void deleteFile() 
     {
-        File file = new File("./Logs/out.txt");
+        File file = new File("src/Logs/out.txt");
         try
         {
             if (file.exists())

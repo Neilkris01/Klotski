@@ -181,7 +181,7 @@ public class ViewPrint
         }
         if (result.isPresent())
         {
-            fileName = "./Logs/" + result.get() + ".txt";
+            fileName = "src/Logs/" + result.get() + ".txt";
             Path path = Paths.get(fileName);
             if(Files.exists(path))
             {
