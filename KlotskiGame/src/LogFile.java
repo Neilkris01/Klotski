@@ -11,7 +11,7 @@ public class LogFile
         try
         {
             //Create file
-            FileWriter fileName = new FileWriter("out.txt", true);
+            FileWriter fileName = new FileWriter("out.txt", true); //"/Logs/out.txt"
             BufferedWriter out = new BufferedWriter(fileName);
 
             //Write piece dimensions for each piece
