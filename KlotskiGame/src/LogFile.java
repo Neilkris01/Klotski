@@ -106,7 +106,7 @@ public class LogFile
         int lineCount = 0;
         try
         {
-            File outFile = new File("src/Logs/out.txt");
+            File outFile = new File("out.txt");
             File inputFile = new File(filePath);
             File tempFile = new File("temp.txt");
 
