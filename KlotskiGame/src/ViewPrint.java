@@ -81,7 +81,7 @@ public class ViewPrint
             if (result.isPresent())
             {
                 response = result.get();
-                file = "./Logs/" + response + ".txt";
+                file = response + ".txt";
                 Path path = Paths.get(file);
                 if(!Files.exists(path))
                 {
