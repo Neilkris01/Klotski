@@ -1,3 +1,5 @@
+package com.example;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,6 +15,10 @@ public class PieceTest {
         Piece piece = new Piece(x, y, w, h);
 
         // Add assertions to check the expected values of x, y, w, h after constructing the piece
+        assertEquals(x, piece.getDims()[0]);
+        assertEquals(y, piece.getDims()[1]);
+        assertEquals(w, piece.getDims()[2]);
+        assertEquals(h, piece.getDims()[3]);
     }
 
     @Test(expected = IllegalArgumentException.class)

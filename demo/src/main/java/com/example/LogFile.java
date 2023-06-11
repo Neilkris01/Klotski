@@ -1,3 +1,5 @@
+package com.example;
+
 import java.io.*;
 import java.util.ArrayList;
 public class LogFile
