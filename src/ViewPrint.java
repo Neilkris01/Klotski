@@ -1,4 +1,3 @@
-
 import java.util.Optional;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
