@@ -25,6 +25,7 @@ public class Board
 		
 		this.width = 4;
 		this.height = 5;
+		selected = null;
 	}
 	
 	//setter and getter

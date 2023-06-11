@@ -74,7 +74,7 @@ public class LogFile
                 int[] coordinate = { x1, y1 };
 
                 if (moveN >= queque.size())
-                {queque.add(new ArrayList<>());}
+                {queque.add(new ArrayList<int[]>());}
                 queque.get(moveN).add(coordinate);
             }
             br.close();

@@ -26,14 +26,37 @@ public class LogFileTest {
         ArrayList<ArrayList<int[]>> queue = logFile.read("./Logs/out.txt");
 
         // Add assertions to check the expected contents of the queue
+        assertEquals(2, queue.size());
+
+        ArrayList<int[]> move1 = queue.get(0);
+        assertEquals(10, move1.size());
+        assertArrayEquals(new int[]{2, 3}, move1.get(0));
+        assertArrayEquals(new int[]{5, 6}, move1.get(9));
+
+        ArrayList<int[]> move2 = queue.get(1);
+        assertEquals(10, move2.size());
+        assertArrayEquals(new int[]{1, 2}, move2.get(0));
+        assertArrayEquals(new int[]{4, 5}, move2.get(9));
     }
 
     @Test
     public void testLogRead() {
-        LogFile logFile = new LogFile();
+               LogFile logFile = new LogFile();
         ArrayList<ArrayList<int[]>> queue = logFile.logRead();
 
         // Add assertions to check the expected contents of the queue
+        assertEquals(2, queue.size());
+
+        ArrayList<int[]> move1 = queue.get(0);
+        assertEquals(10, move1.size());
+        assertArrayEquals(new int[]{2, 3}, move1.get(0));
+        assertArrayEquals(new int[]{5, 6}, move1.get(9));
+
+        ArrayList<int[]> move2 = queue.get(1);
+        assertEquals(10, move2.size());
+        assertArrayEquals(new int[]{1, 2}, move2.get(0));
+        assertArrayEquals(new int[]{4, 5}, move2.get(9));
+
     }
 
     @Test
