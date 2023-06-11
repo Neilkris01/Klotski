@@ -17,15 +17,15 @@ public class Solver
 			ArrayList<int[]> temp = queque.get(c);
 			int cX = 0;
 			int cY = 0;
-			int hl = 0;
+			int k = 0;
 			for (int j = 0; j < 10; j++)
 			{
 				cX = temp.get(j)[0];
 				cY = temp.get(j)[1];
 				if(cX == p[j].getDims()[0] && cY == p[j].getDims()[1])
-				{hl++;}
+				{k++;}
 			}
-			if(hl == 10)
+			if(k == 10)
 			{
 				i = c + 1;
 				found = true;
