@@ -23,7 +23,7 @@ public class LogFileTest {
     @Test
     public void testRead() {
         LogFile logFile = new LogFile();
-        ArrayList<ArrayList<int[]>> queue = logFile.read("/Users/alvisestella/Desktop/KlotskiProject/src/main/java/com/klotski/Logs/outTest.txt");
+        ArrayList<ArrayList<int[]>> queue = logFile.read("outTest.txt");
 
         // Add assertions to check the expected contents of the queue
         assertEquals(2, queue.size());
