@@ -12,8 +12,6 @@ public class LogFile
         try
         {
             //Create file
-            String currentDirectory = System.getProperty("user.dir");
-            System.out.println("Current working directory: " + currentDirectory);
 
             FileWriter fileName = new FileWriter("Logs/out.txt", true);
             BufferedWriter out = new BufferedWriter(fileName);
