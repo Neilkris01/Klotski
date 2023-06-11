@@ -23,12 +23,12 @@ public class LogFileTest {
     @Test
     public void testRead() {
         LogFile logFile = new LogFile();
-        ArrayList<ArrayList<int[]>> queue = logFile.read("outTest.txt");
+        ArrayList<ArrayList<int[]>> q = logFile.read("out1.txt");
 
         // Add assertions to check the expected contents of the queue
-        assertEquals(2, queue.size());
+        assertEquals(1, q.size());
 
-        ArrayList<int[]> move1 = queue.get(0);
+        ArrayList<int[]> move1 = q.get(0);
         assertEquals(10, move1.size());
         assertArrayEquals(new int[]{3, 0}, move1.get(1));
         assertArrayEquals(new int[]{2, 3}, move1.get(8));
@@ -36,7 +36,7 @@ public class LogFileTest {
 
     @Test
     public void testLogRead() {
-               LogFile logFile = new LogFile();
+        LogFile logFile = new LogFile();
         ArrayList<ArrayList<int[]>> queue = logFile.logRead();
 
         // Add assertions to check the expected contents of the queue

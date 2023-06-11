@@ -14,10 +14,8 @@ public class LogFile
         try
         {
             //Create file
-            String currentDirectory = System.getProperty("user.dir");
-            System.out.println("Current working directory: " + currentDirectory);
-
-            FileWriter fileName = new FileWriter("Logs/out.txt", true);
+           
+            FileWriter fileName = new FileWriter("outTest.txt", true);
             BufferedWriter out = new BufferedWriter(fileName);
 
             //Write piece dimensions for each piece
@@ -101,7 +99,7 @@ public class LogFile
 
     public ArrayList<ArrayList<int[]>> logReadForSolve()
     {
-        String fileName = "./Logs/Config1database.txt";
+        String fileName = "Config1database.txt";
         queque = read(fileName);
         return queque;
     }
@@ -112,7 +110,7 @@ public class LogFile
         int lineCount = 0;
         try
         {
-            File outFile = new File("./Logs/out.txt");
+            File outFile = new File("out.txt");
             File inputFile = new File(filePath);
             File tempFile = new File("temp.txt");
 
@@ -153,14 +151,14 @@ public class LogFile
     //Delete the temp log file (out)
     public void fileOutDelater()
     {
-        File outFile = new File("./Logs/out.txt");
+        File outFile = new File("out.txt");
         outFile.delete();
     }
 
     //Remove the last lines from the log file
     public void removeLastLines()
     {
-        String filePath = "./Logs/out.txt";
+        String filePath = "out.txt";
         int linesToRemove = 13;
         int lineCount = 0;
         try
@@ -225,9 +223,9 @@ public class LogFile
     public void renameFile(String nuovoNomeFile)
     {
 
-        String nomeFileOriginale = "./Logs/out.txt";
+        String nomeFileOriginale = "out.txt";
         File fileOriginale = new File(nomeFileOriginale);
-        File fileRinominato = new File("./Logs/" + nuovoNomeFile);
+        File fileRinominato = new File(nuovoNomeFile);
 
         fileOriginale.renameTo(fileRinominato);
     }
@@ -235,7 +233,7 @@ public class LogFile
     //Delete the log file
     public void deleteFile() 
     {
-        File file = new File("./Logs/out.txt");
+        File file = new File("out.txt");
         try
         {
             if (file.exists())
