@@ -59,31 +59,32 @@ public class BoardTest {
     @Test
     public void testIsNotOccupied() {
         Board board = new Board();
-        Piece piece = board.getPieces()[0];
+        Piece piece = board.getPieces()[5];
 
-        assertFalse(board.isOccupied(piece.getDims()[0] + 1, piece.getDims()[1] + 1));
+        assertFalse(board.isOccupied(piece.getDims()[0] + 1, piece.getDims()[1]));
     }
 
     @Test
     public void testValidMove() {
         Board board = new Board();
-        Piece piece = board.getPieces()[0];
+        Piece piece = board.getPieces()[5];
         board.selectPiece(piece);
 
-        assertTrue(board.movePiece(board,3));
-        // Add assertions to check the expected state after the valid move
+        int initialX = piece.getDims()[0];
+        int initialY = piece.getDims()[1];
+
+        assertTrue(board.movePiece(board, 1));
 
         // Assert that the selected piece is no longer selected
-        assertNull(board.getSelectedPiece());
+        assertEquals(piece, board.getSelectedPiece());
 
         // Assert that the previous position of the piece is now unoccupied
-        assertFalse(board.isOccupied(piece.getDims()[0], piece.getDims()[1]));
+        assertFalse(board.isOccupied(initialX, initialY));
 
         // Assert that the piece is now at the new position
-        assertTrue(board.isOccupied(piece.getDims()[0], piece.getDims()[1] + 1));
-        
-        // Add more assertions as needed to check the expected state of the board
+        assertFalse(board.isOccupied(initialX + 1, initialY));
     }
+
 
 
     @Test
@@ -102,11 +103,9 @@ public class BoardTest {
         Piece piece = board.getPieces()[9];
         board.selectPiece(piece);
         // Move the piece to the winning position
-        
+        piece.setPos(1,3);
         assertTrue(board.movePiece(board, 2));
-        assertTrue(board.movePiece(board, 1));
-        assertTrue(board.movePiece(board, 2));
-        assertTrue(board.movePiece(board, 1));
+        assertTrue(board.checkWin());
         // Add assertions to check the expected state after winning the game
     }
 

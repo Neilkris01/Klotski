@@ -255,7 +255,7 @@ public class Board
 			pieces[8] = new Piece(0, 2, 1, 1);
 			pieces[9] = new Piece(0, 3, 2, 2);
 		}
-		selected = pieces[9];
+		selected = null;
 		setCounter(0);
 	}
 }
