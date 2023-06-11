@@ -2,6 +2,7 @@ package com.example;
 
 import java.io.*;
 import java.util.ArrayList;
+
 public class LogFile
 {
     ArrayList<ArrayList<int[]>> queque = new ArrayList<>();
@@ -13,7 +14,10 @@ public class LogFile
         try
         {
             //Create file
-            FileWriter fileName = new FileWriter("./Logs/out.txt", true);
+            String currentDirectory = System.getProperty("user.dir");
+            System.out.println("Current working directory: " + currentDirectory);
+
+            FileWriter fileName = new FileWriter("/src/main/java/com/example/Logs/out.txt", true);
             BufferedWriter out = new BufferedWriter(fileName);
 
             //Write piece dimensions for each piece
