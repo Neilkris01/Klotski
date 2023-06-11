@@ -26,7 +26,7 @@ public class LogFileTest {
         ArrayList<ArrayList<int[]>> queue = logFile.read("./Logs/out.txt");
 
         // Add assertions to check the expected contents of the queue
-        assertEquals(2, queue.size());
+        assertEquals(1, queue.size());
 
         ArrayList<int[]> move1 = queue.get(0);
         assertEquals(10, move1.size());

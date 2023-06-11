@@ -29,7 +29,7 @@ public class PieceTest {
         int h = 4;
 
         Piece piece = new Piece(x, y, w, h);
-
+        
         // The test should throw an IllegalArgumentException
     }
 
